@@ -28,6 +28,7 @@
 					"maximumNoOfVisits": 10
 				},
 				"formGroup": [
+          "All Oral STR, Lab Results Log",
 					"Lab Results Hemotology Template",
 					"Lab Results Biochemistry Template",
 					"Lab Results Serology Template",
@@ -69,6 +70,7 @@
 					"maximumNoOfVisits": 10
 				},
 				"formGroup": [
+				  "All Oral STR, Baseline Assessment",
 					"Baseline Template",
 					"Treatment Initiation Template"
 				],
@@ -96,6 +98,7 @@
 					"maximumNoOfVisits": 10
 				},
 				"formGroup": [
+				  "All Oral STR, Monthly Clinical Examination Log",
 					"Followup Template",
 					"Monthly Treatment Completeness Template"
 				],
@@ -163,6 +166,7 @@
 					"maximumNoOfVisits": 10
 				},
 				"formGroup": [
+				  "All Oral STR, Quarterly Post Treatment",
 					"Outcome End of Treatment Template",
 					"6 month Post Treatment Outcome Template"
 				],
