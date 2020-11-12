@@ -1063,7 +1063,20 @@
       "Lab, Pregnancy test result" :{
         "disableAddNotes": true,
         "conciseText": true
-      }
+      },
+     "All Oral STR, Post treatment BPNS" :{
+        "isTabular": true
+      },
+      "All Oral STR, BPNS Subjective score Left": {
+	"disableAddNotes": true
+      },
+      "All Oral STR, BPNS Subjective score Right": {
+        "disableAddNotes": true
+      },
+     "All Oral STR, Lab Other tests" :{
+	"allowAddMore": true,
+	"isTabular": true
+     }
     }
   }
 }
