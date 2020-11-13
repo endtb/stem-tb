@@ -374,6 +374,7 @@ Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni
         var enNonTB = "EOT, Non TB cause of death";
         var enReason = "EOT, Reasons for failure definition";
         var enOther = "EOT, Other reasons for failure definition";
+        var withdrawal = "All Oral STR, Withdrawal";
         if (outcome == "Died") {
             conditions.enable.push(enDOD, enCOD);
         } else {
@@ -400,6 +401,11 @@ Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni
         } else {
             conditions.disable.push(enTransferOut, enTransferred, enOtherReason);
         }
+        if (outcome == "All Oral STR, Withdrawn") {
+                    conditions.enable.push(withdrawal);
+                } else {
+                    conditions.disable.push(withdrawal);
+                }
         return conditions;
     },
     'EOT, Suspected primary cause of death': function (formName, formFieldValues) {
@@ -1225,5 +1231,16 @@ Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni
                 conditions.disable.push(NotEvalConcept)
             }
          return conditions;
-      }
+      },
+          'All Oral STR, If withdrawal reason for withdrawal': function (formName, formFieldValues) {
+           var conditions = {enable: [], disable: []};
+           var withdrawalOther = "All Oral STR, If withdrawal other";
+           var conditionConcept = formFieldValues['All Oral STR, If withdrawal reason for withdrawal'];
+           if (conditionConcept == "Other") {
+                       conditions.enable.push(withdrawalOther)
+                   } else {
+                       conditions.disable.push(withdrawalOther)
+                   }
+                return conditions;
+             }
 };
