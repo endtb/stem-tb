@@ -411,6 +411,9 @@
       "Lab, Other test unit": {
         "conciseText": true
       },
+      "All Oral STR, Lab Other tests": {
+        "isTabular": true
+      },
       "Specimen Collection Date": {
         "required": true
       },
