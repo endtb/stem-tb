@@ -1242,22 +1242,24 @@ Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni
                        conditions.disable.push(withdrawalOther)
                    }
                 return conditions;
-      },
-          'All Oral STR, Has the Consent form for all oral shorter regimen been explained and signed': function (formName, formFieldValues) {
-           var conditions = {enable: [], disable: []};
+             },
+	'All Oral STR, Has the Consent form for all oral shorter regimen been explained and signed': function (formName, formFieldValues) {
+	var conditions = {enable: [], disable: []};
            var consentWithdrawConcept = "Date of consent withdrawal";
            var consentNotPossibleOther = "All Oral STR, If Other specify";
            var conditionConcept = formFieldValues['All Oral STR, Has the Consent form for all oral shorter regimen been explained and signed'];
            if (conditionConcept == "Consent, withdrawn") {
-                   conditions.enable.push(consentWithdrawConcept)
+                       conditions.enable.push(consentWithdrawConcept)
                    } else {
-                    conditions.disable.push(consentWithdrawConcept)
+                       conditions.disable.push(consentWithdrawConcept)
                    }
-          if (conditionConcept == "Not possible- patient cannot be asked as dead or lost") {
-                    conditions.enable.push(consentNotPossibleOther)
-                    } else {
-                    conditions.disable.push(consentNotPossibleOther)
-                    }
-                    return conditions;
-                    }
+if (conditionConcept == "Not possible- patient cannot be asked as dead or lost") {
+                       conditions.enable.push(consentNotPossibleOther)
+                   } else {
+                       conditions.disable.push(consentNotPossibleOther)
+                   }
+                return conditions;
+             }
+
+
 };
