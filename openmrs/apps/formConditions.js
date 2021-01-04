@@ -1,5 +1,5 @@
-Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni expects
-    'Baseline, Employment within the past year': function (formName, formFieldValues) {
+Bahmni.ConceptSet.FormConditions.rules = {
+'Baseline, Employment within the past year': function (formName, formFieldValues) {
         var conditions = {enable: [], disable: []};
         var conditionConcept = formFieldValues['Baseline, Employment within the past year'];
         if (conditionConcept == "Other") {
@@ -107,9 +107,9 @@ Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni
         }
         return conditions;
     },
-    'Baseline, WHO registration group': function (formName, formFieldValues) {
+    'StemTB Baseline, WHO registration group': function (formName, formFieldValues) {
         var conditions = {enable: [], disable: []};
-        var conditionConcept = formFieldValues['Baseline, WHO registration group'];
+        var conditionConcept = formFieldValues['StemTB Baseline, WHO registration group'];
         if (conditionConcept == "Relapse" || conditionConcept == "Treatment after loss to followup" || conditionConcept == "Treatment After Failure to Drugs" || conditionConcept == "Other previously treated patients") {
             conditions.enable.push("Category IV tuberculosis classification")
         } else {
@@ -573,9 +573,9 @@ Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni
     'AE Form, Is AE an SAE': function (formName, formFieldValues) {
         var enSAENumber = "AE Form, SAE Case Number";
         var enDateOutcome = "AE Form, Date of AE Outcome";
-        var enAEOutcome = "AE Form, AE outcome";
-        var enMaxSeverity = "AE Form, Maximum severity of AE";
-        var enRelatedTBDrugs = "AE Form, AE related to TB drugs";
+        var enAEOutcome = "StemTB, AE outcome";
+        var enMaxSeverity = "StemTB, Maximum severity of AE";
+        var enRelatedTBDrugs = "StemTB, AE related to TB drugs";
         var enTBDrugTx = "AE Form, TB drug treatment";
         var enOtherCausalFact = "AE Form, Other causal factors";
         var enOtherCausalFactorsRelatedToAE = "AE Form, Other causal factors related to AE";
@@ -643,11 +643,20 @@ Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni
     'SAE Form, Related test': function (formName, formFieldValues) {
         var conceptToEnable = "SAE form, other related test";
         var conditions = {enable: [], disable: []};
+	var concept1 = "SAE Form, Related test lab ID";
+	var concept2 = "SAE Form, Related test date";
+	var concept3 = "SAE Form, Related test value";
+	var concept4 = "StemTB, Reference range";
         var SAETerm = formFieldValues['SAE Form, Related test'];
-        if (SAETerm && (SAETerm == "Other" || SAETerm.value == "Other")) {
-            conditions.enable.push(conceptToEnable)
+if (SAETerm && (SAETerm == "Other" || SAETerm.value == "Other")) {
+            conditions.enable.push(conceptToEnable, concept1, concept2, concept3, concept4)
         } else {
             conditions.disable.push(conceptToEnable)
+        }
+	 if (SAETerm == "Related Test, Hemoglobin" || SAETerm == "Related Test, Hematocrit" || SAETerm == "Related Test, Platelet count" || SAETerm == "Related Test, RBC count" || SAETerm == "Related Test, WBC count" || SAETerm == "Related Test, Absolute neutrophil count" || SAETerm == "Related Test, % neutrophils" || SAETerm == "Related Test, Potassium" || SAETerm == "Related Test, Magnesium" || SAETerm == "Related Test, Ionised Calcium" || SAETerm == "Related Test, Urea" || SAETerm == "Related Test, Creatinine" || SAETerm == "Related Test, Glucose" || SAETerm == "Related Test, Glucose (Fasting)" || SAETerm == "Related Test, HbA1c" || SAETerm == "Related Test, TSH" || SAETerm == "Related Test, Lipase" || SAETerm == "Related Test, AST (SGOT)" || SAETerm == "Related Test, ALT (SGPT)" || SAETerm == "Related Test, Total bilirubin" || SAETerm == "Related Test, Pregnancy test" || SAETerm == "Related Test, CD4 count" || SAETerm == "Related Test, Serum albumin" || SAETerm == "Related Test, Audiometry" || SAETerm == "Related Test, QtcF" || SAETerm == "Related Test, Other ECG" || SAETerm == "Related Test, Blood pressure" || SAETerm == "Related Test, Visual acuity" || SAETerm == "Related Test, Ishihara test" || SAETerm == "Related Test, BPNS" || SAETerm == "Related Test, EMG") {
+            conditions.enable.push(concept1, concept2, concept3, concept4)
+        } else {
+            conditions.disable.push(concept1, concept2, concept3, concept4)
         }
         return conditions;
     },
@@ -825,18 +834,7 @@ Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni
         }
         return conditions;
     },
-    'Xray, Extent of disease': function (formName, formFieldValues) {
-        var conceptEnCavity = "Xray, Maximum cavity size";
-        var conceptEnFibrosis = "Xray, Fibrosis";
-        var conditions = {enable: [], disable: []};
-        var conditionConcept = formFieldValues['Xray, Extent of disease'];
-        if (conditionConcept == "Normal" || !conditionConcept) {
-            conditions.disable.push(conceptEnCavity, conceptEnFibrosis)
-        } else {
-            conditions.enable.push(conceptEnCavity, conceptEnFibrosis)
-        }
-        return conditions;
-    },
+
     'Audiometry, Type of visit': function (formName, formFieldValues) {
         var conceptToEnable = "Audiometry, Month of scheduled visit";
         var conditions = {enable: [], disable: []};
@@ -1054,7 +1052,7 @@ Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni
         return conditions;
     },
     'Baseline, Start date of past TB treatment': function (formName, formFieldValues) {
-        var conceptToEnable = ["Baseline, Past TB treatment drug regimen", "Baseline, Past TB treatment outcome"];
+        var conceptToEnable = ["Baseline, Past TB treatment drug regimen", "StemTB Baseline, Past TB treatment outcome"];
         var conditions = {enable: [], disable: []};
         var conditionConcept = formFieldValues['Baseline, Start date of past TB treatment'];
         if (conditionConcept) {
@@ -1129,137 +1127,655 @@ Bahmni.ConceptSet.FormConditions.rules = {      //This is a constant that Bahmni
         }
         return conditions;
     },
-    'All Oral STR, withdrawn': function (formName, formFieldValues) {
-        var otherReasonLine = "All Oral STR, If withdrawal reason for withdrawal";
-        var conditionConcept = formFieldValues['All Oral STR, withdrawn'];
-        if (conditionConcept == 'Other') {
-            return {enable: [otherReasonLine]}
-        } else {
-            return {disable: [otherReasonLine]}
-        }
-    },
-     'All Oral STR EOT, Outcome': function (formName, formFieldValues) {
-        var conceptToEnable = "DATE OF DEATH"
+
+	'StemTB Baseline, Does the patient drink alcohol?': function (formName, formFieldValues) {
         var conditions = {enable: [], disable: []};
-        var conditionConcept = formFieldValues['All Oral STR EOT, Outcome'];
-        if (conditionConcept == "Died") {
-            conditions.enable.push(conceptToEnable)
+        var conditionConcept = formFieldValues['StemTB Baseline, Does the patient drink alcohol?'];
+        if (conditionConcept == "True") {
+            conditions.enable.push("StemTB Baseline, Number of standard alcoholic drinks per week")
         } else {
-            conditions.disable.push(conceptToEnable)
+            conditions.disable.push("StemTB Baseline, Number of standard alcoholic drinks per week")
         }
         return conditions;
-    },
-     'All Oral STR, Person from whom the information is provided/assessment made': function (formName, formFieldValues) {
-        var conditions = {enable: [], disable: []};
-        var conditionConcept = formFieldValues['All Oral STR, Person from whom the information is provided/assessment made'];
-        var CoughConcept = "All Oral STR, Have you had cough for > 2 weeks";
-        var FeverConcept = "All Oral STR, Do you have fever";
-        var NightSweatsConcept = "All Oral STR, Do you have night sweats";
-        var UnexplainedWeighLossConcept = "All Oral STR, Have you had unexplained weight loss";
-        if (conditionConcept == "All Oral STR, Patient himself (see question 10)") {
-                conditions.enable.push(CoughConcept, FeverConcept, NightSweatsConcept, UnexplainedWeighLossConcept)
-            } else {
-                conditions.disable.push(CoughConcept, FeverConcept, NightSweatsConcept, UnexplainedWeighLossConcept)
-            }
-        return conditions;
-    },
-    'All Oral STR, Have you had cough for > 2 weeks': function (formName, formFieldValues) {
-      var conditions = {enable: [], disable: []};
-      var conditionConcept = formFieldValues['All Oral STR, Have you had cough for > 2 weeks'];
-      var YesCoughConcept = "All Oral STR, If yes Is your cough productive";
-      var YesCoughBloodConcept = "All Oral STR, If yes Is there blood in your sputum";
-      if (conditionConcept == "True") {
-                conditions.enable.push(YesCoughConcept, YesCoughBloodConcept)
-            } else {
-                conditions.disable.push(YesCoughConcept, YesCoughBloodConcept)
-            }
-	 return conditions;
-	},
-    'All Oral STR, Do you have fever': function (formName, formFieldValues) {
-      var conditions = {enable: [], disable: []};
-      var conditionConcept = formFieldValues['All Oral STR, Do you have fever'];
-      var YesFeverConcept = "All Oral STR, If yes fever or how long(in days)";
-      if (conditionConcept == "True") {
-                conditions.enable.push(YesFeverConcept)
-            } else {
-                conditions.disable.push(YesFeverConcept)
-            }
-         return conditions;
-	},
-     'All Oral STR, Any current medications being taken': function (formName, formFieldValues) {
-      var conditions = {enable: [], disable: []};
-      var conditionConcept = formFieldValues['All Oral STR, Any current medications being taken'];
-      var YesCurrentMedicationConcept = "All Oral STR, If yes please list";
-      if (conditionConcept == "True") {
-                conditions.enable.push(YesCurrentMedicationConcept)
-            } else {
-                conditions.disable.push(YesCurrentMedicationConcept)
-            }
-         return conditions;
         },
-     'All Oral STR, Final Post-Treatment Outcome': function (formName, formFieldValues) {
-     var conditions = {enable: [], disable: []};
-     var conditionConcept = formFieldValues['All Oral STR, Final Post-Treatment Outcome'];
-     var NoRecurrenceConcept = "All Oral STR, If no recurrence";
-     var RecurrenceConcept = "All Oral STR, If recurrence";
-     var DiedConcept = "6m PTO, Died";
-     var LTFUConcept = "6m PTO, LTFU";
-     var NotEvalConcept= "6m PTO, Not evaluated";
-     if (conditionConcept == "All Oral STR, No Recurrence") {
-                conditions.enable.push(NoRecurrenceConcept)
+
+	'StemTB Baseline, Confirmed HIV serostatus': function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var diagnosisDate = "Date of HIV diagnosis";
+        var lastCD = "StemTB Baseline, Last CD4 Count";
+        var cdDate = "CD4 date";
+        var rna = "StemTB Baseline, Last RNA Viral Load";
+	var undetectable = "Undetectable, If viral load results are undetectable, write the result here (for example, '< 20')";
+        var vload = "Baseline, Viral Load Date";
+        var arvTreatment = "StemTB Baseline, Currently on ARV treatment?";
+        var arvInitiation = "StemTB Baseline, Date of ARV initiation";
+        var arv = "Baseline, Drugs used in ARV treatment";
+        var diabetes = "StemTB Baseline, Diabetes (type 1 or 2)";
+        var hbA1c = "StemTB Baseline, If yes last HbA1c";
+        var hepB = "StemTB Baseline, Confirmed Hepatitis B";
+        var hepC = "StemTB Baseline, Confirmed Hepatitis C";
+        var exisitingNeuropathy = "Baseline, Pre-existing neuropathy";
+        var neuropathyGrade = "Baseline, Neuropathy grade";
+	var cptDate = "StemTB Baseline, CPT Date";
+	var cpt = "StemTB Baseline, Started on CPT?";
+        var conditionConcept = formFieldValues['StemTB Baseline, Confirmed HIV serostatus'];
+        if (conditionConcept == "Positive") {
+            conditions.enable.push(diagnosisDate, lastCD, cdDate, rna, undetectable, vload, arvTreatment, arvInitiation, arv, cpt, cptDate)
+        } else {
+            conditions.disable.push(diagnosisDate, lastCD, cdDate, rna, undetectable, vload, arvTreatment, arvInitiation, arv, cpt, cptDate)
+        }
+        return conditions;
+        },
+
+	"StemTB Baseline, Currently on ARV treatment?" :function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var arvDate = "StemTB Baseline, Date of ARV initiation";
+        var arvDrugs = "Baseline, Drugs used in ARV treatment";
+        var conditionConcept = formFieldValues['StemTB Baseline, Currently on ARV treatment?'];
+        if (conditionConcept == "True") {
+            conditions.enable.push(arvDate, arvDrugs)
+        } else {
+            conditions.disable.push(arvDate, arvDrugs)
+        }
+        return conditions;
+        },
+
+	"StemTB Baseline, Diabetes (type 1 or 2)" :function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var ifYes = "StemTB Baseline, If yes last HbA1c";
+        var conditionConcept = formFieldValues['StemTB Baseline, Diabetes (type 1 or 2)'];
+        if (conditionConcept == "True") {
+            conditions.enable.push(ifYes)
+        } else {
+            conditions.disable.push(ifYes)
+        }
+        return conditions;
+        },
+
+	'StemTB PTO, Final Post-Treatment Outcome': function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['StemTB PTO, Final Post-Treatment Outcome'];
+        var deathDate = "6m PTO, Date of death post treatment";
+        var suspectedDeathCause = "StemTB PTO, If Died: Suspected Primary cause of death";
+        var nonTBDeathCause = "StemTB PTO, Non TB cause of post treatment death";
+        var postSurgeryDeath = "6m PTO, Type of surgery related to post treatment death";
+        var noRecurrence = "StemTB PTO, If no recurrence";
+	var recurrence = "StemTB PTO, If recurrence";
+	var LTFU = "StemTB PTO, Lost To Follow Up";
+	var notEval = "StemTB PTO, Not evaluated";
+        if (conditionConcept == "Died post treatment") {
+              conditions.enable.push(deathDate, suspectedDeathCause, nonTBDeathCause, postSurgeryDeath);
             } else {
-                conditions.disable.push(NoRecurrenceConcept)
+                conditions.disable.push(deathDate, suspectedDeathCause, nonTBDeathCause, postSurgeryDeath);
             }
-     if (conditionConcept == "All Oral STR, Recurrence") {
-                conditions.enable.push(RecurrenceConcept)
+        if (conditionConcept == "StemTB PTO, Recurrence") {
+              conditions.enable.push(recurrence);
             } else {
-                conditions.disable.push(RecurrenceConcept)
+                conditions.disable.push(recurrence);
             }
-     if (conditionConcept == "Died post treatment") {
-                conditions.enable.push(DiedConcept)
+	if (conditionConcept == "StemTB PTO, No Recurrence") {
+              conditions.enable.push(noRecurrence);
             } else {
-                conditions.disable.push(DiedConcept)
+                conditions.disable.push(noRecurrence);
             }
-    if (conditionConcept == "LTFU post treatment") {
-                conditions.enable.push(LTFUConcept)
+	if (conditionConcept == "StemTB PTO, Lost to follow-up, post-treatment") {
+              conditions.enable.push(LTFU);
             } else {
-                conditions.disable.push(LTFUConcept)
+                conditions.disable.push(LTFU);
             }
-   if (conditionConcept == "Not Evaluated") {
-                conditions.enable.push(NotEvalConcept)
+	if (conditionConcept == "Not Evaluated") {
+              conditions.enable.push(notEval);
             } else {
-                conditions.disable.push(NotEvalConcept)
+                conditions.disable.push(notEval);
             }
-         return conditions;
-      },
-          'All Oral STR, If withdrawal reason for withdrawal': function (formName, formFieldValues) {
-           var conditions = {enable: [], disable: []};
-           var withdrawalOther = "All Oral STR, If withdrawal other";
-           var conditionConcept = formFieldValues['All Oral STR, If withdrawal reason for withdrawal'];
-           if (conditionConcept == "Other") {
-                       conditions.enable.push(withdrawalOther)
+
+        return conditions;
+        },
+
+	"StemTB PTO, Reasons for no post treatment followup": function (formName, formFieldValues) {
+	var other = "StemTB PTO, Other reasons for no post treatment followup";
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['StemTB PTO, Reasons for no post treatment followup'];
+        if (conditionConcept && conditionConcept.indexOf("Other") > -1) {
+            conditions.enable.push(other);
+        } else {
+            conditions.disable.push(other);
+        }
+        return conditions;
+        },
+
+	"StemTB PTO, Did the patient transfer out": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+	var yes = "6m PTO, Transferred to where post treatment";
+	var no = "StemTB PTO, If no, why does the patient have this outcome";
+	var conditionConcept = formFieldValues['StemTB PTO, Did the patient transfer out'];
+        if (conditionConcept == "True") {
+            conditions.enable.push(yes);
+        } else {
+            conditions.disable.push(yes);
+        }
+	if (conditionConcept == "False") {
+            conditions.enable.push(no);
+        } else {
+            conditions.disable.push(no);
+        }
+        return conditions;
+        },
+
+
+        "StemTB PTO, If Died: Suspected Primary cause of death": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var surgeryDeath = "6m PTO, Type of surgery related to post treatment death";
+        var nonTBDeathCause = "StemTB PTO, Non TB cause of post treatment death";
+        var noRecurrence = "StemTB PTO, If no recurrence";
+        var conditionConcept = formFieldValues['StemTB PTO, If Died: Suspected Primary cause of death'];
+        if (conditionConcept == "Surgery related death") {
+              conditions.enable.push(surgeryDeath);
+            } else {
+                conditions.disable.push(surgeryDeath);
+            }
+        if (conditionConcept == "Cause other than TB") {
+	 conditions.enable.push(nonTBDeathCause);
+            } else {
+                conditions.disable.push(nonTBDeathCause);
+            }
+        return conditions;
+        },
+
+	'StemTB Baseline, Has the Consent form for all oral shorter regimen been explained and signed': function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+           var signConceptDate = "StemTB Baseline, Baseline Date Consent Signed";
+           var consentNotPossibleOther = "StemTB Baseline, If Other specify";
+           var conditionConcept = formFieldValues['StemTB Baseline, Has the Consent form for all oral shorter regimen been explained and signed'];
+           if (conditionConcept == "StemTB Baseline, Accepted") {
+                       conditions.enable.push(signConceptDate)
                    } else {
-                       conditions.disable.push(withdrawalOther)
+                       conditions.disable.push(signConceptDate)
                    }
-                return conditions;
-             },
-	'All Oral STR, Has the Consent form for all oral shorter regimen been explained and signed': function (formName, formFieldValues) {
-	var conditions = {enable: [], disable: []};
-           var consentWithdrawConcept = "Date of consent withdrawal";
-           var consentNotPossibleOther = "All Oral STR, If Other specify";
-           var conditionConcept = formFieldValues['All Oral STR, Has the Consent form for all oral shorter regimen been explained and signed'];
-           if (conditionConcept == "Consent, withdrawn") {
-                       conditions.enable.push(consentWithdrawConcept)
-                   } else {
-                       conditions.disable.push(consentWithdrawConcept)
-                   }
-if (conditionConcept == "Not possible- patient cannot be asked as dead or lost") {
+	if (conditionConcept == "Other") {
                        conditions.enable.push(consentNotPossibleOther)
                    } else {
                        conditions.disable.push(consentNotPossibleOther)
                    }
                 return conditions;
-             }
+             },
 
+	'TUBERCULOSIS DRUG TREATMENT START DATE': function (formName, formFieldValues) {
+        var conceptToEnable = ["StemTB Baseline, Treatment facility at start" ,"StemTB Baseline, Other treatment facility", "Facility patient ID"];
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['TUBERCULOSIS DRUG TREATMENT START DATE'];
+        if (conditionConcept) {
+            conditions.enable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+    },
 
+	"StemTB Baseline, Treatment facility at start" : function (formName, formFieldValues) {
+	var conditions = {enable: [], disable: []};
+        var otherFac = "StemTB Baseline, Other treatment facility";
+        var conditionConcept = formFieldValues['StemTB Baseline, Treatment facility at start'];
+	if (conditionConcept == "Other") {
+                       conditions.enable.push(otherFac)
+                   } else {
+                       conditions.disable.push(otherFac)
+                   }
+                return conditions;
+	},
+
+	"AE, Is the date of AE onset estimated?" : function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var dateEst = "StemTB, If date of AE onset estimated";
+        var conditionConcept = formFieldValues['AE, Is the date of AE onset estimated?'];
+	if (conditionConcept == true) {
+                       conditions.enable.push(dateEst)
+                   } else {
+                       conditions.disable.push(dateEst)
+                   }
+                return conditions;
+        },
+
+	"AE Form, Date of AE Outcome" : function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var conceptToEnable = ["AE, Is the date of AE outcome estimated?", "StemTB, If date of AE outcome estimated"];
+        var conditionConcept = formFieldValues['AE Form, Date of AE Outcome'];
+        if (conditionConcept) {
+            conditions.enable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+        },
+
+	"AE, Is the date of AE outcome estimated?" : function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var dateEst = "StemTB, If date of AE outcome estimated";
+        var conditionConcept = formFieldValues['AE, Is the date of AE outcome estimated?'];
+        if (conditionConcept == true) {
+                       conditions.enable.push(dateEst)
+                   } else {
+                       conditions.disable.push(dateEst)
+                   }
+                return conditions;
+        },
+
+	'StemTB EOT, Outcome': function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['StemTB EOT, Outcome'];
+        var died = "StemTB, Died";
+        var failed = "StemTB, Failed";
+        var ltfu = "StemTB, LTFU";
+        var notEval = "StemTB, Not evaluated";
+        var withDrawal = "StemTB EOT, Withdrawal";
+        if (conditionConcept == "Died") {
+              conditions.enable.push(died);
+            } else {
+                conditions.disable.push(died);
+            }
+	if (conditionConcept == "Failed") {
+              conditions.enable.push(failed);
+            } else {
+                conditions.disable.push(failed);
+            }
+	if (conditionConcept == "StemTB EOT, LFTU") {
+              conditions.enable.push(ltfu);
+            } else {
+                conditions.disable.push(ltfu);
+            }
+	if (conditionConcept == "Not Evaluated") {
+              conditions.enable.push(notEval);
+            } else {
+                conditions.disable.push(notEval);
+        	}
+	if (conditionConcept == "StemTB EOT, Withdrawn") {
+              conditions.enable.push(withDrawal);
+            } else {
+                conditions.disable.push(withDrawal);
+        }
+
+         return conditions;
+        },
+
+	'StemTB, Suspected primary cause of death': function (formName, formFieldValues) {
+        var enSurgery = "EOT, Type of surgery related to death";
+        var tbDeath = "StemTB, Suspected cause related to TB treatment";
+        var enNonTB = "StemTB, Non TB cause of death";
+        var conditions = {enable: [], disable: []};
+        var suspectCause = formFieldValues['StemTB, Suspected primary cause of death'];
+        if (suspectCause == "Surgery related death") {
+            conditions.enable.push(enSurgery);
+        } else {
+            conditions.disable.push(enSurgery);
+        }
+	if (suspectCause == "Cause other than TB") {
+            conditions.enable.push(enNonTB);
+        } else {
+            conditions.disable.push(enNonTB);
+        }
+        if (suspectCause == "Cause related to TB treatment") {
+            conditions.enable.push(tbDeath);
+        } else {
+            conditions.disable.push(tbDeath);
+        }
+        return conditions;
+	},
+
+	"StemTB, Reasons for failure definition": function (formName, formFieldValues) {
+        var other = "StemTB, Other reasons for failure definition";
+	var conditions = {enable: [], disable: []};
+        var Failed = formFieldValues['StemTB, Reasons for failure definition'];
+        if (Failed && Failed.indexOf("Other") > -1) {
+            conditions.enable.push(other);
+        } else {
+            conditions.disable.push(other);
+        }
+	return conditions;
+        },
+
+ 	"StemTB, Reasons for treatment interrruption": function (formName, formFieldValues) {
+        var other = "StemTB, Other reasons for treatment interruption";
+        var conditions = {enable: [], disable: []};
+        var LTFU = formFieldValues['StemTB, Reasons for treatment interrruption'];
+        if (LTFU == "Other") {
+            conditions.enable.push(other);
+        } else {
+            conditions.disable.push(other);
+        }
+        return conditions;
+        },
+
+	"StemTB, Did the patient transfer out": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var transferNo = "StemTB, Other reasons for no evaluation of outcome";
+	var transferYes = "EOT, Transferred to where";
+	var transfer = formFieldValues['StemTB, Did the patient transfer out'];
+        if (transfer == "True") {
+            conditions.enable.push(transferYes);
+        } else {
+            conditions.disable.push(transferYes);
+        }
+	if (transfer == "False") {
+            conditions.enable.push(transferNo);
+        } else {
+            conditions.disable.push(transferNo);
+        }
+
+        return conditions;
+        },
+
+	"StemTB EOT, If withdrawal reason for withdrawal": function (formName, formFieldValues) {
+	var conditions = {enable: [], disable: []};
+        var other = "StemTB EOT, If withdrawal other";
+        var withdrawal = formFieldValues['StemTB EOT, If withdrawal reason for withdrawal'];
+	if (withdrawal == "Other") {
+            conditions.enable.push(other);
+        } else {
+            conditions.disable.push(other);
+        }
+        return conditions;
+        },
+
+	"StemTB Quarterly PTO, Any current medications being taken": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+	var currentMed = "StemTB Quarterly PTO, If yes please list";
+	var conditionConcept = formFieldValues['StemTB Quarterly PTO, Any current medications being taken'];
+        if (conditionConcept == "True") {
+            conditions.enable.push(currentMed);
+        } else {
+            conditions.disable.push(currentMed);
+        }
+	return conditions;
+        },
+
+	"StemTB Quarterly PTO, Any contact with a medical practitioner since completing TB treatment": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var contact = "StemTB Quarterly PTO, If yes what was the purpose of visit";
+        var conditionConcept = formFieldValues['StemTB Quarterly PTO, Any contact with a medical practitioner since completing TB treatment'];
+        if (conditionConcept == "True") {
+            conditions.enable.push(contact);
+        } else {
+            conditions.disable.push(contact);
+        }
+        return conditions;
+        },
+
+	"StemTB, AE term comprehensive list": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var other = "AE Form, Other AE term";
+        var ae = formFieldValues['StemTB, AE term comprehensive list'];
+        if (ae == "Other") {
+            conditions.enable.push(other);
+        } else {
+            conditions.disable.push(other);
+        }
+        return conditions;
+        },
+
+	"SAE Form, Date of SAE report" : function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var conceptToEnable = ["SAE, Is the date of SAE report estimated?","SAE, Is the day of SAE report date estimated", "SAE, Is the month of SAE report date estimated","SAE, Is the year of SAE report date estimated", "SAE, Is the date of SAE onset estimated?", "SAE, Is the date of SAE onset day estimated", "SAE, Is the month of SAE onset date estimated", "SAE, Is the year of SAE onset date estimated", "SAE, Is the date when the adverse event became serious estimated?", "SAE, Is the day when the event became serious estimated", "SAE, Is the month when the event became serious estimated", "SAE, Is the year when the event became serious estimated", "SAE, Is the date of SAE outcome estimated?", "SAE, Is the day of the SAE outcome date estimated","SAE, Is the month of the SAE outcome date estimated", "SAE, Is the year of the SAE outcome date estimated"];
+  var conditionConcept = formFieldValues['SAE Form, Date of SAE report'];
+        if (conditionConcept) {
+            conditions.disable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+        },
+
+ 	"StemTB Baseline, Used second-line drugs previously" : function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var yesO = "StemTB Baseline, If Yes to second-line drugs, specify";
+        var conditionConcept = formFieldValues['StemTB Baseline, Used second-line drugs previously'];
+        if (conditionConcept == "True") {
+            conditions.enable.push(yesO);
+        } else {
+            conditions.disable.push(yesO);
+        }
+        return conditions;
+        },
+
+	'Bacteriology, Is the date of sample collection estimated?': function (formName, formFieldValues) {
+        var conceptToEnable = ["Bacteriology, Is the day for the date of sample collection estimated", "Bacteriology, Is the month of the date of sample collection estimated", "Bacteriology, Is the year for the date of sample collection estimated"];
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['Bacteriology, Is the date of sample collection estimated?'];
+        if (conditionConcept) {
+            conditions.disable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+    },
+
+    'Bacteriology, Date of AFB smear': function (formName, formFieldValues) {
+        var conceptToEnable = ["Bacteriology, Is the date Of AFB smear estimated?"];
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['Bacteriology, Date of AFB smear'];
+        if (conditionConcept) {
+            conditions.disable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+    },
+    'Bacteriology, Is the date Of AFB smear estimated?': function (formName, formFieldValues) {
+        var conceptToEnable = ["Bacteriology, Is the day for the AFB smear date estimated", "Bacteriology, Is the month for the AFB smear date estimated", "Bacteriology, Is the year for the AFB smear date estimated"];
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['Bacteriology, Is the date Of AFB smear estimated?'];
+        if (conditionConcept) {
+            conditions.disable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+    },
+'Bacteriology, Date of Xpert test': function (formName, formFieldValues) {
+        var conceptToEnable = ["Bacteriology, Is the date of Xpert test estimated?"];
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['Bacteriology, Date of Xpert test'];
+        if (conditionConcept) {
+            conditions.disable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+    },
+    'Bacteriology, Is the date of Xpert test estimated?': function (formName, formFieldValues) {
+        var conceptToEnable = ["Bacteriology, Is the day for the xpert test date estimated", "Bacteriology, Is the month for the xpert test date estimated", "Bacteriology, Is the year for the xpert test date estimated"];
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['Bacteriology, Is the date of Xpert test estimated?'];
+        if (conditionConcept) {
+            conditions.disable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+    },
+    'Bacteriology, HAIN MTBDRplus test date': function (formName, formFieldValues) {
+        var conceptToEnable = ["Bacteriology, Is the date of HAIN MTBDRplus test estimated?"];
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['Bacteriology, HAIN MTBDRplus test date'];
+        if (conditionConcept) {
+            conditions.disable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+    },
+
+    'Bacteriology, Is the date of HAIN MTBDRplus test estimated?': function (formName, formFieldValues) {
+        var conceptToEnable = ["Bacteriology, Is the day of the hain MTBDRplus test date estimated", "Bacteriology, Is the month of the hain MTBDRplus test date estimated", "Bacteriology, Is the year of the hain MTBDRplus test date estimated"];
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['Bacteriology, Is the date of HAIN MTBDRplus test estimated?'];
+        if (conditionConcept) {
+            conditions.disable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+    },
+    'Bacteriology, HAIN MTBDRsl test date': function (formName, formFieldValues) {
+        var conceptToEnable = ["Bacteriology, Is the date of HAIN MTBDRsl test estimated?"];
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['Bacteriology, HAIN MTBDRsl test date'];
+        if (conditionConcept) {
+            conditions.disable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+    },
+    'Bacteriology, Is the date of HAIN MTBDRsl test estimated?': function (formName, formFieldValues) {
+        var conceptToEnable = ["Bacteriology, Is the day of hain MTBDRsl test date estimated", "Bacteriology, Is the month of hain MTBDRsl test date estimated", "Bacteriology, Is the year of hain MTBDRsl test date estimated"];
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['Bacteriology, Is the date of HAIN MTBDRsl test estimated?'];
+        if (conditionConcept) {
+            conditions.disable = conceptToEnable
+        } else {
+            conditions.disable = conceptToEnable
+        }
+        return conditions;
+	},
+
+    	"StemTB Baseline, Started on CPT?": function (formName, formFieldValues) {
+	var cptDate = "StemTB Baseline, CPT Date";
+	var conditions = {enable: [], disable: []};
+	var conditionConcept = formFieldValues['StemTB Baseline, Started on CPT?'];
+        if (conditionConcept == "True") {
+            conditions.enable.push(cptDate);
+        } else {
+            conditions.disable.push(cptDate);
+        }
+        return conditions;
+    },
+
+	"StemTB Quarterly PTO, Have you had cough for > 2 weeks": function (formName, formFieldValues) {
+        var productive = "StemTB Quarterly PTO, If yes Is your cough productive";
+        var blood = "StemTB Quarterly PTO, If yes Is there blood in your sputum";
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['StemTB Quarterly PTO, Have you had cough for > 2 weeks'];
+        if (conditionConcept == "True") {
+            conditions.enable.push(productive, blood);
+	}else if (conditionConcept == "False" )  {
+            conditions.disable.push(productive, blood)
+        } else {
+	conditions.disable.push(productive, blood);
+	}
+        return conditions;
+    },
+
+	"StemTB Quarterly PTO, If yes Is your cough productive": function (formName, formFieldValues) {
+	var blood = "StemTB Quarterly PTO, If yes Is there blood in your sputum";
+	var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['StemTB Quarterly PTO, If yes Is your cough productive'];
+	if (conditionConcept == "True")  {
+            conditions.enable.push(blood)
+        } else {
+        conditions.disable.push(blood);
+	}
+ 	return conditions;
+    },
+
+	"StemTB Quarterly PTO, Do you have fever": function (formName, formFieldValues) {
+        var days = "StemTB Quarterly PTO, If yes fever or how long (in days)";
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['StemTB Quarterly PTO, Do you have fever'];
+         if (conditionConcept == "True")  {
+            conditions.enable.push(days);
+        } else {
+        conditions.disable.push(days);
+        }
+        return conditions;
+    },
+
+	"StemTB Quarterly PTO, Indirect information if patient not seen in person": function (formName, formFieldValues) {
+        var days = "DATE OF DEATH";
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['StemTB Quarterly PTO, Indirect information if patient not seen in person'];
+         if (conditionConcept == "StemTB Quarterly PTO, patient died") {
+            conditions.enable.push(days);
+        } else {
+        conditions.disable.push(days);
+        }
+        return conditions;
+    },
+
+	"StemTB Quarterly PTO, Person from whom the information is provided/assessment made": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues['StemTB Quarterly PTO, Person from whom the information is provided/assessment made'];
+         if (conditionConcept == "StemTB Quarterly PTO, Patient himself (see question 10)") {
+            conditions.enable.push("StemTB Quarterly PTO, Have you had cough for > 2 weeks", "StemTB Quarterly PTO, If yes Is your cough productive", "StemTB Quarterly PTO, If yes Is there blood in your sputum", "StemTB Quarterly PTO, Do you have fever", "StemTB Quarterly PTO, If yes fever or how long (in days)", "StemTB Quarterly PTO, Do you have night sweats", "StemTB Quarterly PTO, Have you had unexplained weight loss", "StemTB Quarterly PTO, Post treatment BPNS", "StemTB Quarterly PTO, Any current medications being taken", "StemTB Quarterly PTO, If yes please list", "StemTB Quarterly PTO, Any contact with a medical practitioner since completing TB treatment", "StemTB Quarterly PTO, If yes what was the purpose of visit", "StemTB Quarterly PTO, What was the outcome of the visit");
+        } else {
+        conditions.disable.push("StemTB Quarterly PTO, Indirect information if patient not seen in person", "StemTB Quarterly PTO, Have you had cough for > 2 weeks", "StemTB Quarterly PTO, If yes Is your cough productive", "StemTB Quarterly PTO, If yes Is there blood in your sputum", "StemTB Quarterly PTO, Do you have fever", "StemTB Quarterly PTO, If yes fever or how long (in days)", "StemTB Quarterly PTO, Do you have night sweats", "StemTB Quarterly PTO, Have you had unexplained weight loss", "StemTB Quarterly PTO, Post treatment BPNS", "StemTB Quarterly PTO, Any current medications being taken", "StemTB Quarterly PTO, If yes please list", "StemTB Quarterly PTO, Any contact with a medical practitioner since completing TB treatment", "StemTB Quarterly PTO, If yes what was the purpose of visit", "StemTB Quarterly PTO, What was the outcome of the visit");
+        }
+if(conditionConcept == "StemTB Quarterly PTO, Patient family member" || conditionConcept == "StemTB Quarterly PTO, Patient friend or acquaintance" || conditionConcept == "StemTB Quarterly PTO, NTP personal" || conditionConcept == "StemTB Quarterly PTO, Other health professional" || conditionConcept == "StemTB Quarterly PTO, Other") {
+	conditions.enable.push("StemTB Quarterly PTO, Indirect information if patient not seen in person");
+	} else {
+	conditions.disable.push("StemTB Quarterly PTO, Indirect information if patient not seen in person");
+	}
+        return conditions;
+    },
+
+	"Xray, Extent of disease": function (formName, formFieldValues) {
+        var conceptEnCavity = "StemTB, Cavity size (aggregate)";
+        var conceptEnFibrosis = "StemTB, Presence of Fibrosis";
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues["Xray, Extent of disease"];
+        if (conditionConcept == "Normal" || !conditionConcept) {
+            conditions.disable.push(conceptEnCavity, conceptEnFibrosis)
+        } else {
+            conditions.enable.push(conceptEnCavity, conceptEnFibrosis)
+        }
+        return conditions;
+	},
+
+	"StemTB Baseline, Confirmed Hepatitis B": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+	var conditionConcept = formFieldValues["StemTB Baseline, Confirmed Hepatitis B"];
+  	if (conditionConcept == "True"){
+	conditions.enable.push("StemTB Baseline, Hep B Antigen Date");
+	} else {
+	conditions.disable.push("StemTB Baseline, Hep B Antigen Date");
+	}
+	return conditions;
+	},
+
+	"StemTB Baseline, Confirmed Hepatitis C": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues["StemTB Baseline, Confirmed Hepatitis C"];
+        if (conditionConcept == "True"){
+        conditions.enable.push("StemTB Baseline, Hep C Antibody Date");
+        } else {
+        conditions.disable.push("StemTB Baseline, Hep C Antibody Date");
+        }
+        return conditions;
+        },
+
+	"SAE Form, Seriousness criteria": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+	var conditionConcept = formFieldValues["SAE Form, Seriousness criteria"];
+	if (conditionConcept == "Death"){
+        conditions.enable.push("StemTB SAE, In case of death");
+        } else {
+        conditions.disable.push("StemTB SAE, In case of death");
+        }
+	if (conditionConcept == "Hospitalisation required or prolonged"){
+        conditions.enable.push("StemTB SAE, Hospitalization required / prolonged");
+        } else {
+        conditions.disable.push("StemTB SAE, Hospitalization required / prolonged");
+        }
+        return conditions;
+        },
+
+	"Bacteriology, Culture Colonies": function (formName, formFieldValues) {
+        var conditions = {enable: [], disable: []};
+        var conditionConcept = formFieldValues["Bacteriology, Culture Colonies"];
+        if (conditionConcept == "Less than 10 colonies"){
+        conditions.enable.push("StemTB Bacteriology, Number of MTB colonies");
+        } else {
+        conditions.disable.push("StemTB Bacteriology, Number of MTB colonies");
+        }
+	return conditions;
+        }
 };
