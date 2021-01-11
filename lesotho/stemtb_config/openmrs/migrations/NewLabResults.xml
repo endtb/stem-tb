@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="ENDTB-201807121648" author="Sudhamsh">
+        <comment>Adding  to the lab results for Haematology form </comment>
+        <sql>
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Erythrocyte sedimentation rate", "Erythrocyte sedimentation rate", 'N/A','Misc', TRUE);
+            set @concept1_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Prothombon time", "Prothombon time", 'N/A','Misc', TRUE);
+            set @concept2_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, INR", "INR", 'N/A','Misc', TRUE);
+            set @concept3_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Activated partial thromboplastin time", "Activated partial thromboplastin time", 'N/A','Misc', TRUE);
+            set @concept4_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Mean Red Blood Cell volume", "Mean Red Blood Cell volume", 'N/A','Misc', TRUE);
+            set @concept5_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, lymphocytes", "lymphocytes", 'N/A','Misc', TRUE);
+            set @concept6_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Erythrocyte sedimentation rate Data", "Erythrocyte sedimentation rate (mm/hour)", 'N/A','Concept Details', TRUE);
+            set @concept11_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Prothombon time Data", "Prothombon time (seconds)", 'N/A','Concept Details', TRUE);
+            set @concept21_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, INR Data", "INR", 'N/A','Concept Details', TRUE);
+            set @concept31_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Activated partial thromboplastin time Data", "Activated partial thromboplastin time (seconds)", 'N/A','Concept Details', TRUE);
+            set @concept41_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Mean Red Blood Cell volume Data", "Mean Red Blood Cell volume (µm^3)", 'N/A','Concept Details', TRUE);
+            set @concept51_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, lymphocytes Data", "lymphocytes (% of WBC)", 'N/A','Concept Details', TRUE);
+            set @concept61_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Erythrocyte sedimentation rate", "Erythrocyte sedimentation rate", 'Numeric','Misc', FALSE);
+            set @concept111_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Prothombon time", "Prothombon time", 'Numeric','Misc', FALSE);
+            set @concept211_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "INR", "INR", 'Numeric','Misc', FALSE);
+            set @concept311_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Activated partial thromboplastin time", "Activated partial thromboplastin time", 'Numeric','Misc', FALSE);
+            set @concept411_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Mean Red Blood Cell volume", "Mean Red Blood Cell volume", 'Numeric','Misc', TRUE);
+            set @concept511_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "lymphocytes", "lymphocytes", 'Numeric','Misc', TRUE);
+            set @concept611_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Erythrocyte sedimentation rate Abnormal", "Erythrocyte sedimentation rate Abnormal", 'Boolean','Abnormal', FALSE);
+            set @concept112_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Prothombon time Abnormal", "Prothombon time Abnormal", 'Boolean','Abnormal', FALSE);
+            set @concept212_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "INR Abnormal", "INR Abnormal", 'Boolean','Abnormal', FALSE);
+            set @concept312_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Activated partial thromboplastin time Abnormal", "Activated partial thromboplastin time Abnormal", 'Boolean','Abnormal', FALSE);
+            set @concept412_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Mean Red Blood Cell volume Abnormal", "Mean Red Blood Cell volume Abnormal", 'Boolean','Abnormal', TRUE);
+            set @concept512_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "lymphocytes Abnormal", "lymphocytes Abnormal", 'Boolean','Abnormal', TRUE);
+            set @concept612_id = @concept_id;
+
+            select concept_id into @concept_id from concept_view where concept_full_name = 'Lab, Haematology';
+
+            select sort_weight into @weight_before from concept_set where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Haematology') and concept_id = (select concept_id from concept_view where concept_full_name ='Lab, RBC count');
+
+            update concept_set set sort_weight = sort_weight+1 where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Haematology') and sort_weight > @weight_before;
+
+            select concept_id into @concept_id from concept_view where concept_full_name = 'Lab, Haematology';
+            call add_concept_set_members (@concept_id, @concept5_id, @weight_before+1);
+
+            select sort_weight into @weight_before from concept_set where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Haematology') and concept_id = (select concept_id from concept_view where concept_full_name ='Lab, WBC');
+
+            update concept_set set sort_weight = sort_weight+1 where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Haematology') and sort_weight > @weight_before;
+
+            select concept_id into @concept_id from concept_view where concept_full_name = 'Lab, Haematology';
+            call add_concept_set_members (@concept_id, @concept6_id, @weight_before+1);
+
+
+            select max(sort_weight) into @weight from concept_set where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Haematology');
+            select concept_id into @concept_id from concept_view where concept_full_name = 'Lab, Haematology';
+
+            call add_concept_set_members (@concept_id, @concept1_id, @weight+1);
+            call add_concept_set_members (@concept_id, @concept2_id, @weight+2);
+            call add_concept_set_members (@concept_id, @concept3_id, @weight+3);
+            call add_concept_set_members (@concept_id, @concept4_id, @weight+4);
+
+            call add_concept_set_members (@concept1_id, @concept11_id, @weight+1);
+            call add_concept_set_members (@concept2_id, @concept21_id, @weight+2);
+            call add_concept_set_members (@concept3_id, @concept31_id, @weight+3);
+            call add_concept_set_members (@concept4_id, @concept41_id, @weight+4);
+            call add_concept_set_members (@concept5_id, @concept51_id, @weight+5);
+            call add_concept_set_members (@concept6_id, @concept61_id, @weight+6);
+
+            call add_concept_set_members (@concept11_id, @concept111_id, 1);
+            call add_concept_set_members (@concept11_id, @concept112_id, 2);
+
+            call add_concept_set_members (@concept21_id, @concept211_id, 1);
+            call add_concept_set_members (@concept21_id, @concept212_id, 2);
+
+            call add_concept_set_members (@concept31_id, @concept311_id, 1);
+            call add_concept_set_members (@concept31_id, @concept312_id, 2);
+
+            call add_concept_set_members (@concept41_id, @concept411_id, 1);
+            call add_concept_set_members (@concept41_id, @concept412_id, 2);
+
+            call add_concept_set_members (@concept51_id, @concept511_id, 1);
+            call add_concept_set_members (@concept51_id, @concept512_id, 2);
+
+            call add_concept_set_members (@concept61_id, @concept611_id, 1);
+            call add_concept_set_members (@concept61_id, @concept612_id, 2);
+
+
+            INSERT INTO concept_numeric (concept_id, low_absolute, low_normal, hi_normal, units, precise) values (@concept111_id, 0, 0, 20, "mm/hour", 1 );
+            INSERT INTO concept_numeric (concept_id, low_absolute, low_normal, hi_normal, units, precise) values (@concept211_id, 0, 10, 20, "seconds", 1);
+            INSERT INTO concept_numeric (concept_id, low_absolute, low_normal, hi_normal, units, precise) values (@concept311_id, 0, 0.8, 1.2, NULL, 1);
+            INSERT INTO concept_numeric (concept_id, low_absolute, low_normal, hi_normal, units, precise) values (@concept411_id, 0, 30, 45, "seconds", 1);
+            INSERT INTO concept_numeric (concept_id, low_absolute, low_normal, hi_normal, units, precise) values (@concept511_id, 0, 80, 94, "µm^3", 1);
+            INSERT INTO concept_numeric (concept_id, low_absolute, low_normal, hi_normal, units, precise) values (@concept611_id, 0, 20, 40, "% of WBC", 1);
+
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="ENDTB-201807121748" author="Sudhamsh">
+    <comment>Adding  to the lab tests to biochemistry from</comment>
+    <sql>
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Uric Acid", "Uric Acid", 'N/A','Misc', TRUE);
+        set @concept1_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Creatinine clearance", "Creatinine clearance", 'N/A','Misc', TRUE);
+        set @concept2_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, GGT", "GGT", 'N/A','Misc', TRUE);
+        set @concept3_id = @concept_id;
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Uric Acid Data", "Uric Acid (mg/dL)", 'N/A','Concept Details', TRUE);
+        set @concept11_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, Creatinine clearance Data", "Creatinine clearance (lL/min)", 'N/A','Concept Details', TRUE);
+        set @concept21_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Lab, GGT Data", "GGT (U/L)", 'N/A','Concept Details', TRUE);
+        set @concept31_id = @concept_id;
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Uric Acid", "Uric Acid", 'Numeric','Misc', FALSE);
+        set @concept111_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Creatinine clearance", "Creatinine clearance", 'Numeric','Misc', FALSE);
+        set @concept211_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "GGT", "GGT", 'Numeric','Misc', FALSE);
+        set @concept311_id = @concept_id;
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Uric Acid Abnormal", "Uric Acid", 'Boolean','Abnormal', FALSE);
+        set @concept112_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Creatinine clearance Abnormal", "Creatinine clearance Abnormal", 'Boolean','Abnormal', FALSE);
+        set @concept212_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "GGT Abnormal", "GGT Abnormal", 'Boolean','Abnormal', FALSE);
+        set @concept312_id = @concept_id;
+
+        select concept_id into @concept_id from concept_view where concept_full_name = 'Lab, Biochemistry';
+
+        select sort_weight into @weight_before from concept_set where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Biochemistry') and concept_id = (select concept_id from concept_view where concept_full_name ='Lab, Urea');
+
+        update concept_set set sort_weight = sort_weight+1 where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Biochemistry') and sort_weight > @weight_before;
+
+        select concept_id into @concept_id from concept_view where concept_full_name = 'Lab, Biochemistry';
+        call add_concept_set_members (@concept_id, @concept1_id, @weight_before+1);
+
+        select sort_weight into @weight_before from concept_set where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Biochemistry') and concept_id = (select concept_id from concept_view where concept_full_name ='Lab, Creatinine');
+
+        update concept_set set sort_weight = sort_weight+1 where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Biochemistry') and sort_weight > @weight_before;
+
+        select concept_id into @concept_id from concept_view where concept_full_name = 'Lab, Biochemistry';
+        call add_concept_set_members (@concept_id, @concept2_id, @weight_before+1);
+
+        select sort_weight into @weight_before from concept_set where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Biochemistry') and concept_id = (select concept_id from concept_view where concept_full_name ='Lab, ALT (SGPT)');
+
+        update concept_set set sort_weight = sort_weight+1 where concept_set = (select concept_id from concept_view where concept_full_name = 'Lab, Biochemistry') and sort_weight > @weight_before;
+
+        select concept_id into @concept_id from concept_view where concept_full_name = 'Lab, Biochemistry';
+        call add_concept_set_members (@concept_id, @concept3_id, @weight_before+1);
+
+        call add_concept_set_members (@concept1_id, @concept11_id, @weight+1);
+        call add_concept_set_members (@concept2_id, @concept21_id, @weight+2);
+        call add_concept_set_members (@concept3_id, @concept31_id, @weight+3);
+
+        call add_concept_set_members (@concept11_id, @concept111_id, 1);
+        call add_concept_set_members (@concept11_id, @concept112_id, 2);
+
+        call add_concept_set_members (@concept21_id, @concept211_id, 1);
+        call add_concept_set_members (@concept21_id, @concept212_id, 2);
+
+        call add_concept_set_members (@concept31_id, @concept311_id, 1);
+        call add_concept_set_members (@concept31_id, @concept312_id, 2);
+
+        INSERT INTO concept_numeric (concept_id, low_absolute, low_normal, hi_normal, units, precise) values (@concept111_id, 0, 2.0, 4.0, "mg/dL", 1);
+        INSERT INTO concept_numeric (concept_id, low_absolute, low_normal, hi_normal, units, precise) values (@concept211_id, 0, 97, 137, "lL/min", 1);
+        INSERT INTO concept_numeric (concept_id, low_absolute, low_normal, hi_normal, units, precise) values (@concept311_id, 0, 8, 61, "U/L", 1);
+    </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201807181116" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term  where code IN ("ggt","creat_cl","uric","aPTT","INR","PT","ESR","per_lymph","mcv");
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding EndTB-Export code for newly added lab tests</comment>
+        <sql>
+            select concept_source_id into @source_id from concept_reference_source where name = 'EndTB-Export';
+            insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created) values
+            (4,"ggt",@source_id,uuid(),now()),
+            (4,"creat_cl",@source_id,uuid(),now()),
+            (4,"uric",@source_id,uuid(),now()),
+            (4,"aPTT",@source_id,uuid(),now()),
+            (4,"INR",@source_id,uuid(),now()),
+            (4,"PT",@source_id,uuid(),now()),
+            (4,"ESR",@source_id,uuid(),now()),
+            (4,"per_lymph",@source_id,uuid(),now()),
+            (4,"mcv",@source_id,uuid(),now());
+
+            call create_reference_mapping("Erythrocyte sedimentation rate", "ESR");
+            call create_reference_mapping("Prothombon time", "PT");
+            call create_reference_mapping("INR", "INR");
+            call create_reference_mapping("Activated partial thromboplastin time", "aPTT");
+            call create_reference_mapping("Mean Red Blood Cell volume", "mcv");
+            call create_reference_mapping("lymphocytes", "per_lymph");
+            call create_reference_mapping("Uric Acid", "uric");
+            call create_reference_mapping("Creatinine clearance", "creat_cl");
+            call create_reference_mapping("GGT", "ggt");
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

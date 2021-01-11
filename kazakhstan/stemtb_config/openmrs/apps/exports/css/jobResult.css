@@ -1,0 +1,429 @@
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+nav,
+section,
+summary {
+  display: block;
+}
+
+a:focus {
+  outline: thin dotted;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+h1 {
+  font-size: 2em;
+}
+
+strong {
+  font-weight: bold;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin: 0 auto;
+}
+
+img {
+  border: 0;
+}
+.clearfix {
+  *zoom: 1;
+}
+
+body{
+  font-family: OpenSans, Arial, sans-serif, Arial, sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
+  background: #fafafa;
+  color: #363463;
+  font-size: 16px;
+  line-height: 1.1em;
+  margin: 0 auto;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+table th, table td {
+  padding: 5px 10px;
+  border: 1px solid #DDD;
+}
+
+table tr {
+  border: 1px solid #EEE;
+}
+
+table tr:nth-child(even) {
+  background: #FFFDF7;
+}
+
+table tr:nth-child(odd) {
+  background: white;
+}
+
+table tr.hover {
+  background: #75b2f0;
+  color: white;
+  cursor: pointer;
+}
+
+table tr.selected {
+  background: #007FFF;
+  color: white;
+}
+
+table tr.selected a {
+  color: white;
+}
+
+table thead th {
+  border-bottom: 1px solid #DDD;
+  background: #f3f3f3;
+  width: auto;
+  text-align: left;
+  word-break: normal;
+  font-weight: normal;
+  font-family: "OpenSansBold";
+}
+
+
+@font-face {
+  font-family: 'OpenSansSemiBold';
+  src: url("../styles/fonts/opensans-semibold-webfont.eot");
+  src: url("../styles/fonts/opensans-semibold-webfont.eot?#iefix") format("embedded-opentype"), url("../styles/fonts/opensans-semibold-webfont.ttf") format("truetype"), url("../styles/fonts/opensans-semibold-webfont.svg#open_sans_lightregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSansBold';
+  src: url("../styles/fonts/opensans-bold-webfont.eot");
+  src: url("../styles/fonts/opensans-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../styles/fonts/opensans-bold-webfont.ttf") format("truetype"), url("../styles/fonts/opensans-bold-webfont.svg#open_sansbold") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSansItalic';
+  src: url("../styles/fonts/opensans-italic-webfont.eot");
+  src: url("../styles/fonts/opensans-italic-webfont.eot?#iefix") format("embedded-opentype"), url("../styles/fonts/opensans-italic-webfont.woff") format("woff"), url("../styles/fonts/opensans-italic-webfont.ttf") format("truetype"), url("../styles/fonts/opensans-italic-webfont.svg#open_sansitalic") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSansLight';
+  src: url("../styles/fonts/opensans-light-webfont.eot");
+  src: url("../styles/fonts/opensans-light-webfont.eot?#iefix") format("embedded-opentype"), url("../styles/fonts/opensans-light-webfont.ttf") format("truetype"), url("../styles/fonts/opensans-light-webfont.svg#open_sans_lightregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSans';
+  src: url("../styles/fonts/opensans-regular-webfont.eot");
+  src: url("../styles/fonts/opensans-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../styles/fonts/opensans-regular-webfont.ttf") format("truetype"), url("../styles/fonts/opensans-regular-webfont.svg#open_sansregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/*!
+ *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+/* FONT PATH
+ * -------------------------- */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("../styles/fonts/fontawesome-webfont.eot?v=4.3.0");
+  src: url("../styles/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0") format("embedded-opentype"), url("../styles/fonts/fontawesome-webfont.woff2?v=4.3.0") format("woff2"), url("../styles/fonts/fontawesome-webfont.woff?v=4.3.0") format("woff"), url("../styles/fonts/fontawesome-webfont.ttf?v=4.3.0") format("truetype"), url("../styles/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fa {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0.2em;
+  /* sprites.less reset */
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: normal;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0 0;
+  background-repeat: repeat;
+  margin-top: 0;
+}
+
+.fa-white {
+  color: #fff;
+}
+
+[class^="fa-"]:before,
+[class*=" fa-"]:before {
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+}
+
+a [class^="fa-"],
+a [class*=" fa-"] {
+  display: inline-block;
+}
+
+.btn.btn-small [class^="fa-"].pull-left.fa-2x, .btn.btn-small [class^="fa-"].pull-right.fa-2x,
+.btn.btn-small [class*=" fa-"].pull-left.fa-2x,
+.btn.btn-small [class*=" fa-"].pull-right.fa-2x {
+  margin-top: .25em;
+}
+
+.fa-home:before {
+  content: "\f015";
+}
+.fa-download:before {
+  content: "\f019";
+}
+
+
+.section-grid {
+  border: 1px solid #669999;
+  border-radius: 5px 5px 0 0;
+  background: #FFFFFF;
+}
+
+h2.section-title {
+  font-family: OpenSans, Arial, sans-serif;
+  padding: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #FFFFFF;
+  font-size: 16px;
+  clear: both;
+  background: #669999;
+  position: relative;
+  border-radius: 2px 2px 0 0;
+}
+.button, button, input[type="submit"],a.button {
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #FFF, #DDD);
+  background-color: #DDD;
+  border: #DDD 1px solid;
+  padding: 2px 10px 2px;
+  display: inline-block;
+  line-height: 1.2em;
+  color: #363463;
+  cursor: pointer;
+  min-width: 0;
+  max-width: 300px;
+  text-decoration: none;
+}
+.button:hover, button:hover, input[type="submit"]:hover, a.button:hover {
+  background: #e2e2e2;
+  border-color: #d0d0d0;
+}
+
+.opd-header-wrapper {
+  *zoom: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100001;
+  padding: 0 15px;
+  box-sizing: border-box;
+  background: #669999;
+  height: 52px;
+  width: 100%;
+}
+
+.opd-header-wrapper:before, .opd-header-wrapper:after {
+  content: "";
+  display: table;
+}
+
+.opd-header-wrapper:after {
+  clear: both;
+}
+
+.opd-header-wrapper header {
+  position: relative;
+  color: #ccc;
+  height: 50px;
+  border-radius: 0;
+  background: #669999;
+  line-height: 1em;
+  max-width: 1300px;
+  margin: 0px auto;
+}
+
+.opd-header-wrapper header ul {
+  display: inline-block;
+  float: left;
+}
+
+.opd-header-wrapper header ul.user-info {
+  float: right;
+}
+
+.opd-header-wrapper header ul li {
+  font-size: 14.4px;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+a.back-btn, button.back-btn {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  z-index: 1;
+  margin: 6px 6px 0 0px;
+  color: #FFFFFF;
+  border-left: 0;
+  float: left;
+  font-size: 16px;
+  border-radius: 3px;
+}
+
+a.back-btn:hover, button.back-btn:hover {
+  text-decoration: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+ul li a.back-btn, ul li a.back-btn:hover, button.back-btn, a.back-btn {
+  padding: 4px 10px 5px 10px;
+  border: 1px solid #476b6b;
+  background: linear-gradient(to bottom, #669999, #527a7a);
+}
+
+ul li a.back-btn i, ul li a.back-btn:hover i, button.back-btn i, a.back-btn i {
+  font-size: 30px;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.opd-wrapper {
+  position: relative;
+  margin: 0px;
+  min-height: 860px;
+  width: 100%;
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.opd-wrapper .opd-content-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 1200px) {
+  .opd-wrapper .opd-content-wrapper {
+    padding: 0 10px;
+  }
+}
+
+.table {
+  border: 0;
+  font-size: 14.4px;
+  font-size: 0.9rem;
+}
+
+.table .table-header {
+  background: #eee;
+  border-bottom: 1px solid #ccc;
+}
+
+.table .table-header .col {
+  font-size: 16px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.table .table-body .row:hover {
+  background: #FFFFFF;
+}
+
+.table .table-body .row:nth-child(even) {
+  background: #eee;
+}
+
+table thead tr th {
+  background: #ddd;
+  padding: 7px;
+  font-weight: bold;
+  font-family: OpenSans, Arial, sans-serif;
+}
+table tbody tr:nth-child(odd), table tr:nth-child(even) {
+  background: #FFFFFF;
+}
+
+table tr {
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+
+table.no-borders thead tr th {
+  background: #FFFFFF;
+}
+
+table.no-borders th, table.no-borders tr, table.no-borders td {
+  border: 0;
+}
+
+
+table.alt-row tbody tr:nth-child(even) td, table.alt-row tbody tr:nth-child(even) th {
+  background-color: #f3f3f3;
+}
+
+.bahmni-reports table th, .bahmni-reports table td {
+  font-size: 14px;
+  box-sizing: border-box;
+  padding: 5px;
+  vertical-align: top;
+}
+
+.bahmni-reports table thead th {
+  font-size: 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.bahmni-reports table thead th input, .bahmni-reports table thead th form .input-prepend .add-on, form .input-prepend .bahmni-reports table thead th .add-on, .bahmni-reports table thead th .form .input-prepend .add-on, .form .input-prepend .bahmni-reports table thead th .add-on, .bahmni-reports table thead th select, .bahmni-reports table thead th button {
+  font-size: 14px;
+}
+
+
+.bahmni-reports table td button {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+

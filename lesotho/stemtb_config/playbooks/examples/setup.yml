@@ -1,0 +1,4 @@
+bahmni_repo_url: https://dl.bintray.com/bahmni/rpm/
+implementation_name: endtb
+timezone: Asia/Kolkata
+omods: ["https://github.com/endtb/openmrs-module-bahmniendtb/releases/download/2.3.3/bahmniendtb-2.3.3.omod", "https://modules.openmrs.org/modulus/api/releases/1545/download/dataintegrity-4.2.3.omod", "https://github.com/Bahmni/bacteriology/releases/download/1.1/bacteriology-1.1.omod"]

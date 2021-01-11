@@ -1,0 +1,10 @@
+{
+    "shouldOverRideConfig": true,
+    "id": "bahmni.homepage",
+    "extensionPoints": [
+        {
+            "id": "org.bahmni.home.dashboard",
+            "description": "Bahmni Home Page"
+        }
+    ]
+}

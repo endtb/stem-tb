@@ -1,0 +1,25 @@
+{
+    "bahmni_docupload_patients_search_activepatients": {
+        "id": "bahmni.docUpload.patients.search.activePatients",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "searchHandler": "emrapi.sqlSearch.activePatients",
+            "forwardUrl": "#/patient/{{patientUuid}}/document",
+            "translationKey": "Active Patients"
+        },
+        "order": 1,
+        "requiredPrivilege": "app:document-upload"
+    },
+    "bahmni_docupload_patients_search_allpatients": {
+        "id": "bahmni.docUpload.patients.search.allPatients",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "forwardUrl": "#/patient/{{patientUuid}}/document",
+            "translationKey": "All patients"
+        },
+        "order": 1,
+        "requiredPrivilege": "app:document-upload"
+    }
+}

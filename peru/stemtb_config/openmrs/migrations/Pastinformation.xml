@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="ENDTB-201807111408" author="Sudhamsh">
+        <sql>
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Baseline, Has the patient ever received a blood transfusion?", "Past blood transfusion",  'Coded','Misc', FALSE);
+        set @concept1_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Baseline, Does the patient has a history of Invasive medical procedures prior to hepatitis C diagnosis (surgery, biopsy, endoscopy, etc.)", "Past invasive procedure",  'Coded','Misc', FALSE);
+        set @concept2_id = @concept_id;
+
+        select concept_id into @value1_concept_id from concept_view where concept_full_name = 'False';
+        select concept_id into @value2_concept_id from concept_view where concept_full_name = 'True';
+        select concept_id into @value3_concept_id from concept_view where concept_full_name = 'Unknown';
+
+        call add_concept_answer (@concept1_id,@value1_concept_id,2);
+        call add_concept_answer (@concept1_id,@value2_concept_id,1);
+        call add_concept_answer (@concept1_id,@value3_concept_id,3);
+
+        call add_concept_answer (@concept2_id,@value1_concept_id,2);
+        call add_concept_answer (@concept2_id,@value2_concept_id,1);
+        call add_concept_answer (@concept2_id,@value3_concept_id,3);
+
+        select max(sort_weight) into @weight from concept_set where concept_set = (select concept_id from concept_view where concept_full_name = 'Baseline, Social History');
+
+        select concept_id into @concept_id from concept_view where concept_full_name = 'Baseline, Social History';
+
+        call add_concept_set_members (@concept_id, @concept1_id, @weight+1);
+        call add_concept_set_members (@concept_id, @concept2_id, @weight+2);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

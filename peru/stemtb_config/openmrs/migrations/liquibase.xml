@@ -1,0 +1,2559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="ENDTB-201605101556" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer where concept_id = 792 and answer_concept = 1648
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding 'Unable to or did not access' option to 'Followup, Ankle reflexes in left'</comment>
+        <sql>
+            insert into concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid)
+            values (792,1648,4,now(),6,uuid());
+        </sql>
+    </changeSet>
+    <changeSet author="Bharat, Mahesh,Swathi" id="ENDTB-201606221448" runOnChange="true">
+        <comment>updating concept_view</comment>
+        <createView viewName="concept_view" replaceIfExists="true">
+            SELECT concept.concept_id, concept_full_name.name AS concept_full_name, concept_short_name.name
+            AS concept_short_name, concept_class.name AS concept_class_name,concept_datatype.name
+            AS concept_datatype_name,concept.retired,concept_description.description,concept.date_created
+            AS date_created FROM concept LEFT OUTER JOIN concept_name AS concept_full_name
+            ON concept_full_name.concept_id = concept.concept_id AND concept_full_name.concept_name_type =
+            'FULLY_SPECIFIED'
+            AND concept_full_name.locale = 'en' AND concept_full_name.voided = 0
+            LEFT OUTER JOIN concept_name AS concept_short_name ON concept_short_name.concept_id = concept.concept_id
+            AND concept_short_name.concept_name_type = 'SHORT'AND concept_short_name.locale = 'en' AND
+            concept_short_name.voided = 0
+            LEFT OUTER JOIN concept_class ON concept_class.concept_class_id = concept.class_id
+            LEFT OUTER JOIN concept_datatype ON concept_datatype.concept_datatype_id = concept.datatype_id
+            LEFT OUTER JOIN concept_description ON concept_description.concept_id = concept.concept_id and concept_description.locale='en';
+        </createView>
+    </changeSet>
+    <changeSet id="ENDTB-201605101601" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer where concept_id = 793 and answer_concept = 1648
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding 'Unable to or did not access' option to 'Followup, Vibration Perception in Left'</comment>
+        <sql>
+            insert into concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid)
+            values (793,1648,4,now(),5,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201605101705" author="Mahesh">
+        <comment>Updating INCORRECT to CORRECT plates in Baseline and Followup forms</comment>
+        <sql>
+            update concept_name set name = 'Followup, Left Eye Correct Plates' where concept_id = 181 and
+            concept_name_type = 'FULLY_SPECIFIED';
+            update concept_name set name = 'Followup, Right Eye Correct Plates' where concept_id = 182 and
+            concept_name_type = 'FULLY_SPECIFIED';
+            update concept_name set name = 'Followup, Correct plates' where concept_id = 189 and concept_name_type =
+            'FULLY_SPECIFIED';
+            update concept_name set name = 'Number of Correct Plates' where concept_id = 189 and concept_name_type =
+            'SHORT';
+            update concept_name set name = 'Baseline, Left Eye Correct Plates' where concept_id = 316 and
+            concept_name_type = 'FULLY_SPECIFIED';
+            update concept_name set name = 'Baseline, Right Eye Correct Plates' where concept_id = 317 and
+            concept_name_type = 'FULLY_SPECIFIED';
+            update concept_name set name = 'Number of Correct Plates' where concept_id = 362 and concept_name_type =
+            'SHORT';
+            update concept_name set name = 'Baseline, Correct plates' where concept_id = 362 and concept_name_type =
+            'FULLY_SPECIFIED';
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201605111155" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer where concept_id = 799 and answer_concept = 1648
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding 'Unable to or did not access' option to 'Followup, Ankle reflexes in right'</comment>
+        <sql>
+            insert into concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid)
+            values (799,1648,4,now(),6,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201605111157" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer where concept_id = 798 and answer_concept = 1648
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding 'Unable to or did not access' option to 'Followup, Vibration Perception in Right'</comment>
+        <sql>
+            insert into concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid)
+            values (798,1648,4,now(),5,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-20160524112300" author="shivakumar">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_source where name="EndTB-Export";
+            </sqlCheck>
+        </preConditions>
+        <comment>adding new concept_reference_source</comment>
+        <sql>
+            update concept_reference_source set hl7_code = null where hl7_code = '';
+            insert into concept_reference_source (name,description,creator,date_created,uuid) values
+            ('EndTB-Export','Codes for output in endTB exports',1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201605250907" author="Shruthi">
+        <comment>Adding a procedure to create a concept reference mapping</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING;
+        </sql>
+        <sqlFile splitStatements="false" path="CreateReferenceMapping.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201605271117" author="Mahesh">
+        <comment>Adding reference terms for endTB exports codes</comment>
+        <sqlFile path="export_ref_terms.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201605280823" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where concept_id = 224 and locale = 'en' and concept_name_type =
+                'SHORT' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating Gatifloxacin drug shortname</comment>
+        <sql>
+            update concept_name set name = 'Gatifloxacin (Gtx)', voided = 0, voided_by = null, date_voided = null where
+            concept_id = 224 and concept_name_type = 'SHORT' and locale = 'en';
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201605280829" author="Mahesh">
+        <comment>Updating order of drugs for the field Past TB Drugs more than 1 month in Past TB Treatment</comment>
+        <sql>
+            update concept_answer set sort_weight = 1 where concept_id = 278 and answer_concept = 221;
+            update concept_answer set sort_weight = 2 where concept_id = 278 and answer_concept = 1225;
+            update concept_answer set sort_weight = 3 where concept_id = 278 and answer_concept = 237;
+            update concept_answer set sort_weight = 4 where concept_id = 278 and answer_concept = 1226;
+            update concept_answer set sort_weight = 5 where concept_id = 278 and answer_concept = 238;
+            update concept_answer set sort_weight = 6 where concept_id = 278 and answer_concept = 240;
+            update concept_answer set sort_weight = 7 where concept_id = 278 and answer_concept = 215;
+            update concept_answer set sort_weight = 8 where concept_id = 278 and answer_concept = 219;
+            update concept_answer set sort_weight = 9 where concept_id = 278 and answer_concept = 227;
+            update concept_answer set sort_weight = 10 where concept_id = 278 and answer_concept = 242;
+            update concept_answer set sort_weight = 11 where concept_id = 278 and answer_concept = 217;
+            update concept_answer set sort_weight = 12 where concept_id = 278 and answer_concept = 224;
+            update concept_answer set sort_weight = 13 where concept_id = 278 and answer_concept = 228;
+            update concept_answer set sort_weight = 14 where concept_id = 278 and answer_concept = 231;
+            update concept_answer set sort_weight = 15 where concept_id = 278 and answer_concept = 234;
+            update concept_answer set sort_weight = 16 where concept_id = 278 and answer_concept = 220;
+            update concept_answer set sort_weight = 17 where concept_id = 278 and answer_concept = 223;
+            update concept_answer set sort_weight = 18 where concept_id = 278 and answer_concept = 235;
+            update concept_answer set sort_weight = 19 where concept_id = 278 and answer_concept = 1227;
+            update concept_answer set sort_weight = 20 where concept_id = 278 and answer_concept = 236;
+            update concept_answer set sort_weight = 21 where concept_id = 278 and answer_concept = 244;
+            update concept_answer set sort_weight = 22 where concept_id = 278 and answer_concept = 216;
+            update concept_answer set sort_weight = 23 where concept_id = 278 and answer_concept = 1251;
+            update concept_answer set sort_weight = 24 where concept_id = 278 and answer_concept = 1258;
+            update concept_answer set sort_weight = 25 where concept_id = 278 and answer_concept = 218;
+            update concept_answer set sort_weight = 26 where concept_id = 278 and answer_concept = 1252;
+            update concept_answer set sort_weight = 27 where concept_id = 278 and answer_concept = 1228;
+            update concept_answer set sort_weight = 28 where concept_id = 278 and answer_concept = 229;
+            update concept_answer set sort_weight = 29 where concept_id = 278 and answer_concept = 230;
+            update concept_answer set sort_weight = 30 where concept_id = 278 and answer_concept = 243;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201605280836" author="Mahesh">
+        <comment>Updating the drugs for the field Past TB Drug Regimen in Past TB Treatment Table</comment>
+        <sql>
+            update concept_answer set sort_weight = 1 where concept_id = 731 and answer_concept = 221;
+            update concept_answer set sort_weight = 2 where concept_id = 731 and answer_concept = 1225;
+            update concept_answer set sort_weight = 3 where concept_id = 731 and answer_concept = 237;
+            update concept_answer set sort_weight = 4 where concept_id = 731 and answer_concept = 1226;
+            update concept_answer set sort_weight = 7 where concept_id = 731 and answer_concept = 215;
+            update concept_answer set sort_weight = 8 where concept_id = 731 and answer_concept = 219;
+            update concept_answer set sort_weight = 9 where concept_id = 731 and answer_concept = 227;
+            update concept_answer set sort_weight = 10 where concept_id = 731 and answer_concept = 242;
+            update concept_answer set sort_weight = 13 where concept_id = 731 and answer_concept = 228;
+            update concept_answer set sort_weight = 14 where concept_id = 731 and answer_concept = 231;
+            update concept_answer set sort_weight = 16 where concept_id = 731 and answer_concept = 220;
+            update concept_answer set sort_weight = 17 where concept_id = 731 and answer_concept = 223;
+            update concept_answer set sort_weight = 18 where concept_id = 731 and answer_concept = 235;
+            update concept_answer set sort_weight = 19 where concept_id = 731 and answer_concept = 1227;
+            update concept_answer set sort_weight = 20 where concept_id = 731 and answer_concept = 236;
+            update concept_answer set sort_weight = 21 where concept_id = 731 and answer_concept = 244;
+            update concept_answer set sort_weight = 22 where concept_id = 731 and answer_concept = 216;
+            update concept_answer set sort_weight = 23 where concept_id = 731 and answer_concept = 1251;
+            update concept_answer set sort_weight = 25 where concept_id = 731 and answer_concept = 218;
+            update concept_answer set sort_weight = 26 where concept_id = 731 and answer_concept = 1252;
+            update concept_answer set sort_weight = 27 where concept_id = 731 and answer_concept = 1228;
+            update concept_answer set sort_weight = 28 where concept_id = 731 and answer_concept = 229;
+            update concept_answer set sort_weight = 29 where concept_id = 731 and answer_concept = 230;
+
+            insert into concept_answer(concept_id, answer_concept, creator, date_created, sort_weight, uuid) values
+            (731,217,4,now(),11,uuid()),
+            (731,224,4,now(),12,uuid()),
+            (731,234,4,now(),15,uuid()),
+            (731,238,4,now(),5,uuid()),
+            (731,240,4,now(),6,uuid()),
+            (731,243,4,now(),30,uuid()),
+            (731,1258,4,now(),24,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201605311815" author="Mahesh,Shiva">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name = 'Once' and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating drug frequency Immediately to Once</comment>
+        <sql>
+            update concept_name set name = 'Once' where concept_id = 88 and concept_name_type = 'FULLY_SPECIFIED';
+            update order_frequency set uuid = uuid() where concept_id = 88;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606061251" author="Shiva kumar">
+        <comment>Adding answer-concept and Updating type of assesment in follow up form</comment>
+        <sql>
+            Insert into concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) values
+            (166,784,1,now(),6,uuid());
+
+            update concept_answer set sort_weight = 1 where concept_id = 166 and answer_concept = 784;
+            update concept_answer set sort_weight = 2 where concept_id = 166 and answer_concept = 1788;
+            update concept_answer set sort_weight = 3 where concept_id = 166 and answer_concept = 1748;
+            update concept_answer set sort_weight = 4 where concept_id = 166 and answer_concept = 1749;
+            update concept_answer set sort_weight = 5 where concept_id = 166 and answer_concept = 1750;
+            update concept_answer set sort_weight = 6 where concept_id = 166 and answer_concept = 1751;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606061551" author="Shiva kumar">
+        <comment>updating absolute high and low values in followup form</comment>
+        <sql>
+            update concept_numeric set hi_absolute ='750',low_absolute ='0.5' where concept_id ='1199';
+            update concept_numeric set hi_absolute ='260',low_absolute ='30' where concept_id ='1200';
+            update concept_numeric set hi_absolute ='300',low_absolute ='1' where concept_id ='169';
+            update concept_numeric set hi_absolute ='200',low_absolute ='1' where concept_id ='1202'
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606061712" author="Shiva kumar">
+        <comment>updating answer in followup form</comment>
+        <sql>
+            update concept_answer set sort_weight = 1 where concept_id =1317 and answer_concept=1;
+            update concept_answer set sort_weight = 2 where concept_id =1317 and answer_concept=2;
+            update concept_answer set sort_weight = 3 where concept_id =1317 and answer_concept=1014;
+            update concept_answer set sort_weight = 4 where concept_id =1317 and answer_concept=149;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606071014" author="Shiva kumar">
+        <comment>Updating followup form reflexes</comment>
+        <sql>
+            update concept_answer set sort_weight = 1 where concept_id =792 and answer_concept=1649;
+            update concept_answer set sort_weight = 2 where concept_id =792 and answer_concept=760;
+            update concept_answer set sort_weight = 3 where concept_id =792 and answer_concept=759;
+            update concept_answer set sort_weight = 4 where concept_id =792 and answer_concept=761;
+            update concept_answer set sort_weight = 5 where concept_id =792 and answer_concept=762;
+            update concept_answer set sort_weight = 6 where concept_id =792 and answer_concept=1648;
+            update concept_answer set sort_weight = 1 where concept_id =799 and answer_concept=1649;
+            update concept_answer set sort_weight = 2 where concept_id =799 and answer_concept=760;
+            update concept_answer set sort_weight = 3 where concept_id =799 and answer_concept=759;
+            update concept_answer set sort_weight = 4 where concept_id =799 and answer_concept=761;
+            update concept_answer set sort_weight = 5 where concept_id =799 and answer_concept=762;
+            update concept_answer set sort_weight = 6 where concept_id =799 and answer_concept=1648;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606071045" author="Shiva kumar">
+        <comment>Updating followup form absolute high and low values for Visual acuity</comment>
+        <sql>
+            update concept_numeric set hi_absolute=400 ,low_absolute=0 where concept_id=313;
+            update concept_numeric set hi_absolute=400 ,low_absolute=0 where concept_id=314;
+
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606071047" author="Shiva kumar">
+        <comment>Updating followup and Baseline form absolute high and low values for color blindness</comment>
+        <sql>
+            update concept_numeric set low_absolute =0 and hi_absolute =11 where concept_id =181;
+            update concept_numeric set low_absolute =0 and hi_absolute =11 where concept_id =182;
+            update concept_numeric set low_absolute= 0 and hi_absolute =11 where concept_id =316;
+            update concept_numeric set low_absolute= 0 and hi_absolute =11 where concept_id =317;
+
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606071145" author="Shiva kumar">
+        <comment>Updating Reasons for Lost to Follow-up</comment>
+        <sql>
+            update concept_answer set sort_weight=1 where concept_id=937 and answer_concept=521;
+            update concept_answer set sort_weight=2 where concept_id=937 and answer_concept=931;
+            update concept_answer set sort_weight=3 where concept_id=937 and answer_concept=932;
+            update concept_answer set sort_weight=4 where concept_id=937 and answer_concept=933;
+            update concept_answer set sort_weight=5 where concept_id=937 and answer_concept=934;
+            update concept_answer set sort_weight=6 where concept_id=937 and answer_concept=935;
+            update concept_answer set sort_weight=7 where concept_id=937 and answer_concept=246;
+            update concept_answer set sort_weight=8 where concept_id=937 and answer_concept=149;
+            update concept_answer set sort_weight=1 where concept_id=956 and answer_concept=521;
+            update concept_answer set sort_weight=2 where concept_id=956 and answer_concept=955;
+            update concept_answer set sort_weight=3 where concept_id=956 and answer_concept=932;
+            update concept_answer set sort_weight=4 where concept_id=956 and answer_concept=933;
+            update concept_answer set sort_weight=5 where concept_id=956 and answer_concept=934;
+            update concept_answer set sort_weight=6 where concept_id=956 and answer_concept=935;
+            update concept_answer set sort_weight=7 where concept_id=956 and answer_concept=246;
+            update concept_answer set sort_weight=8 where concept_id=956 and answer_concept=149;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606071301" author="Shiva kumar">
+        <comment>Updating Baseline form Reason for next assessment</comment>
+        <sql>
+            Insert into concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) values
+            (1790,784,1,now(),1,uuid());
+            Insert into concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) values
+            (1790,1750,1,now(),5,uuid());
+            Insert into concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) values
+            (1790,1751,1,now(),6,uuid());
+            update concept_answer set sort_weight=2 where concept_id=1790 and answer_concept=1788;
+            update concept_answer set sort_weight=3 where concept_id=1790 and answer_concept=1748;
+            update concept_answer set sort_weight=4 where concept_id=1790 and answer_concept=1749;
+
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606071402" author="Shiva kumar">
+        <comment>Updating Baseline form Ankle reflexes</comment>
+        <sql>
+            update concept_answer set sort_weight=1 where concept_id =763 and answer_concept=1649;
+            update concept_answer set sort_weight=2 where concept_id =763 and answer_concept=760;
+            update concept_answer set sort_weight=3 where concept_id =763 and answer_concept=759;
+            update concept_answer set sort_weight=4 where concept_id =763 and answer_concept=761;
+            update concept_answer set sort_weight=5 where concept_id =763 and answer_concept=762;
+            update concept_answer set sort_weight=6 where concept_id =763 and answer_concept=1648;
+            update concept_answer set sort_weight=1 where concept_id =764 and answer_concept=1649;
+            update concept_answer set sort_weight=2 where concept_id =764 and answer_concept=760;
+            update concept_answer set sort_weight=3 where concept_id =764 and answer_concept=759;
+            update concept_answer set sort_weight=4 where concept_id =764 and answer_concept=761;
+            update concept_answer set sort_weight=5 where concept_id =764 and answer_concept=762;
+            update concept_answer set sort_weight=6 where concept_id =764 and answer_concept=1648;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606071447" author="Shiva kumar">
+        <comment>Updating Year first TB treatment in Baseline form</comment>
+        <sql>
+            update concept_numeric set hi_absolute=2050 where concept_id =273;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606071847" author="Shiva kumar">
+        <comment>Adding new Answer concept in Outcome</comment>
+        <sql>
+            insert into concept_answer(concept_id, answer_concept, creator, date_created, sort_weight, uuid) values
+            (914,735,1,now(),10,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606081123" author="Shiva kumar, Sudhamsh">
+        <comment>Updating Past TB outcome in Baseline form</comment>
+        <sql>
+            delete from concept_answer where answer_concept in ( 411, 736,149,734 ) and concept_id=737;
+            insert into concept_answer (concept_id, answer_concept, creator, date_created,sort_weight, uuid) values
+            (737,413,1,now(),6, uuid()),
+            (737,349,1,now(),3, uuid()),
+            (737,913,1,now(),5, uuid());
+            update concept_answer set sort_weight= 2 where concept_id = 737 and answer_concept= 732;
+            update concept_answer set sort_weight= 4 where concept_id = 737 and answer_concept= 204;
+            update concept_answer set sort_weight= 1 where concept_id = 737 and answer_concept= 407;
+            update concept_answer set sort_weight= 7 where concept_id = 737 and answer_concept= 735;
+            update concept_answer set sort_weight= 8 where concept_id = 737 and answer_concept= 208;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606081148" author="Shiva kumar, Sudhamsh">
+        <comment>Updating Last Drug resistant TB treatment outcome in Baseline form</comment>
+        <sql>
+            delete from concept_answer where answer_concept in (348,149,736) and concept_id=1747;
+            insert into concept_answer (concept_id, answer_concept, creator, date_created,sort_weight, uuid) values
+            (1747,913,1,now(),5, uuid()),
+            (1747,349,1,now(),3, uuid()),
+            (1747,735,1,now(),7, uuid());
+            update concept_answer set sort_weight= 2 where concept_id = 1747 and answer_concept= 732;
+            update concept_answer set sort_weight= 4 where concept_id = 1747 and answer_concept= 204;
+            update concept_answer set sort_weight= 1 where concept_id = 1747 and answer_concept= 407;
+            update concept_answer set sort_weight= 6 where concept_id = 1747 and answer_concept= 413;
+
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606081154" author="Shiva kumar, Sudhamsh">
+        <comment>Updating Last Drug sensitiveTB treatment outcome in Baseline form</comment>
+        <sql>
+            delete from concept_answer where answer_concept in (348,1746,149) and concept_id=1744;
+            insert into concept_answer (concept_id, answer_concept, creator, date_created,sort_weight, uuid) values
+            (1744,913,1,now(),5, uuid()),
+            (1744,349,1,now(),3, uuid()),
+            (1744,735,1,now(),7, uuid());
+            update concept_answer set sort_weight= 2 where concept_id = 1744 and answer_concept= 732;
+            update concept_answer set sort_weight= 4 where concept_id = 1744 and answer_concept= 204;
+            update concept_answer set sort_weight= 1 where concept_id = 1744 and answer_concept= 407;
+            update concept_answer set sort_weight= 6 where concept_id = 1744 and answer_concept= 413;
+
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606081237" author="Shiva kumar, Sudhamsh">
+        <comment>Updating If no, reason for not starting treatment in Treatment Initiation form</comment>
+        <sql>
+            update concept_answer set sort_weight= 3 where concept_id = 352 and answer_concept= 349;
+            update concept_answer set sort_weight= 5 where concept_id = 352 and answer_concept= 348;
+            update concept_answer set sort_weight= 2 where concept_id = 352 and answer_concept= 351;
+            update concept_answer set sort_weight= 4 where concept_id = 352 and answer_concept= 350;
+            update concept_answer set sort_weight= 1 where concept_id = 352 and answer_concept= 347;
+            update concept_answer set sort_weight= 6 where concept_id = 352 and answer_concept= 246;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606081257" author="Shiva kumar, Sudhamsh">
+        <comment>Updating Reason for next visit in Treatment Initiation form</comment>
+        <sql>
+            insert into concept_answer (concept_id, answer_concept, creator, date_created,sort_weight, uuid) values
+            (1792,784,1,now(),1, uuid()),
+            (1792,1750,1,now(),5, uuid()),
+            (1792,1751,1,now(),6, uuid());
+            update concept_answer set sort_weight= 2 where concept_id = 1792 and answer_concept= 1788;
+            update concept_answer set sort_weight= 3 where concept_id = 1792 and answer_concept= 1748;
+            update concept_answer set sort_weight= 4 where concept_id = 1792 and answer_concept= 1749;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606081317" author="Shiva kumar, Sudhamsh">
+        <comment>Updating Type of Assessment in Performance Status form</comment>
+        <sql>
+            insert into concept_answer (concept_id, answer_concept, creator, date_created,sort_weight, uuid) values
+            (865,1788,1,now(),2, uuid());
+            update concept_answer set sort_weight= 1 where concept_id = 865 and answer_concept= 784;
+            update concept_answer set sort_weight= 3 where concept_id = 865 and answer_concept= 1748;
+            update concept_answer set sort_weight= 4 where concept_id = 865 and answer_concept= 1749;
+            update concept_answer set sort_weight= 5 where concept_id = 865 and answer_concept= 1750;
+            update concept_answer set sort_weight= 6 where concept_id = 865 and answer_concept= 1751;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606081459" author="Shiva kumar, Sudhamsh">
+        <comment>Updating Reason for hospitalization in HDS form</comment>
+        <sql>
+            update concept_answer set sort_weight=1 where concept_id=885 and answer_concept=521;
+            update concept_answer set sort_weight=2 where concept_id=885 and answer_concept=879;
+            update concept_answer set sort_weight=3 where concept_id=885 and answer_concept=880;
+            update concept_answer set sort_weight=4 where concept_id=885 and answer_concept=884;
+            update concept_answer set sort_weight=5 where concept_id=885 and answer_concept=878;
+            update concept_answer set sort_weight=6 where concept_id=885 and answer_concept=881;
+            update concept_answer set sort_weight=7 where concept_id=885 and answer_concept=882;
+            update concept_answer set sort_weight=8 where concept_id=885 and answer_concept=883;
+            update concept_answer set sort_weight=9 where concept_id=885 and answer_concept=246;
+            update concept_answer set sort_weight=10 where concept_id=885 and answer_concept=149;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606081518" author="Shiva kumar, Sudhamsh">
+        <comment>Updating Type of visit in Bacteriology form</comment>
+        <sql>
+            insert into concept_answer (concept_id, answer_concept, creator, date_created,sort_weight, uuid) values
+            (1079,1788,1,now(),2, uuid());
+            update concept_answer set sort_weight= 1 where concept_id = 1079 and answer_concept= 784;
+            update concept_answer set sort_weight= 3 where concept_id = 1079 and answer_concept= 1748;
+            update concept_answer set sort_weight= 4 where concept_id = 1079 and answer_concept= 1749;
+            update concept_answer set sort_weight= 5 where concept_id = 1079 and answer_concept= 1750;
+            update concept_answer set sort_weight= 6 where concept_id = 1079 and answer_concept= 1751;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606081703" author="Shiva kumar, Sudhamsh">
+        <comment>Updating Type of assessment in X-Ray form</comment>
+        <sql>
+            delete from concept_answer where concept_id=963 and answer_concept = 1813;
+            insert into concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) values
+            (963,1788,1,now(),2,uuid()),(963,1748,1,now(),3,uuid()),(963,1751,1,now(),6,uuid());
+            update concept_answer set sort_weight=1 where concept_id =963 and answer_concept=784;
+            update concept_answer set sort_weight=4 where concept_id =963 and answer_concept=1749;
+            update concept_answer set sort_weight=5 where concept_id =963 and answer_concept=1750;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606091053" author="Shiva kumar, Sudhamsh">
+        <comment>Updating Type of sample in Bacteriology form</comment>
+        <sql>
+            delete from concept_answer where concept_id= 1088 and answer_concept=246;
+            insert into concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) values
+            (1088,1820,1,now(),2,uuid()),(1088,1086,1,now(),4,uuid()),(1088,1821,1,now(),7,uuid()),(1088,1822,1,now(),8,uuid()),
+            (1088,1823,1,now(),9,uuid()),(1088,1824,1,now(),10,uuid());
+            update concept_answer set sort_weight =1 where concept_id=1088 and answer_concept=1083;
+            update concept_answer set sort_weight =3 where concept_id=1088 and answer_concept=1085;
+            update concept_answer set sort_weight =5 where concept_id=1088 and answer_concept=1087;
+            update concept_answer set sort_weight =6 where concept_id=1088 and answer_concept=1084;
+            update concept_answer set sort_weight =11 where concept_id=1088 and answer_concept=149;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606091156" author="Shiva kumar, Sudhamsh">
+        <comment>Updating high absolute and low absolute values in Electrocardiogram form</comment>
+        <sql>
+            update concept_numeric set hi_absolute=300, low_absolute=1 where concept_id=672;
+            update concept_numeric set hi_absolute=700, low_absolute=0 where concept_id=674;
+            update concept_numeric set hi_absolute=800, low_absolute=0 where concept_id=517;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606091223" author="Shiva kumar, Sudhamsh">
+        <comment>Updating high absolute and low absolute values in Monthly Tx Completeness form</comment>
+        <sql>
+            update concept_numeric set hi_absolute=31, low_absolute=0 where concept_id=969;
+            update concept_numeric set hi_absolute=31, low_absolute=0 where concept_id=970;
+            update concept_numeric set hi_absolute=31, low_absolute=0 where concept_id=971;
+            update concept_numeric set hi_absolute=31, low_absolute=0 where concept_id=972;
+            update concept_numeric set hi_absolute=100, low_absolute=0 where concept_id=974;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606091238" author="Shiva kumar, Sudhamsh">
+        <comment>Updating patient related reasons in Monthly Tx Completeness form</comment>
+        <sql>
+            update concept_answer set sort_weight =1 where concept_id=988 and answer_concept=983;
+            update concept_answer set sort_weight =2 where concept_id=988 and answer_concept=985;
+            update concept_answer set sort_weight =3 where concept_id=988 and answer_concept=932;
+            update concept_answer set sort_weight =4 where concept_id=988 and answer_concept=1585;
+            update concept_answer set sort_weight =5 where concept_id=988 and answer_concept=984;
+            update concept_answer set sort_weight =6 where concept_id=988 and answer_concept=1781;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606091243" author="Shiva kumar, Sudhamsh">
+        <comment>Updating Additional contributing patient related reasons in Monthly Tx Completeness form</comment>
+        <sql>
+            update concept_answer set sort_weight =1 where concept_id=1786 and answer_concept=983;
+            update concept_answer set sort_weight =2 where concept_id=1786 and answer_concept=985;
+            update concept_answer set sort_weight =3 where concept_id=1786 and answer_concept=932;
+            update concept_answer set sort_weight =4 where concept_id=1786 and answer_concept=1585;
+            update concept_answer set sort_weight =5 where concept_id=1786 and answer_concept=984;
+            update concept_answer set sort_weight =6 where concept_id=1786 and answer_concept=1781;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606091253" author="Shiva kumar, Sudhamsh">
+        <comment>Updating DOT rate (i)in Monthly Tx Completeness form</comment>
+        <sql>
+            update concept_numeric set hi_absolute=100 , low_absolute=0 where concept_id=995;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606101222" author="Swathi,Shiva">
+        <comment>Fix the new add_concept procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept;
+        </sql>
+        <sqlFile splitStatements="false" path="E1_1__AddConceptProc.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201606101225" author="Swathi,Shiva">
+        <comment>Add the new add_concept_answer procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept_answer;
+        </sql>
+        <sqlFile splitStatements="false" path="E1_2__AddConceptAnswerProc.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201606101335" author="Swathi,Shiva">
+        <comment>Add the new add_concept_set_members procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept_set_members;
+        </sql>
+        <sqlFile splitStatements="false" path="E1_3__AddConceptSetMemberProc.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201606101142" author="Shiva kumar, Swathi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer where concept_id = 851 and answer_concept = 1788;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding 2 week assessment in Audiometry form, Type of assessment</comment>
+        <sql>
+            call add_concept_answer (851, 1788, 2);
+            update concept_answer set sort_weight =1 where concept_id=851 and answer_concept=784;
+            update concept_answer set sort_weight =3 where concept_id=851 and answer_concept=1748;
+            update concept_answer set sort_weight =4 where concept_id=851 and answer_concept=1749;
+            update concept_answer set sort_weight =5 where concept_id=851 and answer_concept=1750;
+            update concept_answer set sort_weight =6 where concept_id=851 and answer_concept=1751;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606101221" author="Shivakumar ,Swathi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'Audiometry, AE ID number' and concept_datatype_name = 'Numeric';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating Audiometry, AE ID number from numeric to text</comment>
+        <sql>
+            select concept_id into @conceptID from concept_view where concept_full_name = 'Audiometry, AE ID number';
+            update obs set value_text = concat(value_numeric) where concept_id = @conceptID;
+            update concept set datatype_id = (select concept_datatype_id from concept_datatype where name = 'Text') where concept_id = @conceptID;
+            update obs set value_numeric = NULL where concept_id = @conceptID;
+            delete from concept_numeric where concept_id = @conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606101255" author="Swathi,Shiva">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="14">
+                select count(*) from concept_view where concept_full_name in ('Audiometry, Left ear at 250Hz','Audiometry, Left ear at 500Hz','Audiometry, Left ear at 1000Hz','Audiometry, Left ear at 2000Hz','Audiometry, Left ear at 4000Hz','Audiometry, Left ear at 6000Hz','Audiometry, Left ear at 8000Hz','Audiometry, Right ear at 250Hz','Audiometry, Right ear at 500Hz','Audiometry, Right ear at 1000Hz','Audiometry, Right ear at 2000Hz','Audiometry, Right ear at 4000Hz','Audiometry, Right ear at 6000Hz','Audiometry, Right ear at 8000Hz') and concept_datatype_name = 'Numeric';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating Audiometry Left/Right ear at xxHz from numeric to dropdown(CodedConcept) of Ranges as answers
+        </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, 0 to 20 db', '0 to 20 db', 'N/A', 'misc', false);
+            set @child1_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, 21 to 40 dB', '21 to 40 dB', 'N/A', 'misc', false);
+            set @child2_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, 41 to 55 dB', '41 to 55 dB', 'N/A', 'misc', false);
+            set @child3_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, 56 to 70 dB', '56 to 70 dB', 'N/A', 'misc', false);
+            set @child4_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, 71 to 90 dB', '71 to 90 dB', 'N/A', 'misc', false);
+            set @child5_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, 91+ dB', '91+ dB', 'N/A', 'misc', false);
+            set @child6_concept_id = @concept_id;
+
+            SELECT concept_datatype_id INTO @concept_datatype_id from concept_datatype WHERE name = 'Coded';
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 250Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded1_concept_id = @concept_id;
+
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 500Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded2_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 1000Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded3_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 2000Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded4_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 4000Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded5_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 6000Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded6_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 8000Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded7_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 250Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded8_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 500Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded9_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 1000Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded10_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 2000Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded11_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 4000Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded12_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 6000Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded13_concept_id = @concept_id;
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 8000Hz';
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @concept_id;
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded14_concept_id = @concept_id;
+
+            UPDATE obs set value_coded =
+            IF((value_numeric BETWEEN 0 AND 20), @child1_concept_id,
+            IF((value_numeric BETWEEN 21 AND 40), @child2_concept_id,
+            IF((value_numeric BETWEEN 41 AND 55), @child3_concept_id,
+            IF((value_numeric BETWEEN 56 AND 70), @child4_concept_id,
+            IF((value_numeric BETWEEN 71 AND 90), @child5_concept_id,
+            IF((value_numeric >= 91), @child6_concept_id,
+            value_numeric)))))),
+            value_numeric = NULL
+            WHERE concept_id in (@coded1_concept_id,@coded2_concept_id,@coded3_concept_id,@coded4_concept_id,@coded5_concept_id,@coded6_concept_id,@coded7_concept_id,@coded8_concept_id,@coded9_concept_id,@coded10_concept_id,@coded11_concept_id,@coded12_concept_id,@coded13_concept_id,@coded14_concept_id);
+
+            delete from concept_numeric where concept_id in (@coded1_concept_id,@coded2_concept_id,@coded3_concept_id,@coded4_concept_id,@coded5_concept_id,@coded6_concept_id,@coded7_concept_id,@coded8_concept_id,@coded9_concept_id,@coded10_concept_id,@coded11_concept_id,@coded12_concept_id,@coded13_concept_id,@coded14_concept_id);
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606101355" author="Swathi, Shiva">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'TI, Treatment initiation details';
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'Facility patient ID';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Facility patient ID in Treatment initiation details</comment>
+        <sql>
+            select concept_id into @set_concept_id from concept_view where concept_full_name = 'TI, Treatment initiation details';
+            select concept_id into @concept_set_member1_id from concept_view where concept_full_name = 'TI, Did the patient start treatment';
+            select concept_id into @concept_set_member2_id from concept_view where concept_full_name = 'TUBERCULOSIS DRUG TREATMENT START DATE';
+            select concept_id into @concept_set_member3_id from concept_view where concept_full_name = 'TI, Treatment facility at start';
+            select concept_id into @concept_set_member4_id from concept_view where concept_full_name = 'Facility patient ID';
+            select concept_id into @concept_set_member5_id from concept_view where concept_full_name = 'TI, Type of treatment regimen';
+            select concept_id into @concept_set_member6_id from concept_view where concept_full_name = 'TI, First line drug regimen type';
+            select concept_id into @concept_set_member7_id from concept_view where concept_full_name = 'TI, Second line regimen drug type';
+            select concept_id into @concept_set_member8_id from concept_view where concept_full_name = 'TI, Reason for not starting treatment';
+            select concept_id into @concept_set_member9_id from concept_view where concept_full_name = 'TI, Date of death before treatment start';
+            select concept_id into @concept_set_member10_id from concept_view where concept_full_name = 'RETURN VISIT DATE';
+            select concept_id into @concept_set_member11_id from concept_view where concept_full_name = 'TI, Reason for next assessment';
+            select concept_id into @concept_set_member12_id from concept_view where concept_full_name = 'TI, Other assessment reason';
+            call add_concept_set_members (@set_concept_id,@concept_set_member4_id,4);
+            update concept_set set sort_weight = 1 where concept_id = @concept_set_member1_id and concept_set=@set_concept_id;
+            update concept_set set sort_weight = 2 where concept_id = @concept_set_member2_id and concept_set=@set_concept_id;
+            update concept_set set sort_weight = 3 where concept_id = @concept_set_member3_id and concept_set=@set_concept_id;
+            update concept_set set sort_weight = 5 where concept_id = @concept_set_member5_id and concept_set=@set_concept_id;
+            update concept_set set sort_weight = 6 where concept_id = @concept_set_member6_id and concept_set=@set_concept_id;
+            update concept_set set sort_weight = 7 where concept_id = @concept_set_member7_id and concept_set=@set_concept_id;
+            update concept_set set sort_weight = 8 where concept_id = @concept_set_member8_id and concept_set=@set_concept_id;
+            update concept_set set sort_weight = 9 where concept_id = @concept_set_member9_id and concept_set=@set_concept_id;
+            update concept_set set sort_weight = 10 where concept_id = @concept_set_member10_id and concept_set=@set_concept_id;
+            update concept_set set sort_weight = 11 where concept_id = @concept_set_member11_id and concept_set=@set_concept_id;
+	        update concept_set set sort_weight = 12 where concept_id = @concept_set_member12_id and concept_set=@set_concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="ENDTB-201606100508" author="Shiva kumar,sudhamsh">
+           <comment>Updating Reason for next visit in Followup Assessment form </comment>
+        <sql>
+            insert into concept_answer(concept_id ,answer_concept,creator,date_created,sort_weight,uuid) values (1794,784,1,now(),1,uuid());
+            update concept_answer set sort_weight=2 where concept_id=1794 and answer_concept=1788;
+            update concept_answer set sort_weight=3 where concept_id=1794 and answer_concept=1748;
+            update concept_answer set sort_weight=4 where concept_id=1794 and answer_concept=1749;
+            update concept_answer set sort_weight=5 where concept_id=1794 and answer_concept=1750;
+            update concept_answer set sort_weight=6 where concept_id=1794 and answer_concept=1751;
+        </sql>
+   </changeSet>
+    <changeSet id="ENDTB-201606101558" author="Bharat">
+        <comment>Stored procedure for adding concept_description</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept_description;
+            CREATE PROCEDURE add_concept_description( concept_id INT, descr VARCHAR(250) ) BEGIN INSERT INTO concept_description(uuid, concept_id, description, locale, creator, date_created) values(uuid(), concept_id, descr, 'en', 1, now()); END;
+        </sql>
+    </changeSet>
+
+    <changeSet id="ENDTB-201606101559" author="Bharat">
+        <comment>Stored procedure for adding concept_description</comment>
+        <sql>
+            update concept_name set name='8 = Unable to or did not assess' where concept_name_id in (3750,3814);
+            call add_concept_description(1202,'breaths per minute');
+            call add_concept_description(169,'heart beats per minutes');
+        </sql>
+    </changeSet>
+
+    <changeSet id="ENDTB-201606101615" author="Bharat">
+        <comment>Updating the concept answers for 'Reason for next visit'</comment>
+        <sql>
+            update concept_answer set sort_weight = 1 where concept_id = 1790 and answer_concept = 784;
+            update concept_answer set sort_weight = 2 where concept_id = 1790 and answer_concept = 1788;
+            update concept_answer set sort_weight = 3 where concept_id = 1790 and answer_concept = 1748;
+            update concept_answer set sort_weight = 4 where concept_id = 1790 and answer_concept = 1749;
+            update concept_answer set sort_weight = 5 where concept_id = 1790 and answer_concept = 1750;
+            update concept_answer set sort_weight = 6 where concept_id = 1790 and answer_concept = 1751;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606131434" author="Shiva kumar">
+        <comment>Stored procedure for adding concept_description</comment>
+        <sql>
+            call add_concept_description(1840,'For some facilities a patient is given a Facilty patient ID # which is a specific number for the  patient in this facility ');
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606140850" author="Mahesh">
+	    <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_set cs
+                inner join concept_view cv1 on cs.concept_id = cv1.concept_id
+                inner join concept_view cv2 on cs.concept_set = cv2.concept_id
+                where cv1.concept_full_name = 'Bacteriology, DST with MIC' and cv2.concept_full_name = 'Bacteriology, DST result details';
+            </sqlCheck>
+        </preConditions>
+        <comment>Moving DST with MIC out of DST results set and renaming it to Non standard DST with MIC</comment>
+        <sql>
+            select concept_id into @dstWithMic from concept_view where concept_full_name = 'Bacteriology, DST with MIC';
+            select concept_id into @dstResults from concept_view where concept_full_name = 'Bacteriology, DST result details';
+            select concept_id into @sequencing from concept_view where concept_full_name = 'Bacteriology, Sequencing';
+            select concept_id into @bactResults from concept_view where concept_full_name = 'Bacteriology Results';
+            update concept_set set sort_weight = 6 where concept_set = @bactResults and concept_id = @sequencing;
+            update concept_set set concept_set = @bactResults, sort_weight = 5 where concept_set = @dstResults and concept_id = @dstWithMic;
+            update obs o inner join obs o2 on o.obs_group_id = o2.obs_id
+                set o.obs_group_id = o2.obs_group_id
+                where o.concept_id = @dstWithMic and o2.concept_id = @dstResults;
+            update concept_name set name = 'Non standard DST with MIC'  where concept_id = @dstWithMic and concept_name_type = 'SHORT';
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606131734" author="Swathi, Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_view where concept_full_name = 'Followup, Central Venous Access Devices (CVAD)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding MSF Optional Concepts CVAD to Followup Form</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            select concept_id into @other_concept_id from concept_view where concept_full_name = 'Other';
+            select concept_id into @set_concept_id from concept_view where concept_full_name = 'Followup Template';
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Followup, Date insertion CVAD', 'Date insertion CVAD', 'Date', 'Misc', false);
+            set @child1_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Followup, Type CVAD', 'Type CVAD', 'Coded', 'Misc', false);
+            set @child2_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Followup, Drugs by CVAD', 'Drugs by CVAD', 'Coded', 'Misc', false);
+            set @child3_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Followup, Date removal CVAD', 'Date removal CVAD', 'Date', 'Misc', false);
+            set @child4_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Followup, Reason for removal of CVAD', 'Reason for removal of CVAD', 'Coded', 'Misc', false);
+            set @child5_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PAC', '', 'N/A', 'Misc', false);
+            set @child21_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PICC', '', 'N/A', 'Misc', false);
+            set @child22_concept_id = @concept_id;
+            call add_concept_answer (@child2_concept_id, @child21_concept_id, 1);
+            call add_concept_answer (@child2_concept_id, @child22_concept_id, 2);
+            call add_concept_answer (@child2_concept_id, @other_concept_id, 3);
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Imp', '', 'N/A', 'Misc', false);
+            set @child31_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Imp + Amx/Clv', '', 'N/A', 'Misc', false);
+            set @child32_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Imp+ Amx/Clv+ Km', '', 'N/A', 'Misc', false);
+            set @child33_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'IMp+ Amx/Clv+Cm', '', 'N/A', 'Misc', false);
+            set @child34_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'none currently', '', 'N/A', 'Misc', false);
+            set @child35_concept_id = @concept_id;
+            call add_concept_answer (@child3_concept_id, @child31_concept_id, 1);
+            call add_concept_answer (@child3_concept_id, @child32_concept_id, 2);
+            call add_concept_answer (@child3_concept_id, @child33_concept_id, 3);
+            call add_concept_answer (@child3_concept_id, @child34_concept_id, 4);
+            call add_concept_answer (@child3_concept_id, @child35_concept_id, 5);
+            call add_concept_answer (@child3_concept_id, @other_concept_id, 6);
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'No longer needed', '', 'N/A', 'Misc', false);
+            set @child51_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Complication', '', 'N/A', 'Misc', false);
+            set @child52_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'patient request', '', 'N/A', 'Misc', false);
+            set @child53_concept_id = @concept_id;
+            call add_concept_answer (@child5_concept_id, @child51_concept_id, 1);
+            call add_concept_answer (@child5_concept_id, @child52_concept_id, 2);
+            call add_concept_answer (@child5_concept_id, @child53_concept_id, 3);
+            call add_concept_answer (@child5_concept_id, @other_concept_id, 4);
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Followup, Central Venous Access Devices (CVAD)', 'Central Venous Access Devices (CVAD)', 'N/A', 'Misc', true);
+            call add_concept_set_members (@concept_id,@child1_concept_id,1);
+            call add_concept_set_members (@concept_id,@child2_concept_id,2);
+            call add_concept_set_members (@concept_id,@child3_concept_id,3);
+            call add_concept_set_members (@concept_id,@child4_concept_id,4);
+            call add_concept_set_members (@concept_id,@child5_concept_id,5);
+
+            call add_concept_set_members (@set_concept_id, @concept_id, 6);
+            select concept_id into @concept_set_member6_id from concept_view where concept_full_name = 'Followup, Next visit';
+            update concept_set set sort_weight = 7 where concept_id = @concept_set_member6_id and concept_set=@set_concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606141539" author="Deepak, Shireesha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_view where concept_full_name = 'MTC, Overall DOT Rate';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding MTC, Overall DOT Rate to Monthly Completeness Form</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'MTC, Overall DOT Rate', 'Overall DOT rate (X)',  'Numeric', 'Misc', false);
+            select concept_id into @set_concept_id from concept_view where concept_full_name='Monthly Treatment Completeness Template';
+
+            call add_concept_set_members (@set_concept_id, @concept_id, 11);
+            insert into concept_numeric (concept_id, precise) value (@concept_id, 1);
+
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606141232" author="Shivakumar">
+        <comment>Deleting Other concepts from Lab Results Concepts</comment>
+        <sql>
+            DELETE FROM concept_set WHERE concept_set=585 AND concept_id= 1686;
+            DELETE FROM concept_set WHERE concept_set=844 AND concept_id= 1690;
+            DELETE FROM concept_set WHERE concept_set=845 AND concept_id= 1692;
+            DELETE FROM concept_set WHERE concept_set=586 AND concept_id= 1698;
+            DELETE FROM concept_set WHERE concept_set=587 AND concept_id= 1700;
+            DELETE FROM concept_set WHERE concept_set=588 AND concept_id= 1704;
+            DELETE FROM concept_set WHERE concept_set=842 AND concept_id= 1710;
+            DELETE FROM concept_set WHERE concept_set=592 AND concept_id= 1724;
+            DELETE FROM concept_set WHERE concept_set=601 AND concept_id= 1729;
+            DELETE FROM concept_set WHERE concept_set=596 AND concept_id= 1895;
+            DELETE FROM concept_set WHERE concept_set=577 AND concept_id= 1655;
+            DELETE FROM concept_set WHERE concept_set=580 AND concept_id= 1669;
+            DELETE FROM concept_set WHERE concept_set=581 AND concept_id= 1675;
+            DELETE FROM concept_set WHERE concept_set=583 AND concept_id= 1677;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606141720" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_view where concept_full_name in ('Bacteriology, Bedaquiline result','Bacteriology, Delamanid result','Bacteriology, Linezolid result','Bacteriology, Clofazamine result');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concepts in Bacteriology DST results section</comment>
+        <sql>
+		set @concept_id = 0;
+		set @concept_name_short_id = 0;
+		set @concept_name_full_id = 0;
+		set @concept_datatype_coded = 0;
+
+		call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Bacteriology, Bedaquiline result', 'Bdq', 'Coded', 'Misc', false);
+		set @bdq_concept_id = @concept_id;
+		call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Bacteriology, Delamanid result', 'Dlm', 'Coded', 'Misc', false);
+		set @dlm_concept_id = @concept_id;
+		call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Bacteriology, Linezolid result', 'Lzd', 'Coded', 'Misc', false);
+		set @lzd_concept_id = @concept_id;
+		call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Bacteriology, Clofazamine result', 'Cfz', 'Coded', 'Misc', false);
+		set @cfz_concept_id = @concept_id;
+
+		select concept_id into @sus from concept_view where concept_full_name = 'Susceptible';
+		select concept_id into @res from concept_view where concept_full_name = 'Resistant';
+		select concept_id into @ind from concept_view where concept_full_name = 'Indeterminate';
+		select concept_id into @dstResults from concept_view where concept_full_name = 'Bacteriology, DST result details';
+		select concept_id into @otherDrugs from concept_view where concept_full_name = 'Bacteriology, Other drug details';
+
+		call add_concept_answer (@bdq_concept_id, @sus, 1);
+		call add_concept_answer (@bdq_concept_id, @res, 2);
+		call add_concept_answer (@bdq_concept_id, @ind, 3);
+		call add_concept_answer (@dlm_concept_id, @sus, 1);
+		call add_concept_answer (@dlm_concept_id, @res, 2);
+		call add_concept_answer (@dlm_concept_id, @ind, 3);
+		call add_concept_answer (@lzd_concept_id, @sus, 1);
+		call add_concept_answer (@lzd_concept_id, @res, 2);
+		call add_concept_answer (@lzd_concept_id, @ind, 3);
+		call add_concept_answer (@cfz_concept_id, @sus, 1);
+		call add_concept_answer (@cfz_concept_id, @res, 2);
+		call add_concept_answer (@cfz_concept_id, @ind, 3);
+
+		call add_concept_set_members (@dstResults, @bdq_concept_id,18);
+		call add_concept_set_members (@dstResults, @dlm_concept_id,19);
+		call add_concept_set_members (@dstResults, @lzd_concept_id,20);
+		call add_concept_set_members (@dstResults, @cfz_concept_id,21);
+
+		update concept_set set sort_weight = 22 where concept_set = @dstResults and concept_id = @otherDrugs;
+
+		select concept_reference_term_id into @bdqRef from concept_reference_term where code = 'Bdq';
+		select concept_reference_term_id into @bdqRef from concept_reference_term where code = 'Dlm';
+		select concept_reference_term_id into @bdqRef from concept_reference_term where code = 'Lzd';
+		select concept_reference_term_id into @bdqRef from concept_reference_term where code = 'Cfz';
+
+
+		INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+		        (SELECT  ct.concept_reference_term_id,1,1,now(),cn.concept_id,uuid()
+		         FROM  concept_name cn,
+		           concept_reference_term ct,
+		           concept_reference_source cs
+		         WHERE ct.code = 'Bdq'
+		               AND ct.concept_source_id = cs.concept_source_id
+		               AND cs.name='Abbreviation'
+		               AND cn.name= 'Bacteriology, Bedaquiline result'
+		               AND cn.concept_name_type='FULLY_SPECIFIED');
+
+		INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+		        (SELECT  ct.concept_reference_term_id,1,1,now(),cn.concept_id,uuid()
+		         FROM  concept_name cn,
+		           concept_reference_term ct,
+		           concept_reference_source cs
+		         WHERE ct.code = 'Dlm'
+		               AND ct.concept_source_id = cs.concept_source_id
+		               AND cs.name='Abbreviation'
+		               AND cn.name= 'Bacteriology, Delamanid result'
+		               AND cn.concept_name_type='FULLY_SPECIFIED');
+
+		INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+		        (SELECT  ct.concept_reference_term_id,1,1,now(),cn.concept_id,uuid()
+		         FROM  concept_name cn,
+		           concept_reference_term ct,
+		           concept_reference_source cs
+		         WHERE ct.code = 'Lzd'
+		               AND ct.concept_source_id = cs.concept_source_id
+		               AND cs.name='Abbreviation'
+		               AND cn.name= 'Bacteriology, Linezolid result'
+		               AND cn.concept_name_type='FULLY_SPECIFIED');
+
+		INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+		        (SELECT  ct.concept_reference_term_id,1,1,now(),cn.concept_id,uuid()
+		         FROM  concept_name cn,
+		           concept_reference_term ct,
+		           concept_reference_source cs
+		         WHERE ct.code = 'Cfz'
+		               AND ct.concept_source_id = cs.concept_source_id
+		               AND cs.name='Abbreviation'
+		               AND cn.name= 'Bacteriology, Clofazamine result'
+		               AND cn.concept_name_type='FULLY_SPECIFIED');
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201605271537" author="Mahesh">
+        <comment>Mapping export codes with respective concepts</comment>
+        <sqlFile path="concept_ref_map.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201606151710" author="Shiva">
+        <comment>Adding reference mappings from Other Concepts removed from Lab Result Conceptset</comment>
+        <sql>
+            INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+            values(334,1,1,now(),1644,uuid()),
+            (455,1,1,now(),1644,uuid()),
+            (617,1,1,now(),1644,uuid()),
+            (242,2,1,now(),1644,uuid()),
+            (55,1,1,now(),1644,uuid()),
+            (616,1,1,now(),1644,uuid()),
+            (335,1,1,now(),1644,uuid()),
+            (611,1,1,now(),1681,uuid()),
+            (52,1,1,now(),1681,uuid()),
+            (450,1,1,now(),1681,uuid()),
+            (267,1,1,now(),1681,uuid()),
+            (328,1,1,now(),1681,uuid()),
+            (670,1,1,now(),1681,uuid()),
+            (238,2,1,now(),1681,uuid()),
+            (119,1,1,now(),1643,uuid()),
+            (454,1,1,now(),1643,uuid()),
+            (241,2,1,now(),1643,uuid()),
+            (333,1,1,now(),1643,uuid()),
+            (676,1,1,now(),1643,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606171751" author="Shiva">
+        <comment>Updating class and datatype for concept 8 = Unable to or did not assess</comment>
+        <sql>
+            select concept_id into @conceptID from concept_view where concept_full_name = '8 = Unable to or did not assess';
+            update concept set datatype_id = (select concept_datatype_id from concept_datatype where name = 'N/A') where concept_id = @conceptID;
+            update concept set class_id = (select concept_class_id from concept_class where name = 'Misc') where concept_id = @conceptID;
+            update obs set value_numeric = NULL where concept_id = @conceptID;
+            delete from concept_numeric where concept_id = @conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606201140" author="Swathi,Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'EKG, AE ID Number' and concept_datatype_name = 'Numeric';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating Culture test lab ID from numeric to text</comment>
+        <sql>
+            select concept_id into @conceptID from concept_view where concept_full_name = 'EKG, AE ID Number';
+            update obs set value_text = concat(value_numeric) where concept_id = @conceptID;
+            update concept set datatype_id = (select concept_datatype_id from concept_datatype where name = 'Text')
+            where concept_id = @conceptID;
+            update obs set value_numeric = NULL where concept_id = @conceptID;
+            delete from concept_numeric where concept_id = @conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606201141" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'Bacteriology, Smear test lab ID number' and
+                concept_datatype_name = 'Numeric';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating Smear test lab ID from numeric to text</comment>
+        <sql>
+            select concept_id into @conceptID from concept_view where concept_full_name = 'Bacteriology, Smear test lab ID number';
+            update obs set value_text = concat(value_numeric) where concept_id = @conceptID;
+            update concept set datatype_id = (select concept_datatype_id from concept_datatype where name = 'Text')
+            where concept_id = @conceptID;
+            update obs set value_numeric = NULL where concept_id = @conceptID;
+            delete from concept_numeric where concept_id = @conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606201142" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'Bacteriology, Xpert test ID number' and
+                concept_datatype_name = 'Numeric';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating Xpert test ID from numeric to text</comment>
+        <sql>
+            select concept_id into @conceptID from concept_view where concept_full_name = 'Bacteriology, Xpert test ID number';
+            update obs set value_text = concat(value_numeric) where concept_id = @conceptID;
+            update concept set datatype_id = (select concept_datatype_id from concept_datatype where name = 'Text')
+            where concept_id = @conceptID;
+            update obs set value_numeric = NULL where concept_id = @conceptID;
+            delete from concept_numeric where concept_id = @conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606201143" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'Bacteriology, HAIN MTBDRplus test lab ID'
+                and concept_datatype_name = 'Numeric';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating HAIN MTBDRplus test lab ID from numeric to text</comment>
+        <sql>
+            select concept_id into @conceptID from concept_view where concept_full_name = 'Bacteriology, HAIN MTBDRplus test lab ID';
+            update obs set value_text = concat(value_numeric) where concept_id = @conceptID;
+            update concept set datatype_id = (select concept_datatype_id from concept_datatype where name = 'Text')
+            where concept_id = @conceptID;
+            update obs set value_numeric = NULL where concept_id = @conceptID;
+            delete from concept_numeric where concept_id = @conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606201144" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'Bacteriology, HAIN MTBDRsl test ID' and
+                concept_datatype_name = 'Numeric';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating HAIN MTBDRsl test ID from numeric to text</comment>
+        <sql>
+            select concept_id into @conceptID from concept_view where concept_full_name = 'Bacteriology, HAIN MTBDRsl test ID';
+            update obs set value_text = concat(value_numeric) where concept_id = @conceptID;
+            update concept set datatype_id = (select concept_datatype_id from concept_datatype where name = 'Text')
+            where concept_id = @conceptID;
+            update obs set value_numeric = NULL where concept_id = @conceptID;
+            delete from concept_numeric where concept_id = @conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606201145" author="Mahesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'Bacteriology, Culture test lab ID' and
+                concept_datatype_name = 'Numeric';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating Culture test lab ID from numeric to text</comment>
+        <sql>
+            select concept_id into @conceptID from concept_view where concept_full_name = 'Bacteriology, Culture test lab ID';
+            update obs set value_text = concat(value_numeric) where concept_id = @conceptID;
+            update concept set datatype_id = (select concept_datatype_id from concept_datatype where name = 'Text')
+            where concept_id = @conceptID;
+            update obs set value_numeric = NULL where concept_id = @conceptID;
+            delete from concept_numeric where concept_id = @conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606201551" author="Swathi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="10">
+                select count(*) from concept_view where concept_full_name in ('PAC','PICC','Imp','Imp + Amx/Clv','Imp+ Amx/Clv+ Km','IMp+ Amx/Clv+Cm','none currently','No longer needed','Complication','patient request');
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing the empty short names for the new concepts created using add_concept procedure</comment>
+        <sql>
+            SELECT concept_id INTO @conceptId FROM concept_name WHERE name = 'PAC' and concept_name_type='FULLY_SPECIFIED';
+            UPDATE concept_name SET voided = 1 WHERE concept_name_type='SHORT' AND concept_id = @conceptId;
+            SELECT concept_id INTO @conceptId FROM concept_name WHERE name = 'PICC' and concept_name_type='FULLY_SPECIFIED';
+            UPDATE concept_name SET voided = 1 WHERE concept_name_type='SHORT' AND concept_id = @conceptId;
+            SELECT concept_id INTO @conceptId FROM concept_name WHERE name = 'Imp' and concept_name_type='FULLY_SPECIFIED';
+            UPDATE concept_name SET voided = 1 WHERE concept_name_type='SHORT' AND concept_id = @conceptId;
+            SELECT concept_id INTO @conceptId FROM concept_name WHERE name = 'Imp + Amx/Clv' and concept_name_type='FULLY_SPECIFIED';
+            UPDATE concept_name SET voided = 1 WHERE concept_name_type='SHORT' AND concept_id = @conceptId;
+            SELECT concept_id INTO @conceptId FROM concept_name WHERE name = 'Imp+ Amx/Clv+ Km' and concept_name_type='FULLY_SPECIFIED';
+            UPDATE concept_name SET voided = 1 WHERE concept_name_type='SHORT' AND concept_id = @conceptId;
+            SELECT concept_id INTO @conceptId FROM concept_name WHERE name = 'IMp+ Amx/Clv+Cm' and concept_name_type='FULLY_SPECIFIED';
+            UPDATE concept_name SET voided = 1 WHERE concept_name_type='SHORT' AND concept_id = @conceptId;
+            SELECT concept_id INTO @conceptId FROM concept_name WHERE name = 'none currently' and concept_name_type='FULLY_SPECIFIED';
+            UPDATE concept_name SET voided = 1 WHERE concept_name_type='SHORT' AND concept_id = @conceptId;
+            SELECT concept_id INTO @conceptId FROM concept_name WHERE name = 'No longer needed' and concept_name_type='FULLY_SPECIFIED';
+            UPDATE concept_name SET voided = 1 WHERE concept_name_type='SHORT' AND concept_id = @conceptId;
+            SELECT concept_id INTO @conceptId FROM concept_name WHERE name = 'Complication' and concept_name_type='FULLY_SPECIFIED';
+            UPDATE concept_name SET voided = 1 WHERE concept_name_type='SHORT' AND concept_id = @conceptId;
+            SELECT concept_id INTO @conceptId FROM concept_name WHERE name = 'patient request' and concept_name_type='FULLY_SPECIFIED';
+            UPDATE concept_name SET voided = 1 WHERE concept_name_type='SHORT' AND concept_id = @conceptId;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606271248" author="Shivakumar, Sudhamsh">    
+        <comment> Updating absolute ranges for lab results  </comment>
+        <sql>            
+            update concept_numeric set low_absolute =0 where concept_id=1621;
+            update concept_numeric set hi_absolute= 100 , low_absolute =0 where concept_id=1248;
+            update concept_numeric set low_absolute =0 where concept_id=1212;
+            update concept_numeric set low_absolute =0 where concept_id=1213;
+            update concept_numeric set low_absolute =0 where concept_id=1214;
+            update concept_numeric set low_absolute =0 where concept_id=1681;
+            update concept_numeric set hi_absolute= 100 , low_absolute =0 where concept_id=548;
+            update concept_numeric set low_absolute =0 where concept_id=1216;
+            update concept_numeric set low_absolute =0 where concept_id=822;
+            update concept_numeric set low_absolute =0 where concept_id=1217;
+            update concept_numeric set low_absolute =0 where concept_id=1643;
+            update concept_numeric set low_absolute =0 where concept_id=1644;
+            update concept_numeric set low_absolute =0 where concept_id=1220;
+            update concept_numeric set hi_absolute=100, low_absolute =0 where concept_id=1198;
+            update concept_numeric set low_absolute =0 where concept_id=1221;
+            update concept_numeric set low_absolute =0 where concept_id=828;
+            update concept_numeric set low_absolute =0 where concept_id=1222;
+            update concept_numeric set low_absolute =0 where concept_id=1249;
+            update concept_numeric set low_absolute =0 where concept_id=1246;
+
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606271304" author="Shivakumar, Sudhamsh">    
+        <comment> Updating Synonyms for lab results </comment>
+        <sql>
+            update concept_reference_term set code = 'Plat' where code = 'Plt' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'Abs neut' where code = 'ANC' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = '%neut' where code = 'Neutrophils' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'Ca' where code = 'Ionised Ca' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'Creat' where code = 'Creatinine' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'RBS' where code = 'Glucose' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'FBS' where code = 'Glucose (Fasting)' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'HbA1c' where code = 'HbA1C' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'Lip' where code = 'Lipase' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'AST' where code = 'AST/SGOT' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'ALT' where code = 'ALT/SGPT' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'Tot Bil' where code = 'Total Bilirubin' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+            update concept_reference_term set code = 'HepC ab' where code = 'Hep C ab' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');                
+            update concept_reference_term set code = 'Alb' where code = 'Serum Albumin' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'Abbreviation');
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201606301227" author="Sudhamsh">
+        <comment>Adding new reference terms for endTB exports codes</comment>
+        <sqlFile path="export_ref_terms_extended.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201605301237" author="Sudhamsh">
+        <comment>Mapping new export codes with respective concepts</comment>
+        <sqlFile path="concept_ref_map_extended.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201605301440" author="Sudhamsh">
+        <comment>Mapping new export codes with respective concepts</comment>
+        <sql>            
+            update concept_name set name = 'ti_oth_patient_high_risk_unfavourable' where concept_name_type='FULLY_SPECIFIED' and concept_id = 339;
+            update concept_name set name = 'ti_patients_const_four_drug_regimen_not_possible' where concept_name_type='FULLY_SPECIFIED' and concept_id =338;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201607221144" author="Sudhamsh, Swathi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                SELECT COUNT(*) FROM concept_reference_map WHERE concept_id=1681 AND concept_reference_term_id=670;
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Duplicate concept reference terms for cocnept 1681</comment>
+        <sql>
+            DELETE FROM concept_reference_map WHERE concept_id=1681 AND concept_reference_term_id=670 ORDER BY date_created DESC limit 1;
+        </sql>
+    </changeSet>
+    <changeSet id="ENTB-201608021849" author="Swathi">
+        <comment> Create procedure to get all child obs for a parent obs id </comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS get_all_child_obs;
+        </sql>
+        <sqlFile splitStatements="false" path="E1_5__getAllChildObsProc.sql"/>
+    </changeSet>
+    <changeSet id="ENTB-201608021848" author="Swathi, Sudhamsh">
+        <comment> Fixing Bacteriology obs datetime to Sample Collection date </comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS fix_all_bacteriology_obs_datetime;
+        </sql>
+        <sqlFile splitStatements="false" path="E1_6__FixAllBacteriologyObsDatetime.sql"/>
+        <sql>
+            SET max_sp_recursion_depth = 255;
+            CALL fix_all_bacteriology_obs_datetime();
+            DROP PROCEDURE IF EXISTS fix_all_bacteriology_obs_datetime;
+        </sql>
+    </changeSet>
+    <changeSet id="ENTB-201608031330" author="Swathi">
+        <comment> Fixing Bacteriology obs to be voided when Sample is removed </comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS fix_all_bacteriology_samples_voided;
+        </sql>
+        <sqlFile splitStatements="false" path="E1_7__FixAllBacteriologySamplesVoided.sql"/>
+        <sql>
+            SET max_sp_recursion_depth = 255;
+            CALL fix_all_bacteriology_samples_voided();
+            DROP PROCEDURE IF EXISTS fix_all_bacteriology_samples_voided;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201608051500" author="Shireesha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_view where concept_full_name = 'Treatment Duration';
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding concept Treatment Duration </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Treatment Duration', 'Treatment Duration',  'Text', 'Misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="ENTB-201608080330" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+		select 
+		  case when exists(SELECT COUNT(DISTINCT location_id) FROM location_tag_map ltm
+				 JOIN location_tag lt ON lt.location_tag_id = ltm.location_tag_id AND lt.name in ('Login Location', 'Visit Location')
+				GROUP BY location_id HAVING COUNT(ltm.location_tag_id) > 1)
+		    then 1
+		    else 0
+		  end
+            </sqlCheck>
+        </preConditions>
+            <comment> Tagging visit location to registration desk </comment>
+             <sql>
+                select location_tag_id into @logtagid from location_tag where name = 'Login Location';
+                select location_id into @locationid from location_tag_map where location_tag_id= @logtagid;
+                select location_tag_id into @visittagid from location_tag where name = 'Visit Location';
+                insert into location_tag_map (location_id, location_tag_id) value (@locationid, @visittagid);             
+            </sql>            
+    </changeSet>
+    <changeSet id="ENTB-201608080234" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*)!=0 from visit where location_id is NULL; 
+            </sqlCheck>
+        </preConditions>
+            <comment> Updating null values in location id to location id </comment>
+             <sql>
+                select location_tag_id into @visittagid from location_tag where name = 'Visit Location';
+                select location_id into @locationid from location_tag_map where location_tag_id= @visittagid;
+                update visit set location_id = @locationid where location_id is NULL;
+            </sql>            
+    </changeSet>
+    <changeSet id="ENTB-201608231710" author="Sourav, Vikash">
+        <comment> Sql for searching patients modified</comment>
+        <sqlFile path="search_patients.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201608301145" author="Jaya, Shireesha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term  where code='reas_tbd_stop';
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding EndTB-Export code for Stopped Order Reason</comment>
+        <sql>
+            select concept_source_id into @source_id from concept_reference_source where name = 'EndTB-Export';
+            insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created) values (4,'reas_tbd_stop',@source_id,uuid(),now());
+            call create_reference_mapping('Stopped Order Reason','reas_tbd_stop');
+        </sql>
+    </changeSet>
+    <changeSet id="ENTB-201609131524" author="Deepak">
+        <comment> Sql for selecting results for data integrity module</comment>
+        <sqlFile path="E1_4__DataIntegritySearch.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201609010212" author="Sudhamsh">
+        <comment>Addressing the changes in the type and Reason for next assessment </comment>
+        <sql>
+            select concept_id into @concept_id1 from concept_view where concept_full_name ='Baseline, Reason for next assessment';
+            select concept_id into @concept_id2 from concept_view where concept_full_name ='Followup, Reason for next visit';
+            select concept_id into @concept_id3 from concept_view where concept_full_name ='TI, Reason for next assessment';
+            select concept_id into @concept_id4 from concept_view where concept_full_name ='Followup, Type of Visit';
+            select concept_id into @concept_id5 from concept_view where concept_full_name ='Xray, Type of assessment';
+            select concept_id into @concept_id6 from concept_view where concept_full_name ='Audiometry, Type of assessment';
+            select concept_id into @concept_id7 from concept_view where concept_full_name ='Bacteriology, Type of Visit';
+            select concept_id into @concept_id8 from concept_view where concept_full_name ='Performance Status, Type of assessment';
+
+            select concept_id into @concept_id11 from concept_view where concept_full_name ='Baseline';
+            select concept_id into @concept_id12 from concept_view where concept_full_name ='2 week assessment';
+            select concept_id into @concept_id13 from concept_view where concept_full_name ='Planned monthly assessment';
+            select concept_id into @concept_id14 from concept_view where concept_full_name ='Other assessment';
+            select concept_id into @concept_id15 from concept_view where concept_full_name ='End of treatment assessment';
+            select concept_id into @concept_id16 from concept_view where concept_full_name ='6-month post-treatment assessment';
+
+            delete from concept_answer where answer_concept in ( @concept_id11,@concept_id15,@concept_id16 ) and concept_id=@concept_id1;
+            delete from concept_answer where answer_concept in ( @concept_id11 ) and concept_id=@concept_id2;
+            delete from concept_answer where answer_concept in ( @concept_id11,@concept_id15,@concept_id16 ) and concept_id=@concept_id3;
+            delete from concept_answer where answer_concept in ( @concept_id11 ) and concept_id=@concept_id4;
+            delete from concept_answer where answer_concept in ( @concept_id12 ) and concept_id in ( @concept_id5, @concept_id6, @concept_id7, @concept_id8 );
+            delete from concept_answer where answer_concept in ( @concept_id13 ) and concept_id=@concept_id5;
+            update concept_answer set sort_weight=2 where answer_concept=@concept_id16 and concept_id=@concept_id5;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201609010215" author="Sudhamsh">
+        <comment>Removing Died from Past TB treatment outcome,DSTB and DRTB outcomes Baseline form</comment>
+        <sql>
+            select concept_id into @concept_id1 from concept_view where concept_full_name ='Baseline, Past TB treatment outcome';
+            select concept_id into @concept_id2 from concept_view where concept_full_name ='Baseline, What is the outcome of the last DSTB treatment';
+            select concept_id into @concept_id3 from concept_view where concept_full_name ='Baseline, What is the outcome of the last DRTB treatment';
+
+            select concept_id into @concept_id_child from concept_view where concept_full_name ='Died';
+
+            delete from concept_answer where answer_concept=@concept_id_child and concept_id in (@concept_id1,@concept_id2,@concept_id3);    
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201609010439" author="Sudhamsh">
+        <comment>Removing '(data from PV unit summary)' from short names</comment>
+        <sql>
+            select concept_id into @concept_id1 from concept_view where concept_full_name = 'SAE Form, Related tests (data from PV unit summary)';
+            update concept_name set name = 'Related tests' where concept_name_type='SHORT' and locale = 'en' and concept_id = @concept_id1;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201609171215" author="Sudhamsh">
+        <comment>Removing '(data from PV unit summary)' from fully specified names</comment>
+        <sql>
+            select concept_id into @concept_id1 from concept_view where concept_full_name = 'SAE Form, Related tests (data from PV unit summary)';
+            update concept_name set name = 'SAE Form, Related tests' where concept_name_type='FULLY_SPECIFIED' and concept_id = @concept_id1;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201609191920" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_set cs
+                inner join concept_view cv1 on cs.concept_id = cv1.concept_id
+                inner join concept_view cv2 on cs.concept_set = cv2.concept_id
+                where cv1.concept_full_name = 'Xray, Chest Xray Date' and cv2.concept_full_name = 'Xray, Xray Details';
+            </sqlCheck>
+        </preConditions>
+        <comment>Moving Chest Xray Date out of  Xray Details set and renaming it to Date of Assessment</comment>
+        <sql>
+            select concept_id into @xdate from concept_view where concept_full_name = 'Xray, Chest Xray Date'; 
+            select concept_id into @xdetails from concept_view where concept_full_name = 'Xray, Xray Details'; 
+            select concept_id into @xtemp from concept_view where concept_full_name = 'Xray Template'; 
+
+            update concept_set set sort_weight = sort_weight + 1 where concept_set = @xtemp;
+            update concept_set set concept_set = @xtemp, sort_weight = 0 where concept_id = @xdate and concept_set = @xdetails;
+
+            update concept_name set name = 'Date of Assessment' where concept_id = @xdate and locale = 'en' and concept_name_type = 'SHORT';
+            update obs o inner join obs o2 on o.obs_group_id = o2.obs_id
+                            set o.obs_group_id = o2.obs_group_id
+                            where o.concept_id = @xdate and o2.concept_id = @xdetails;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201609201154" author="Sudhamsh">
+        <comment>Changing short name from Viral load to HIV Viral load</comment>
+        <sql>
+
+            select concept_id into @concept_id1 from concept_view where concept_full_name = 'HIV VIRAL LOAD';
+            select concept_id into @concept_id2 from concept_view where concept_full_name = 'Baseline, HIV Viral Load Details';
+            update concept_name set name = 'HIV Viral load' where concept_name_type='SHORT' and locale = 'en' and concept_id = @concept_id1;
+            update concept_name set name = 'HIV Viral load' where concept_name_type='SHORT' and locale = 'en' and concept_id = @concept_id2;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201609201221" author="Sudhamsh">
+        <comment>Changing short name from Date reporter aware to Reporting Date</comment>
+        <sql>            
+            select concept_id into @concept_id2 from concept_view where concept_full_name = 'PRF, Date reporter made aware of pregnancy';
+            update concept_name set name = 'Reporting Date' where concept_name_type='SHORT' and locale = 'en' and concept_id = @concept_id2;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201609211250" author="Sudhamsh">
+        <comment>Changing short name from 9 = Drug intolerance/contraindication/low BMI/HIV/ diabetes to 9=comorbidity/low BMI/HIV/diabetes</comment>
+        <sql>            
+            select concept_id into @concept_id1 from concept_view where concept_full_name = '9 = Drug intolerance or contraindication, patients with low body mass index (BMI), HIV, diabetes';
+            update concept_name set name = '9=comorbidity/low BMI/HIV/diabetes' where concept_name_type='SHORT' and locale = 'en' and concept_id = @concept_id1;
+        </sql>
+    </changeSet>
+    <changeSet id="ENTB-201610061333" author="Swathi">
+        <comment> Modifying Sql for searching patients to not consider multiple identifiers</comment>
+        <sqlFile path="E1_8_Search_Patients.sql"/>
+    </changeSet>    
+    <changeSet id="ENDTB-201610100401" author="Sudhamsh">        
+        <comment> Adding abbreviations for the visit types</comment>
+        <sql>
+            select concept_source_id into @source_id from concept_reference_source where name = 'Abbreviation';
+
+            insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created) values
+            (4,'Baseline',@source_id,uuid(),now()),
+            (4,'2 Week',@source_id,uuid(),now()),
+            (4,'Monthly',@source_id,uuid(),now()),
+            (4,'Other',@source_id,uuid(),now()),
+            (4,'End of treatment',@source_id,uuid(),now()),
+            (4,'6- Month post-treatment',@source_id,uuid(),now());
+
+            INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+                            (SELECT  ct.concept_reference_term_id,1,1,now(),cn.concept_id,uuid()
+                             FROM  concept_name cn,
+                               concept_reference_term ct,
+                               concept_reference_source cs
+                             WHERE ct.code = '2 Week'
+                                   AND ct.concept_source_id = cs.concept_source_id
+                                   AND cs.name='Abbreviation'
+                                   AND cn.name= '2 week assessment'
+                                   AND cn.concept_name_type='FULLY_SPECIFIED');
+
+            INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+                            (SELECT  ct.concept_reference_term_id,1,1,now(),cn.concept_id,uuid()
+                             FROM  concept_name cn,
+                               concept_reference_term ct,
+                               concept_reference_source cs
+                             WHERE ct.code = 'Other'
+                                   AND ct.concept_source_id = cs.concept_source_id
+                                   AND cs.name='Abbreviation'
+                                   AND cn.name= 'Other assessment'
+                                   AND cn.concept_name_type='FULLY_SPECIFIED');
+                                   
+            INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+                            (SELECT  ct.concept_reference_term_id,1,1,now(),cn.concept_id,uuid()
+                             FROM  concept_name cn,
+                               concept_reference_term ct,
+                               concept_reference_source cs
+                             WHERE ct.code = 'Monthly'
+                                   AND ct.concept_source_id = cs.concept_source_id
+                                   AND cs.name='Abbreviation'
+                                   AND cn.name= 'planned monthly assessment'
+                                   AND cn.concept_name_type='FULLY_SPECIFIED');
+                                   
+                                   
+            INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+                            (SELECT  ct.concept_reference_term_id,1,1,now(),cn.concept_id,uuid()
+                             FROM  concept_name cn,
+                               concept_reference_term ct,
+                               concept_reference_source cs
+                             WHERE ct.code = 'End of treatment'
+                                   AND ct.concept_source_id = cs.concept_source_id
+                                   AND cs.name='Abbreviation'
+                                   AND cn.name= 'End of treatment assessment'
+                                   AND cn.concept_name_type='FULLY_SPECIFIED');
+                                   
+            INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+                            (SELECT  ct.concept_reference_term_id,1,1,now(),cn.concept_id,uuid()
+                             FROM  concept_name cn,
+                               concept_reference_term ct,
+                               concept_reference_source cs
+                             WHERE ct.code = '6- Month post-treatment'
+                                   AND ct.concept_source_id = cs.concept_source_id
+                                   AND cs.name='Abbreviation'
+                                   AND cn.name= '6-month post-treatment assessment'
+                                   AND cn.concept_name_type='FULLY_SPECIFIED');
+                                   
+            INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id,creator,date_created,concept_id,uuid)
+                            (SELECT  ct.concept_reference_term_id,1,1,now(),cn.concept_id,uuid()
+                             FROM  concept_name cn,
+                               concept_reference_term ct,
+                               concept_reference_source cs
+                             WHERE ct.code = 'Baseline'
+                                   AND ct.concept_source_id = cs.concept_source_id
+                                   AND cs.name='Abbreviation'
+                                   AND cn.name= 'Baseline'
+                                   AND cn.concept_name_type='FULLY_SPECIFIED');
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201611031209" author="Sudhamsh">        
+        <comment> Consent options: treatment initiation form, end TB consent question options are changed</comment>
+        <sql>            
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'No, patient has been asked but refused', 'No', 'N/A', 'misc', false);
+            set @concept1_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Yes, patient has been asked and accepted', 'Yes', 'N/A', 'misc', false);
+            set @concept2_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'pending- patient not asked yet, answer not known','pending', 'N/A', 'misc', false);
+            set @concept3_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'not possible- patient cannot be asked as dead or lost', 'not possible' ,'N/A', 'misc', false);
+            set @concept4_id = @concept_id;
+
+            select concept_id into @set_concept_id from concept_view where concept_full_name = 'TI, Has the endTB Observational Study Consent Form been explained and signed';
+
+            call add_concept_answer (@set_concept_id,@concept1_id,2);
+            call add_concept_answer (@set_concept_id,@concept2_id,1);
+            call add_concept_answer (@set_concept_id,@concept3_id,3);
+            call add_concept_answer (@set_concept_id,@concept4_id,4);
+
+            select concept_id into @value1_concept_id from concept_view where concept_full_name = 'False';
+            select concept_id into @value2_concept_id from concept_view where concept_full_name = 'True';
+            select concept_id into @value3_concept_id from concept_view where concept_full_name = 'Unknown';
+
+            update obs set value_coded = @concept1_id where concept_id = 261 and voided = 0 and value_coded = @value1_concept_id;
+            update obs set value_coded = @concept2_id where concept_id = 261 and voided = 0 and value_coded = @value2_concept_id;
+            update obs set value_coded = @concept3_id where concept_id = 261 and voided = 0 and value_coded = @value3_concept_id;
+
+            delete from concept_answer where answer_concept in ( @value2_concept_id, @value1_concept_id, @value3_concept_id ) and concept_id=@set_concept_id;
+
+            call create_reference_mapping('No, patient has been asked but refused','0');
+            call create_reference_mapping('Yes, patient has been asked and accepted','1');
+            call create_reference_mapping('Pending- patient not asked yet, answer not known','2');
+            call create_reference_mapping('Not possible- patient cannot be asked as dead or lost','3');
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201611041034" author="Sourav, Shireesha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_view where concept_full_name = 'Documents Template';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Documents Template Concepts</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            select concept_id into @set_concept_id from concept_view where concept_full_name = 'All Observation Templates';
+            select max(sort_weight) into @sort_weight from concept_set where concept_set = @set_concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Documents, Date', 'Date', 'Date', 'Misc', false);
+            set @child1_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Documents, Image', 'Image', 'Complex', 'Image', false);
+            set @child2_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Documents, Image Description', 'Description', 'Text', 'Misc', false);
+            set @child3_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Documents Template', 'Documents', 'N/A', 'Misc', true);
+            call add_concept_set_members (@concept_id,@child1_concept_id,1);
+            call add_concept_set_members (@concept_id,@child2_concept_id,2);
+            call add_concept_set_members (@concept_id,@child3_concept_id,3);
+            call add_concept_set_members(@set_concept_id, @concept_id, @sort_weight+1);
+            INSERT INTO concept_complex VALUES (@child2_concept_id, "BinaryDataHandler");
+
+        </sql>
+    </changeSet>    
+    <changeSet id="ENDTB-201611090413" author="Sudhamsh">        
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">           
+                select count(*) from concept_answer where answer_concept = 1751 and concept_id = 963;
+            </sqlCheck>
+        </preConditions>        
+        <comment> Remove the assessment type “6 month post treatment outcome” </comment>
+        <sql>
+            select concept_id into @main_concept_id from concept_view where concept_full_name = 'Xray, Type of assessment';
+            select concept_id into @other_concept_id from concept_view where concept_full_name = 'Other assessment';
+            select concept_id into @value_concept_id from concept_view where concept_full_name = '6-month post-treatment assessment';
+            
+            update obs set value_coded = @other_concept_id where concept_id = @main_concept_id  and voided = 0 and value_coded = @value_concept_id;
+
+            delete from concept_answer where answer_concept in ( @value_concept_id ) and concept_id=@main_concept_id ;
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201611111854" author="Shireesha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                select count(*) from users where username= 'reports-user';
+            </sqlCheck>
+        </preConditions>
+        <comment>Retiring extra Reports User</comment>
+        <sql>
+            SELECT u.user_id
+            INTO @user_with_reports_role
+            FROM users u
+            JOIN user_role ur ON ur.user_id = u.user_id AND u.username = 'reports-user' AND ur.role = 'Emr-Reports' LIMIT 1;
+
+            UPDATE users SET retired = 1 WHERE username='reports-user' and user_id NOT IN (@user_with_reports_role);
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201611191104" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'Xray, Date of Other Test';
+            </sqlCheck>
+        </preConditions>
+        <comment> Removing Date of other radiological tests from Xray form</comment>
+        <sql>
+            select concept_id into @parent_concept_id from concept_view where concept_full_name = 'Xray, Other Radiological Tests';
+            select concept_id into @main_concept_id from concept_view where concept_full_name = 'Xray, Date of Other Test';
+            update obs set voided = 1 where concept_id = @main_concept_id;
+            delete from concept_set where concept_id in ( @main_concept_id ) and concept_set=@parent_concept_id ;                      
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201611220204" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_view where concept_full_name IN ('Lab, Hep C PCR','Lab, Hep C viral load','Lab, Hep C genotype','Lab, APRI');
+            </sqlCheck>
+        </preConditions>
+        <comment> adding new concepts in Lab Results - Serology</comment>
+        <sql>
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Lab, Hep C PCR', 'Hep C PCR', 'Coded', 'Misc', false);
+            set @main1_concept_id = @concept_id;
+
+            select concept_id into @child1_concept_id from concept_view where concept_full_name = 'Positive';
+            select concept_id into @child2_concept_id from concept_view where concept_full_name = 'Negative';
+            select concept_id into @child3_concept_id from concept_view where concept_full_name = 'Indeterminate';
+
+            call add_concept_answer (@main1_concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@main1_concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@main1_concept_id, @child3_concept_id, 3);
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Lab, Hep C viral load', 'Hep C viral load', 'Text', 'Misc', false);
+            set @main2_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Lab, Hep C genotype', 'Hep C genotype', 'Text', 'Misc', false);
+            set @main3_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Lab, APRI', 'APRI', 'Text', 'Misc', false);
+            set @main4_concept_id = @concept_id;
+
+            select concept_id into @set_concept_id from concept_view where concept_full_name = 'Lab, Serological and other tests';
+            
+            call add_concept_set_members (@set_concept_id,@main1_concept_id,6);
+            call add_concept_set_members (@set_concept_id,@main2_concept_id,7);
+            call add_concept_set_members (@set_concept_id,@main3_concept_id,8);
+            call add_concept_set_members (@set_concept_id,@main4_concept_id,9); 
+
+            select concept_source_id into @source_id from concept_reference_source where name = 'EndTB-Export';
+            insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created) values 
+            (4,'hepc_pcr_test',@source_id,uuid(),now()),
+            (4,'hepc_vl_test',@source_id,uuid(),now()),
+            (4,'hepc_geno_test',@source_id,uuid(),now()),
+            (4,'apri_test',@source_id,uuid(),now());
+
+            call create_reference_mapping('Lab, Hep C PCR','hepc_pcr_test');
+            call create_reference_mapping('Lab, Hep C viral load','hepc_vl_test');
+            call create_reference_mapping('Lab, Hep C genotype','hepc_geno_test');
+            call create_reference_mapping('Lab, APRI','apri_test');           
+                      
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201611220244" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_answer where answer_concept = 473 and concept_id =1445;
+            </sqlCheck>
+        </preConditions>
+        <comment> Removing fatal from AE outcome</comment>
+        <sql>
+            select concept_id into @main_concept_id from concept_view where concept_full_name = 'AE Form, AE outcome';
+            select concept_id into @value_concept_id from concept_view where concept_full_name = 'Fatal';            
+            update obs set  voided = 1 where concept_id = @main_concept_id and value_coded = @value_concept_id;
+            delete from concept_answer where answer_concept in ( @value_concept_id ) and concept_id=@main_concept_id ;
+         </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201611220255" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_view where concept_full_name = 'glycosylated hemoglobin A measurement';
+            </sqlCheck>
+        </preConditions>
+        <comment> removing description for glycosylated hemoglobin A measurement and changing the date of assessment </comment>
+        <sql>
+            select concept_id into @main_concept_id from concept_view where concept_full_name = 'glycosylated hemoglobin A measurement';
+            update concept_view set description = '' where concept_id = @main_concept_id;
+
+            update concept_reference_term set code = 'd_radio' where code = 'd_xray' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'EndTB-Export');
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201611230243" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="5">
+                select count(*) from concept_view where concept_full_name IN ('Restricted','Ambulatory','Capable','pending- patient not asked yet, answer not known','not possible- patient cannot be asked as dead or lost');
+            </sqlCheck>
+        </preConditions>
+        <comment> Modifying the names of options for ECOG Performance Status and Consent options: treatment initiation form </comment>
+        <sql>
+            select concept_id into @child1_concept_id from concept_view where concept_full_name = 'Restricted';
+            select concept_id into @child2_concept_id from concept_view where concept_full_name = 'Ambulatory';
+            select concept_id into @child3_concept_id from concept_view where concept_full_name = 'Capable';
+            select concept_id into @child4_concept_id from concept_view where concept_full_name = 'pending- patient not asked yet, answer not known';
+            select concept_id into @child5_concept_id from concept_view where concept_full_name = 'not possible- patient cannot be asked as dead or lost';
+
+            update concept_name set name = 'Ambulatory' where concept_id = @child1_concept_id and
+            concept_name_type = 'FULLY_SPECIFIED';
+            update concept_name set name = '1=Ambulatory' where concept_id = @child1_concept_id and
+            concept_name_type = 'SHORT';
+
+            update concept_name set name = 'Capable of self care' where concept_id = @child2_concept_id and
+            concept_name_type = 'FULLY_SPECIFIED';
+            update concept_name set name = '2=Capable of self care' where concept_id = @child2_concept_id and
+            concept_name_type = 'SHORT';
+
+            update concept_name set name = 'Limited self care' where concept_id = @child3_concept_id and
+            concept_name_type = 'FULLY_SPECIFIED';
+            update concept_name set name = '3=Limited self care' where concept_id = @child3_concept_id and
+            concept_name_type = 'SHORT';
+
+            update concept_name set name = 'Pending- patient not asked yet, answer not known' where concept_id = @child4_concept_id and
+            concept_name_type = 'FULLY_SPECIFIED';
+            update concept_name set name = 'Pending' where concept_id = @child4_concept_id and
+            concept_name_type = 'SHORT';           
+            
+            update concept_name set name = 'Not possible- patient cannot be asked as dead or lost' where concept_id = @child5_concept_id and
+            concept_name_type = 'FULLY_SPECIFIED';
+            update concept_name set name = 'Not possible' where concept_id = @child5_concept_id and
+            concept_name_type = 'SHORT';
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201611251166" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                select count(*) from concept_view where concept_full_name IN ('CD4 COUNT','HIV VIRAL LOAD');
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding help text for CD4 Count and Hiv viral load</comment>
+        <sql>
+            select concept_id into @main1_concept_id from concept_view where concept_full_name = 'CD4 COUNT';
+            insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@main1_concept_id, 'ONLY enter documented results (either results from the laboratory or from the patient medical record of copies of these)', 'en','1', curdate(),null,null,uuid());
+
+            select concept_id into @main2_concept_id from concept_view where concept_full_name = 'HIV VIRAL LOAD';
+            update concept_view set description = 'ONLY enter documented results (either results from the laboratory or from the patient medical record of copies of these)' where concept_id = @main2_concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201611290348" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                select count(*) from concept_reference_map cm
+                    left join concept_reference_term ct on cm.concept_reference_term_id = ct.concept_reference_term_id 
+                    where cm.concept_id = (select concept_id from concept_name where name = 'HIV VIRAL LOAD' and concept_name_type = 'FULLY_SPECIFIED')
+                    and ct.concept_source_id = (select concept_source_id from concept_reference_source where name = 'EndTB-Export');    
+            </sqlCheck>
+        </preConditions>
+        <comment> Updating lastcd4_base export code to lastcd4_test and removing lastvl_base code for HIV VIRAL LOAD</comment>
+        <sql>
+                update concept_reference_term set code = 'lastcd4_test' 
+                    where code = 'lastcd4_base' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'EndTB-Export');
+                delete from concept_reference_map where concept_reference_term_id = (select concept_reference_term_id from concept_reference_term where code = 'lastvl_base' );
+                delete from concept_reference_term where code = 'lastvl_base' and concept_source_id = (select concept_source_id from concept_reference_source where name = 'EndTB-Export');
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201703021000" author="Sudhamsh, Swathi">
+        
+        <comment> Adding not applicable as an answer for SAE Form, Final action taken related to TB drug </comment>
+        <sql>
+                select concept_id into @main1_concept_id from concept_view where concept_full_name = 'SAE Form, Final action taken related to TB drug';
+                select concept_id into @child1_concept_id from concept_view where concept_full_name = 'Not applicable';            
+                call add_concept_answer (@main1_concept_id, @child1_concept_id, 7);
+        </sql>
+    </changeSet>
+
+    <changeSet id = "ENDTB-201703021555" author="Sudhamsh, Swathi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="3">
+                select count(*) from concept_view where concept_full_name IN ('Anaemia','Arthralgia (joint pain)','Lactate');
+            </sqlCheck>
+        </preConditions>
+        <comment> Clean up the SAE, AE Terms list - Remove duplicate terms </comment>
+        <sql>
+            select concept_id into @concept_id_SAE from concept_view where concept_full_name = 'SAE Form, SAE term comprehensive AE list';
+            select concept_id into @concept_id_AE from concept_view where concept_full_name = 'AE Form, AE term comprehensive list';
+
+            select concept_id into @concept1_id_change from concept_view where concept_full_name = 'Anemia';
+            select concept_id into @concept1_id from concept_view where concept_full_name = 'Anaemia';
+            update obs set value_coded = @concept1_id_change where concept_id in (@concept_id_SAE, @concept_id_AE) and voided = 0 and value_coded = @concept1_id;
+
+            select concept_id into @concept2_id_change from concept_view where concept_full_name = 'Arthralgia';
+            select concept_id into @concept2_id from concept_view where concept_full_name = 'Arthralgia (joint pain)';
+            update obs set value_coded = @concept2_id_change where concept_id in (@concept_id_SAE, @concept_id_AE) and voided = 0 and value_coded = @concept2_id;
+
+            select concept_id into @concept3_id_change from concept_view where concept_full_name = 'Lactate Increased (Lactic Acidosis)';
+            select concept_id into @concept3_id from concept_view where concept_full_name = 'Lactate';
+            update obs set value_coded = @concept3_id_change where concept_id in (@concept_id_SAE, @concept_id_AE) and voided = 0 and value_coded = @concept3_id;
+
+            delete from concept_answer where answer_concept in ( @concept1_id,@concept2_id,@concept3_id ) and concept_id in (@concept_id_SAE, @concept_id_AE) ;
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201703171200" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+               SELECT COUNT(*)FROM concept_reference_map WHERE concept_id = (SELECT concept_id FROM concept_view WHERE concept_full_name = 'Skin hyperpigmentation or hypopigmentation')  AND concept_reference_term_id in (SELECT concept_reference_term_id FROM concept_reference_term WHERE code=84);
+            </sqlCheck>
+        </preConditions>
+        <comment> Changing export code for Skin hyperpigmentation or hypopigmentation</comment>
+        <sql>
+            DELETE FROM concept_reference_map WHERE concept_id = (SELECT concept_id FROM concept_view WHERE concept_full_name = 'Skin hyperpigmentation or hypopigmentation') AND  concept_reference_term_id in (SELECT concept_reference_term_id FROM concept_reference_term WHERE code=84);
+
+            call create_reference_mapping('Skin hyperpigmentation or hypopigmentation','247');
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201703171247" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+               SELECT COUNT(*)FROM concept_reference_map WHERE concept_id = (SELECT concept_id FROM concept_view WHERE concept_full_name = 'Activated Partial Thromboplastin Time (APPT) Prolonged')  AND concept_reference_term_id in (SELECT concept_reference_term_id FROM concept_reference_term WHERE code=102);
+            </sqlCheck>
+        </preConditions>
+        <comment> Changing export code for Activated Partial Thromboplastin Time (APPT) Prolonged</comment>
+        <sql>
+            DELETE FROM concept_reference_map WHERE concept_id = (SELECT concept_id FROM concept_view WHERE concept_full_name = 'Activated Partial Thromboplastin Time (APPT) Prolonged') AND  concept_reference_term_id in (SELECT concept_reference_term_id FROM concept_reference_term WHERE code=102);
+
+            select concept_source_id into @source_id from concept_reference_source where name = 'EndTB-Export';
+
+            insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created) values (4,'260',@source_id,uuid(),now());
+
+            call create_reference_mapping('Activated Partial Thromboplastin Time (APPT) Prolonged','260');
+        </sql>
+    </changeSet>
+
+    <changeSet id="ENTB-201703130917" author="cosmin" runAlways="true" runOnChange="true">
+        <comment> Create procedure for producing the Culture Conversion Report (ED-5) </comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS culture_conversion_report;
+        </sql>
+        <sqlFile splitStatements="false" path="CultureConversionReportProc.sql"/>
+    </changeSet>
+
+    <changeSet id="ENTB-201703141600" author="cosmin" runAlways="true" runOnChange="true">
+        <comment> Create function for calculating the treatment month based on the number of days since treatment started.</comment>
+        <sql>
+            DROP FUNCTION IF EXISTS getTreatmentMonth;
+        </sql>
+        <sqlFile splitStatements="false" path="GetTreatmentMonthFunction.sql"/>
+    </changeSet>
+
+    <changeSet id="ENDTB-201704071300" author="Swathi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="14">
+                select count(*) from concept_view where concept_full_name in ('Audiometry, Left ear at 250Hz','Audiometry, Left ear at 500Hz','Audiometry, Left ear at 1000Hz','Audiometry, Left ear at 2000Hz','Audiometry, Left ear at 4000Hz','Audiometry, Left ear at 6000Hz','Audiometry, Left ear at 8000Hz','Audiometry, Right ear at 250Hz','Audiometry, Right ear at 500Hz','Audiometry, Right ear at 1000Hz','Audiometry, Right ear at 2000Hz','Audiometry, Right ear at 4000Hz','Audiometry, Right ear at 6000Hz','Audiometry, Right ear at 8000Hz') and concept_datatype_name = 'Coded';
+            </sqlCheck>
+        </preConditions>
+        <comment>Create New Audiometry Left/Right ear at xxHz dropdown(CodedConcept) of Ranges as answers</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+
+            SELECT concept_id INTO @child1_concept_id FROM concept_name WHERE name = 'Audiometry, 0 to 20 db';
+            SELECT concept_id INTO @child2_concept_id FROM concept_name WHERE name = 'Audiometry, 21 to 40 dB';
+            SELECT concept_id INTO @child3_concept_id FROM concept_name WHERE name = 'Audiometry, 41 to 55 dB';
+            SELECT concept_id INTO @child4_concept_id FROM concept_name WHERE name = 'Audiometry, 56 to 70 dB';
+            SELECT concept_id INTO @child5_concept_id FROM concept_name WHERE name = 'Audiometry, 71 to 90 dB';
+            SELECT concept_id INTO @child6_concept_id FROM concept_name WHERE name = 'Audiometry, 91+ dB';
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Left ear at 250Hz-Coded_old', 'Left Ear : dB at 250Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded1_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Left ear at 500Hz-Coded_old', 'Left Ear : dB at 500Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded2_concept_id = @concept_id;
+
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Left ear at 1000Hz-Coded_old', 'Left Ear : dB at 1000Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded3_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Left ear at 2000Hz-Coded_old', 'Left Ear : dB at 2000Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded4_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Left ear at 4000Hz-Coded_old', 'Left Ear : dB at 4000Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded5_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Left ear at 6000Hz-Coded_old', 'Left Ear : dB at 6000Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded6_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Left ear at 8000Hz-Coded_old', 'Left Ear : dB at 8000Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded7_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Right ear at 250Hz-Coded_old', 'Right Ear : dB at 250Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded8_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Right ear at 500Hz-Coded_old', 'Right Ear : dB at 500Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded9_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Right ear at 1000Hz-Coded_old', 'Right Ear : dB at 1000Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded10_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Right ear at 2000Hz-Coded_old', 'Right Ear : dB at 2000Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded11_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Right ear at 4000Hz-Coded_old', 'Right Ear : dB at 4000Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded12_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Right ear at 6000Hz-Coded_old', 'Right Ear : dB at 6000Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded13_concept_id = @concept_id;
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Audiometry, Right ear at 8000Hz-Coded_old', 'Right Ear : dB at 8000Hz', 'Coded', 'misc', false);
+            call add_concept_answer (@concept_id, @child1_concept_id, 1);
+            call add_concept_answer (@concept_id, @child2_concept_id, 2);
+            call add_concept_answer (@concept_id, @child3_concept_id, 3);
+            call add_concept_answer (@concept_id, @child4_concept_id, 4);
+            call add_concept_answer (@concept_id, @child5_concept_id, 5);
+            call add_concept_answer (@concept_id, @child6_concept_id, 6);
+            set @coded14_concept_id = @concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201704071945" author="Swathi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="14">
+                select count(*) from concept_view where concept_full_name in ('Audiometry, Left ear at 250Hz','Audiometry, Left ear at 500Hz','Audiometry, Left ear at 1000Hz','Audiometry, Left ear at 2000Hz','Audiometry, Left ear at 4000Hz','Audiometry, Left ear at 6000Hz','Audiometry, Left ear at 8000Hz','Audiometry, Right ear at 250Hz','Audiometry, Right ear at 500Hz','Audiometry, Right ear at 1000Hz','Audiometry, Right ear at 2000Hz','Audiometry, Right ear at 4000Hz','Audiometry, Right ear at 6000Hz','Audiometry, Right ear at 8000Hz') and concept_datatype_name = 'Coded';
+            </sqlCheck>
+            <sqlCheck expectedResult="14">
+                select count(*) from concept_view where concept_full_name in ('Audiometry, Left ear at 250Hz-Coded_old','Audiometry, Left ear at 500Hz-Coded_old','Audiometry, Left ear at 1000Hz-Coded_old','Audiometry, Left ear at 2000Hz-Coded_old','Audiometry, Left ear at 4000Hz-Coded_old','Audiometry, Left ear at 6000Hz-Coded_old','Audiometry, Left ear at 8000Hz-Coded_old','Audiometry, Right ear at 250Hz-Coded_old','Audiometry, Right ear at 500Hz-Coded_old','Audiometry, Right ear at 1000Hz-Coded_old','Audiometry, Right ear at 2000Hz-Coded_old','Audiometry, Right ear at 4000Hz-Coded_old','Audiometry, Right ear at 6000Hz-Coded_old','Audiometry, Right ear at 8000Hz-Coded_old') and concept_datatype_name = 'Coded';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating Audiometry Left/Right ear at xxHz from dropdown(CodedConcept) to numeric and migrate obs</comment>
+        <sql>
+            SELECT concept_datatype_id INTO @concept_datatype_id from concept_datatype WHERE name = 'Numeric';
+
+            SELECT concept_id INTO @numeric1_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 250Hz';
+            SELECT concept_id INTO @numeric2_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 500Hz';
+            SELECT concept_id INTO @numeric3_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 1000Hz';
+            SELECT concept_id INTO @numeric4_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 2000Hz';
+            SELECT concept_id INTO @numeric5_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 4000Hz';
+            SELECT concept_id INTO @numeric6_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 6000Hz';
+            SELECT concept_id INTO @numeric7_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 8000Hz';
+
+            SELECT concept_id INTO @numeric8_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 250Hz';
+            SELECT concept_id INTO @numeric9_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 500Hz';
+            SELECT concept_id INTO @numeric10_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 1000Hz';
+            SELECT concept_id INTO @numeric11_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 2000Hz';
+            SELECT concept_id INTO @numeric12_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 4000Hz';
+            SELECT concept_id INTO @numeric13_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 6000Hz';
+            SELECT concept_id INTO @numeric14_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 8000Hz';
+
+            SELECT concept_id INTO @coded1_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 250Hz-Coded_old';
+            SELECT concept_id INTO @coded2_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 500Hz-Coded_old';
+            SELECT concept_id INTO @coded3_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 1000Hz-Coded_old';
+            SELECT concept_id INTO @coded4_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 2000Hz-Coded_old';
+            SELECT concept_id INTO @coded5_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 4000Hz-Coded_old';
+            SELECT concept_id INTO @coded6_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 6000Hz-Coded_old';
+            SELECT concept_id INTO @coded7_concept_id FROM concept_name WHERE name = 'Audiometry, Left ear at 8000Hz-Coded_old';
+
+            SELECT concept_id INTO @coded8_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 250Hz-Coded_old';
+            SELECT concept_id INTO @coded9_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 500Hz-Coded_old';
+            SELECT concept_id INTO @coded10_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 1000Hz-Coded_old';
+            SELECT concept_id INTO @coded11_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 2000Hz-Coded_old';
+            SELECT concept_id INTO @coded12_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 4000Hz-Coded_old';
+            SELECT concept_id INTO @coded13_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 6000Hz-Coded_old';
+            SELECT concept_id INTO @coded14_concept_id FROM concept_name WHERE name = 'Audiometry, Right ear at 8000Hz-Coded_old';
+
+            UPDATE obs SET concept_id =
+            IF((concept_id = @numeric1_concept_id), @coded1_concept_id,
+            IF((concept_id = @numeric2_concept_id), @coded2_concept_id,
+            IF((concept_id = @numeric3_concept_id), @coded3_concept_id,
+            IF((concept_id = @numeric4_concept_id), @coded4_concept_id,
+            IF((concept_id = @numeric5_concept_id), @coded5_concept_id,
+            IF((concept_id = @numeric6_concept_id), @coded6_concept_id,
+            IF((concept_id = @numeric7_concept_id), @coded7_concept_id,
+            IF((concept_id = @numeric8_concept_id), @coded8_concept_id,
+            IF((concept_id = @numeric9_concept_id), @coded9_concept_id,
+            IF((concept_id = @numeric10_concept_id), @coded10_concept_id,
+            IF((concept_id = @numeric11_concept_id), @coded11_concept_id,
+            IF((concept_id = @numeric12_concept_id), @coded12_concept_id,
+            IF((concept_id = @numeric13_concept_id), @coded13_concept_id,
+            IF((concept_id = @numeric14_concept_id), @coded14_concept_id,
+            concept_id))))))))))))));
+
+            SELECT concept_id INTO @child1_concept_id FROM concept_name WHERE name = 'Audiometry, 0 to 20 db';
+            SELECT concept_id INTO @child2_concept_id FROM concept_name WHERE name = 'Audiometry, 21 to 40 dB';
+            SELECT concept_id INTO @child3_concept_id FROM concept_name WHERE name = 'Audiometry, 41 to 55 dB';
+            SELECT concept_id INTO @child4_concept_id FROM concept_name WHERE name = 'Audiometry, 56 to 70 dB';
+            SELECT concept_id INTO @child5_concept_id FROM concept_name WHERE name = 'Audiometry, 71 to 90 dB';
+            SELECT concept_id INTO @child6_concept_id FROM concept_name WHERE name = 'Audiometry, 91+ dB';
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric1_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric1_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric1_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric1_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric1_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric1_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric2_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric2_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric2_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric2_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric2_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric2_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric3_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric3_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric3_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric3_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric3_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric3_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric4_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric4_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric4_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric4_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric4_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric4_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric5_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric5_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric5_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric5_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric5_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric5_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric6_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric6_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric6_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric6_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric6_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric6_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric7_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric7_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric7_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric7_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric7_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric7_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric8_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric8_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric8_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric8_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric8_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric8_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric9_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric9_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric9_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric9_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric9_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric9_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric10_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric10_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric10_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric10_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric10_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric10_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric11_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric11_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric11_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric11_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric11_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric11_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric12_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric12_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric12_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric12_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric12_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric12_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric13_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric13_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric13_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric13_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric13_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric13_concept_id and answer_concept = @child6_concept_id;
+
+            DELETE FROM concept_answer WHERE concept_id = @numeric14_concept_id and answer_concept = @child1_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric14_concept_id and answer_concept = @child2_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric14_concept_id and answer_concept = @child3_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric14_concept_id and answer_concept = @child4_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric14_concept_id and answer_concept = @child5_concept_id;
+            DELETE FROM concept_answer WHERE concept_id = @numeric14_concept_id and answer_concept = @child6_concept_id;
+
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric1_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric2_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric3_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric4_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric5_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric6_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric7_concept_id;
+
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric8_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric9_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric10_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric11_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric12_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric13_concept_id;
+            UPDATE concept SET datatype_id = @concept_datatype_id where concept_id = @numeric14_concept_id;
+
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric1_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric2_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric3_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric4_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric5_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric6_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric7_concept_id, 0, 120);
+
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric8_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric9_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric10_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric11_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric12_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric13_concept_id, 0, 120);
+            INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@numeric14_concept_id, 0, 120);
+
+        </sql>
+    </changeSet>
+    <changeSet id = "ENDTB-201705230247" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                SELECT 
+                    COUNT(*) != 0
+                FROM
+                    concept_view cv
+                        INNER JOIN
+                    concept_reference_map crm ON crm.concept_id = cv.concept_id
+                        INNER JOIN
+                    concept_reference_term crt ON crt.concept_reference_term_id = crm.concept_reference_term_id
+                WHERE
+                    (cv.concept_full_name = 'Financial problem'
+                        AND crt.code != '5')
+                        OR (cv.concept_full_name = 'Social problem'
+                        AND crt.code != '4')
+                        OR (cv.concept_full_name = 'Related to work'
+                        AND crt.code != '2');
+            </sqlCheck>
+        </preConditions>
+        <comment> Changing export code for Related to work, Social problem, Financial problem</comment>
+        <sql>
+            UPDATE concept_reference_map crm
+                    INNER JOIN
+                concept_name cn ON cn.concept_id = crm.concept_id
+                    INNER JOIN
+                concept_reference_term crt ON crt.concept_reference_term_id = crm.concept_reference_term_id
+                    INNER JOIN
+                concept_reference_source crs ON crs.concept_source_id = crt.concept_source_id 
+            SET 
+                crm.concept_reference_term_id = (SELECT 
+                        crt.concept_reference_term_id
+                    FROM
+                        concept_reference_term crt
+                            INNER JOIN
+                        concept_reference_source crs ON crs.concept_source_id = crt.concept_source_id
+                    WHERE
+                        crs.name = 'EndTB-Export'
+                            AND crt.code = '2')
+            WHERE
+                crs.name = 'EndTB-Export'
+                    AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                    AND cn.name = 'Related to work';
+
+
+            UPDATE concept_reference_map crm
+                    INNER JOIN
+                concept_name cn ON cn.concept_id = crm.concept_id
+                    INNER JOIN
+                concept_reference_term crt ON crt.concept_reference_term_id = crm.concept_reference_term_id
+                    INNER JOIN
+                concept_reference_source crs ON crs.concept_source_id = crt.concept_source_id 
+            SET 
+                crm.concept_reference_term_id = (SELECT 
+                        crt.concept_reference_term_id
+                    FROM
+                        concept_reference_term crt
+                            INNER JOIN
+                        concept_reference_source crs ON crs.concept_source_id = crt.concept_source_id
+                    WHERE
+                        crs.name = 'EndTB-Export'
+                            AND crt.code = '4')
+            WHERE
+                crs.name = 'EndTB-Export'
+                    AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                    AND cn.name = 'Social problem';
+
+            UPDATE concept_reference_map crm
+                    INNER JOIN
+                concept_name cn ON cn.concept_id = crm.concept_id
+                    INNER JOIN
+                concept_reference_term crt ON crt.concept_reference_term_id = crm.concept_reference_term_id
+                    INNER JOIN
+                concept_reference_source crs ON crs.concept_source_id = crt.concept_source_id 
+            SET 
+                crm.concept_reference_term_id = (SELECT 
+                        crt.concept_reference_term_id
+                    FROM
+                        concept_reference_term crt
+                            INNER JOIN
+                        concept_reference_source crs ON crs.concept_source_id = crt.concept_source_id
+                    WHERE
+                        crs.name = 'EndTB-Export'
+                            AND crt.code = '5')
+            WHERE
+                crs.name = 'EndTB-Export'
+                    AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                    AND cn.name = 'Financial problem';
+
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201705311203" author="Swathi">
+        <comment>Update old Xray, Type of assessment obs with value 6-month assessment to be Other assessment</comment>
+        <sql>
+            select concept_id into @6month_concept_id from concept_view where concept_full_name = '6-month assessment';
+            select concept_id into @other_concept_id from concept_view where concept_full_name = 'Other assessment';
+            select concept_id into @question_concept_id from concept_view where concept_full_name = 'Xray, Type of assessment';
+            update obs set value_coded = @other_concept_id where concept_id = @question_concept_id and voided = 0 and value_coded = @6month_concept_id;
+        </sql>
+    </changeSet>        
+    <changeSet id="ENDTB-201706201803" author="Sudhamsh, David">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                SELECT 
+                    COUNT(*) != 0
+                FROM obs o
+                INNER JOIN
+                    concept_name cn ON cn.concept_id = o.concept_id            
+                WHERE
+                    cn.name = 'Specimen Id'
+                        AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                        AND o.value_text IS NULL
+                        AND o.voided IS FALSE
+            </sqlCheck>
+        </preConditions>
+        <comment> </comment>
+        <sql>
+            UPDATE obs o
+            INNER JOIN
+                concept_name cn ON cn.concept_id = o.concept_id 
+            SET 
+                o.value_text = ''
+            WHERE
+                cn.name = 'Specimen Id'
+                    AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                    AND o.value_text IS NULL
+                    AND o.voided IS FALSE
+        </sql>
+    </changeSet>
+	<changeSet id="ENDTB-2017121635" author="Sudhamsh" runAlways="true">
+        <comment>Culture Conversion procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS culture_conversion ;
+        </sql>
+        <sqlFile splitStatements="false" path="cultureConversionProc.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-2017121630" author="Sudhamsh" runAlways="true">
+        <comment>Smaer conversion Procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS smear_conversion;
+        </sql>
+        <sqlFile splitStatements="false" path="smearConversionProc.sql"/>
+    </changeSet>
+        <changeSet id="ENDTB-2017121640" author="Sudhamsh" runAlways="true">
+        <comment>Basic Register Procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS Basic_register;
+        </sql>
+        <sqlFile splitStatements="false" path="basicRegisterTreatment.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-2017121645" author="Sudhamsh" runAlways="true">
+        <comment>Culture Conversion Report Procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS cultureConversionReport;
+        </sql>
+        <sqlFile splitStatements="false" path="cultureConversionReport.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-2017121648" author="Sudhamsh" runAlways="true">
+        <comment>Get Treatment Month Function</comment>
+        <sql>
+            DROP Function IF EXISTS getTreatmentMonth;
+        </sql>
+        <sqlFile splitStatements="false" path="getTreatmnetMonth.sql"/>
+    </changeSet>
+    <changeSet id="ENDTB-201801152359" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_view where concept_full_name in ('TI, What is the situation of the patient?', 'What is the situation of the patient?', 'TI, Additional comments (on why the patient is being started on new TB drugs)', 'TI, situation 1','TI, situation 2','TI, situation 3' );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding two concepts What is the situation of the patient and Additional comments to Treatment Intiation form  </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            select concept_id into @unknown_concept_id from concept_view where concept_full_name = 'Unknown';
+            select concept_id into @set_concept_id from concept_view where concept_full_name = 'Treatment Initiation Template';
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'TI, What is the situation of the patient?', 'What is the situation of the patient?', 'Coded', 'Misc', false);
+            set @child2_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'TI, Additional comments (on why the patient is being started on new TB drugs)', 'Additional comments (on why the patient is being started on new TB drugs)', 'Text', 'Misc', false);
+            set @child3_concept_id = @concept_id;
+
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'TI, situation 1', 'situation 1', 'N/A', 'Misc', false);
+            set @child21_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'TI, situation 2', 'situation 2', 'N/A', 'Misc', false);
+            set @child22_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'TI, situation 3', 'situation 3', 'N/A', 'Misc', false);
+            set @child23_concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'TI, situation 4', 'situation 4', 'N/A', 'Misc', false);
+            set @child24_concept_id = @concept_id;
+
+            call add_concept_answer (@child2_concept_id, @child21_concept_id, 1);
+            call add_concept_answer (@child2_concept_id, @child22_concept_id, 2);
+            call add_concept_answer (@child2_concept_id, @child23_concept_id, 3);
+            call add_concept_answer (@child2_concept_id, @unknown_concept_id, 4);
+
+            select concept_id into @child21_concept_id from concept_view where concept_full_name = 'TI, situation 1';
+            insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@child21_concept_id, 'The patient is starting a new regimen that contains new drugs. In this situation, when the patient starts the new regimen, the previous treatment should be closed and the appropriate outcome should be recorded.', 'en','1', curdate(),null,null,uuid());
+
+            select concept_id into @child22_concept_id from concept_view where concept_full_name = 'TI, situation 2';
+            insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@child22_concept_id, 'If an empiric regimen for a duration longer than a month is being changed due to the results of a baseline DST (i.e. the treatment is "adapted" to the baseline DST results), the previous treatment should be closed and the outcome should be recorded as "Treatment adapted".', 'en','1', curdate(),null,null,uuid());
+
+            select concept_id into @child23_concept_id from concept_view where concept_full_name = 'TI, situation 3';
+            insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@child23_concept_id, 'If the regimen is being changed due to adverse events (e.g. replacement of kanamycin with bedaquiline) but the patient is culture negative and does not fulfill the definition of failure, this is not considered a new treatment, but rather a continuation of the original treatment.', 'en','1', curdate(),null,null,uuid());
+
+            select concept_source_id into @source_id from concept_reference_source where name = 'EndTB-Export';
+            insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created) values
+            (4,'situation_status',@source_id,uuid(),now()),
+            (4,'sit_comments',@source_id,uuid(),now());
+
+            call create_reference_mapping('TI, What is the situation of the patient?','situation_status');
+            call create_reference_mapping('TI, Additional comments (on why the patient is being started on new TB drugs)','sit_comments');
+            call create_reference_mapping('TI, situation 1','1');
+            call create_reference_mapping('TI, situation 2','2');
+            call create_reference_mapping('TI, situation 3','3');
+
+            select concept_id into @set1_concept_id from concept_view where concept_full_name = 'TI, New treatment eligibility';
+            select concept_id into @concept_set_member5_id from concept_view where concept_full_name = 'TI, Has the Treatment with New Drugs Consent Form been explained and signed';
+            select concept_id into @concept_set_member6_id from concept_view where concept_full_name = 'TI, Has the endTB Observational Study Consent Form been explained and signed';
+
+            update concept_set set sort_weight = 5 where concept_id = @concept_set_member5_id and concept_set=@set1_concept_id;
+            update concept_set set sort_weight = 6 where concept_id = @concept_set_member6_id and concept_set=@set1_concept_id;
+
+            call add_concept_set_members (@set1_concept_id,@child2_concept_id,3);
+            call add_concept_set_members (@set1_concept_id,@child3_concept_id,4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="ENDTB-201801232331" author="Sudhamsh">
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="0">
+            select count(*) from concept_description where concept_id = (select concept_id from concept_name where name = 'TI, What is the situation of the patient?' and concept_name_type = 'FULLY_SPECIFIED');
+        </sqlCheck>
+    </preConditions>
+    <comment>Adding two concepts What is the situation of the patient and Additional comments to Treatment Intiation form  </comment>
+    <sql>
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'TI, What is the situation of the patient?';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,'Situation 1: The patient is starting a new regimen that contains new drugs. In this situation, when the patient starts the new regimen, the previous treatment should be closed and the appropriate outcome should be recorded.<br />Situation 2: If an empiric regimen for a duration longer than a month is being changed due to the results of a baseline DST (i.e. the treatment is "adapted" to the baseline DST results), the previous treatment should be closed and the outcome should be recorded as "Treatment adapted". <br /> Situation 3: If the regimen is being changed due to adverse events (e.g. replacement of kanamycin with bedaquiline) but the patient is culture negative and does not fulfill the definition of failure, this is not considered a new treatment, but rather a continuation of the original treatment.', 'en','1', curdate(),null,null,uuid());]]>
+    </sql>
+    </changeSet>
+    <include file ="HepcTreatOutcome.xml"/>
+    <include file ="HepcTreatInitation.xml"/>
+    <include file ="DepressionAlcoholScore.xml"/>
+    <include file ="Liverfibroscan.xml"/>
+    <include file ="Pastinformation.xml"/>
+    <include file ="NewLabResults.xml"/>
+    <include file ="ExternalCohort.xml"/>
+    <changeSet id="ENDTB-201807171208" author="Sudhamsh">
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="1">
+            select count(*) from drug where name = "Tenofovir/fumarate (tdf/ftc) 300mg/200mg";
+        </sqlCheck>
+    </preConditions>
+    <comment> Updating the drug name from Tenofovir/fumarate (tdf/ftc) 300mg/200mg to Tenofovir/Emtricitabine (TDF/FTC) 300/200mg </comment>
+    <sql>
+        update drug set name = "Tenofovir/Emtricitabine (TDF/FTC) 300/200mg" where name = "Tenofovir/fumarate (tdf/ftc) 300mg/200mg";
+        update concept_name set name = "Tenofovir/Emtricitabine (TDF/FTC) 300/200mg" where name = "Tenofovir/fumarate (tdf/ftc) 300mg/200mg" and locale = 'en' and voided = 0;
+    </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/bahmni_config/openmrs/apps/dataintegrity/css/dataQualityReportPrint.css" media="all"/>
+<div class="print-wrapper">
+    <div class="print-header">
+        <h1><img class="logo" src="../images/endTb.png" alt="logo">{{'DQ_DASHBOARD' | translate}}</h1>
+        <h2>{{'DQ_PRINT_TITLE_DATA_QUALITY_REPORT' | translate }}</h2>
+    </div>
+    <div class="opd-search-wrapper">
+           <div ng-if="::search.searchTypes.length">
+            <resize  search-results="search.searchResults"
+                    visible-results="search.visiblePatients" class="active-visits">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th ng-repeat="heading in getPrintableHeadings(search.visiblePatients)"><strong>{{ ::heading | translate }}</strong></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="row in search.visiblePatients">
+                            <td ng-repeat="heading in getPrintableHeadings(search.visiblePatients)">
+                                {{::row[heading]}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+            </resize>
+           </div>
+    </div>
+</div>

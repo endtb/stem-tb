@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="ENDTB-201807111308" author="Sudhamsh">
+        <sql>
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Xray, Liver fibroscan", "Liver fibroscan", 'Coded','Misc', FALSE);
+            set @concept1_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Xray, Liver ultrasound nodules", "Liver ultrasound nodules", 'Coded','Misc', FALSE);
+            set @concept2_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Xray, Liver ultrasound ascites", "Liver ultrasound ascites", 'Coded','Misc', FALSE);
+            set @concept3_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Xray, Gastroscopy", "Gastroscopy", 'Coded','Misc', FALSE);
+            set @concept4_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Xray, Liver fibroscan and ultrasound for hepatitis", "Liver fibroscan and ultrasound for hepatitis", 'N/A','Misc', TRUE);
+
+            call add_concept_set_members (@concept_id,@concept1_id,1);
+            call add_concept_set_members (@concept_id,@concept2_id,2);
+            call add_concept_set_members (@concept_id,@concept3_id,3);
+            call add_concept_set_members (@concept_id,@concept4_id,4);
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "F0-F1: 2.5-7.0 Kpa", "F0-F1: 2.5-7.0 Kpa", 'N/A','Misc', FALSE);
+            set @answerconcept1_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "F2: 7.1- 9.4 Kpa", "F2: 7.1- 9.4 Kpa", 'N/A','Misc', FALSE);
+            set @answerconcept2_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "F2: 9.5- 14.5 Kpa", "F2: 9.5- 14.5 Kpa", 'N/A','Misc', FALSE);
+            set @answerconcept3_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "F4: > 14.5 Kpa", "F4: > 14.5 Kpa", 'N/A','Misc', FALSE);
+            set @answerconcept4_id = @concept_id;
+
+            call add_concept_answer (@concept1_id,@answerconcept1_id,1);
+            call add_concept_answer (@concept1_id,@answerconcept2_id,2);
+            call add_concept_answer (@concept1_id,@answerconcept3_id,3);
+            call add_concept_answer (@concept1_id,@answerconcept4_id,4);
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "No nodules", "No nodules",  'N/A','Misc', FALSE);
+            set @answer1concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "One nodule &lt; 2 cm", "One nodule &lt; 2 cm",  'N/A','Misc', FALSE);
+            set @answer2concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "One nodule > 2 cm", "One nodule > 2 cm",  'N/A','Misc', FALSE);
+            set @answer3concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "More than 1 nodule , maximum size less than 2 cm", "> 1 nodule, max size &lt; 2 cm",  'N/A','Misc', FALSE);
+            set @answer4concept_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "More than 1 nodule, maximum size more than 2 cm", "> 1 nodule, max size > 2 cm",  'N/A','Misc', FALSE);
+            set @answer5concept_id = @concept_id;
+
+            call add_concept_answer (@concept2_id,@answer1concept_id,1);
+            call add_concept_answer (@concept2_id,@answer2concept_id,2);
+            call add_concept_answer (@concept2_id,@answer3concept_id,3);
+            call add_concept_answer (@concept2_id,@answer4concept_id,4);
+            call add_concept_answer (@concept2_id,@answer5concept_id,5);
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "No ascites", "No ascites", 'N/A','Misc', FALSE);
+            set @answerconcept1_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Ascites", "Ascites", 'N/A','Misc', FALSE);
+            set @answerconcept2_id = @concept_id;
+
+            call add_concept_answer (@concept3_id,@answerconcept1_id,1);
+            call add_concept_answer (@concept3_id,@answerconcept2_id,2);
+
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "No varices", "No varices",  'N/A','Misc', FALSE);
+            set @answerconcept1_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Varices grade 1", "Varices grade 1",  'N/A','Misc', FALSE);
+            set @answerconcept2_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Varices grade 2", "Varices grade 2",  'N/A','Misc', FALSE);
+            set @answerconcept3_id = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Varices grade 2 with red spots", "Varices grade 2 with red spots",  'N/A','Misc', FALSE);
+            set @answerconcept4_id = @concept_id;
+
+
+            call add_concept_answer (@concept4_id,@answerconcept1_id,1);
+            call add_concept_answer (@concept4_id,@answerconcept2_id,2);
+            call add_concept_answer (@concept4_id,@answerconcept3_id,3);
+            call add_concept_answer (@concept4_id,@answerconcept4_id,4);
+
+            select max(sort_weight) into @weight from concept_set where concept_set = (select concept_id from concept_view where concept_full_name = 'Xray Template');
+
+            select concept_id into @member1_concept_id from concept_view where concept_full_name = 'Xray, Liver fibroscan and ultrasound for hepatitis';
+            select concept_id into @concept_id from concept_view where concept_full_name = 'Xray Template';
+            select concept_id into @member1_concept_id from concept_view where concept_full_name = 'Xray, Liver fibroscan and ultrasound for hepatitis';
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, @weight+1);
+        </sql>
+    </changeSet>
+    <changeSet id="ENDTB-201807181116" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term  where code IN ("fibroscan","ultra_nodule","ultra_ascite","gastroscopy");
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding EndTB-Export codes for Liverfibrosection in xray</comment>
+        <sql>
+            select concept_source_id into @source_id from concept_reference_source where name = 'EndTB-Export';
+            insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created) values
+            (4,"fibroscan",@source_id,uuid(),now()),
+            (4,"ultra_nodule",@source_id,uuid(),now()),
+            (4,"ultra_ascite",@source_id,uuid(),now()),
+            (4,"gastroscopy",@source_id,uuid(),now());
+
+            call create_reference_mapping("Xray, Liver fibroscan", "fibroscan");
+            call create_reference_mapping("Xray, Liver ultrasound nodules", "ultra_nodule");
+            call create_reference_mapping("Xray, Liver ultrasound ascites", "ultra_ascite");
+            call create_reference_mapping("Xray, Gastroscopy", "gastroscopy");
+
+            call create_reference_mapping("F0-F1: 2.5-7.0 Kpa", 1);
+            call create_reference_mapping("F2: 7.1- 9.4 Kpa", 2);
+            call create_reference_mapping("F2: 9.5- 14.5 Kpa", 3);
+            call create_reference_mapping("F4: > 14.5 Kpa", 4);
+
+            call create_reference_mapping("No varices", 0);
+            call create_reference_mapping("Varices grade 1", 1);
+            call create_reference_mapping("Varices grade 2", 2);
+            call create_reference_mapping("Varices grade 2 with red spots", 3);
+
+            call create_reference_mapping("No ascites",0);
+            call create_reference_mapping("Ascites",1);
+
+            call create_reference_mapping("No nodules", 0);
+            call create_reference_mapping("One nodule &lt; 2 cm", 1);
+            call create_reference_mapping("One nodule > 2 cm", 2);
+            call create_reference_mapping("More than 1 nodule , maximum size less than 2 cm", 3);
+            call create_reference_mapping("More than 1 nodule, maximum size more than 2 cm", 4);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

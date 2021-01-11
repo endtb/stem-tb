@@ -1,0 +1,18 @@
+{
+  "bahmni_clinical_patients_search_allpatients_app_clinical": {
+    "id": "bahmni.clinical.patients.search.allPatients",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "endtb.sqlSearch.dataIntegrity",
+      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard?programUuid={{programUuid}}&enrollment={{enrollment}}",
+      "translationKey": "MODULE_LABEL_ERROR_REPORTS_KEY",
+      "view" : "tabular",
+      "showPrint": true,
+      "printHtmlLocation": "/bahmni_config/openmrs/apps/dataintegrity/patientListPrint.html",
+      "searchColumns" : ["DQ_COLUMN_TITLE_TREATMENT_REG_NO", "DQ_COLUMN_TITLE_NAME"]
+    },
+    "order": 1,
+    "requiredPrivilege": "app:clinical"
+  }
+}

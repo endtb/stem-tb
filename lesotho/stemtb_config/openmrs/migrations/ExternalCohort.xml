@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="ENDTB-201902251530" author="Sneha, Vineela">
+        <sql>
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'E1 : endTB external cohort', 'E1 : endTB external cohort', 'N/A','Misc', FALSE);
+            set @answerconcept_id1 = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'E2', 'E2', 'N/A','Misc', FALSE);
+            set @answerconcept_id2 = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'E3', 'E3', 'N/A','Misc', FALSE);
+            set @answerconcept_id3 = @concept_id;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Belongs to external cohort', 'Belongs to external cohort', 'Coded','Misc', FALSE);
+            set @concept4_id = @concept_id;
+
+
+            call add_concept_answer (@concept4_id,@answerconcept_id1,1);
+            call add_concept_answer (@concept4_id,@answerconcept_id2,2);
+            call add_concept_answer (@concept4_id,@answerconcept_id3,3);
+
+
+            insert into program_attribute_type(name, description, datatype, datatype_config, min_occurs, creator, date_created, uuid) values('Belongs to external cohort','External cohort', 'org.bahmni.module.bahmnicore.customdatatype.datatype.CodedConceptDatatype', @concept4_id, 0, 1, NOW(), UUID());
+
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

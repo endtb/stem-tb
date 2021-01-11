@@ -1,0 +1,10 @@
+{
+    "REPORTS_NAME_HEADER_KEY": "ФИО",
+    "REPORTS_START_DATE_HEADER_KEY": "Дата начала ",
+    "REPORTS_END_DATE_HEADER_KEY": "Дата завершения",
+    "RUN_REPORT_BUTTON_KEY": "Формирование Отчета",
+    "REPORT_FORMAT_KEY": "Формат",
+    "REPORTS_TITLE_KEY": "Отчеты",
+    "REPORTS_TITLE_WITHOUT_DATE_RANGE_KEY": "Отчеты без указания даты",
+    "REPORTS_MISSING_WARNING_MESSAGE_KEY": "Новый экспорт может быть сконфигурирован в файле JSon в OpenMRS / приложений / отчетов / reports.json . Пожалуйста, обратитесь к документации для получения дополнительной информации о настройке законсервированные экспорта"
+}

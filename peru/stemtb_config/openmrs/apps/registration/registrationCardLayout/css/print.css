@@ -1,0 +1,193 @@
+@page {
+  margin-left: 0.2cm;
+  margin-right: 0.2cm;
+  margin-top: 0.2cm;
+  margin-bottom: 0.2cm;
+}
+
+/* line 10, print.scss */
+p, h1, h2, h3, tr, div, span, li {
+  margin: 0px;
+  padding: 3px;
+  text-align:left;
+}
+
+
+td {
+  vertical-align: top;
+  margin: 0px;
+  padding: 2px;
+  text-align:left;
+  font-size:12px;
+
+}
+.arabic{
+text-align:right;
+}
+/* line 14, print.scss */
+h1, h2, h3 ,h4 {
+  text-align: center;
+}
+
+/* line 17, print.scss */
+.print-center {
+  text-align: center;
+}
+
+/* line 20, print.scss */
+.registrationCard-print-table {
+
+  height: 3.70in;
+  overflow: scroll;
+  margin: 0 auto;
+  table-layout: fixed;
+}
+
+.subpage {
+    height: 100%;
+    margin-top: 0.9cm;
+    margin-left: 0.9cm;
+    margin-right: 0.56cm;
+    margin-bottom: 0.56cm;
+    font-size: 11px;
+    line-height: 0.9;
+}
+.subpage ul{
+  margin:0;
+  padding: 0;
+  list-style: none;
+  width:100%;
+  overflow: hidden;
+  clear: both;
+}
+.subpage ul li{
+  width:25%;
+  height: 2.5cm;
+  display: block;
+  border: 0px solid;
+  padding-top : 10px;
+  padding-right : 20px;
+  float:left;
+  box-sizing: border-box;
+
+}
+.subpage ul li span.localname{
+  display: block;
+  line-height: 1;
+  font-size: 13px;
+}
+/* line 24, print.scss */
+.registrationCard-print-table td.registrationCard-photo {
+  padding-top: 2px;
+  padding-left:100px;
+}
+
+/* line 27, print.scss */
+.print-table-left {
+  width: 2.13in;
+}
+
+/* line 30, print.scss */
+.print-table-header {
+  text-align: center;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* line 35, print.scss */
+.print-table-left-body {
+  font-size: 4mm;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  margin-top: 15px;
+}
+
+/* line 41, print.scss */
+.print-table-left-body li {
+  margin: 0px;
+  padding: 0px 0px 5px 0px;
+  line-height: 18px;
+}
+
+/* line 46, print.scss */
+.caution {
+  text-align: center;
+  line-height: 20px;
+}
+
+/* line 50, print.scss */
+.caution h3 {
+  line-height: 25px;
+  margin-bottom: 6px;
+  margin-top: 12px;
+}
+
+/* line 55, print.scss */
+.print-table-right {
+  width : 2in;
+}
+
+/* line 58, print.scss */
+.print-table-right .logo {
+  text-align: center;
+  width: 120mm;
+  padding: 5px;
+  margin: 0px;
+  height: 12mm;
+}
+
+.patient_id_card {
+  border: 0.5px solid grey;
+  height: 1.8in;
+  max-height: 1.9in;
+  width: 3.35in;
+  max-width: 3.35in;
+}
+
+.patient_id_card tr td:first-child {
+  width: .8in;
+}
+
+.patient_id_card tr td:last-child {
+  width: 1in;
+}
+
+.patient_id_card tr img {
+  width: 1.35in;
+}
+/* line 65, print.scss */
+.print-table-right-header {
+  text-align: center;
+  width: 22mm;
+  text-align: left;
+}
+
+/* line 71, print.scss */
+.registrationCard-location {
+  padding: 5px 8px 8px 8px;
+}
+
+/* line 74, print.scss */
+
+
+/* line 77, print.scss */
+.registrationCard-details-name {
+  text-align:left;
+  text-size:5px;
+}
+
+/* line 80, print.scss */
+.registrationCard-details-seperator {
+  width: 2px;
+
+}
+
+/* line 84, print.scss */
+.data-text {
+ text-size:5px;
+
+}
+
+.full_name {
+  font-size: 12px;
+}
