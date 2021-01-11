@@ -1,6 +1,6 @@
 {
   "DrugOrderReport": {
-    "name": "UNITAID-New drug enrollment (Custom Excel)",
+    "name": "Lesotho UNITAID-New drug enrollment (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DrugOrder.sql",
@@ -8,7 +8,7 @@
     }
   },
   "AEIReport": {
-    "name": "UNITAID-New drug AEI in first 6 months (Custom Excel)",
+    "name": "Lesotho UNITAID-New drug AEI in first 6 months (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/AEI.sql",
@@ -16,7 +16,7 @@
     }
   },
   "SAEReport": {
-    "name": "UNITAID-New drug SAE in first 6 months (Custom Excel)",
+    "name": "Lesotho UNITAID-New drug SAE in first 6 months (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/SAE.sql",
@@ -24,7 +24,7 @@
     }
   },
   "InterimOutcomeByOutcomeStatus": {
-    "name": "UNITAID-New drug interim outcome at month 6 (Custom Excel)",
+    "name": "Lesotho UNITAID-New drug interim outcome at month 6 (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/interim_outcome_1.sql",
@@ -32,7 +32,7 @@
     }
   },
   "InterimOutcomeBacteriology": {
-    "name": "UNITAID-Interim Outcome Culture Results (Custom Excel)",
+    "name": "Lesotho UNITAID-Interim Outcome Culture Results (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/interim_bacteriology_results.sql",
@@ -40,7 +40,7 @@
     }
   },
   "FinalOutcomeReport": {
-    "name": "UNITAID-New drug final outcome (Custom Excel)",
+    "name": "Lesotho UNITAID-New drug final outcome (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/finalOutcome.sql",
@@ -48,7 +48,7 @@
     }
   },
   "DrugOrderReportForStudyCohort": {
-    "name": "UNITAID-New drug enrollment - Study Cohort (Custom Excel)",
+    "name": "Lesotho UNITAID-New drug enrollment - Study Cohort (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DrugOrder_study_cohort.sql",
@@ -57,7 +57,7 @@
   },
 
   "SAEReportForStudyCohort": {
-    "name": "UNITAID-New drug SAE in first 6 months - Study Cohort (Custom Excel)",
+    "name": "Lesotho UNITAID-New drug SAE in first 6 months - Study Cohort (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/SAE_study_cohort.sql",
@@ -65,7 +65,7 @@
     }
   },
   "InterimOutcomeByOutcomeStatusForStudyCohort": {
-    "name": "UNITAID-New drug interim outcome at month 6 - Study Cohort(Custom Excel)",
+    "name": "Lesotho UNITAID-New drug interim outcome at month 6 - Study Cohort(Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/interim_outcome_1_study_cohort.sql",
@@ -73,7 +73,7 @@
     }
   },
   "InterimOutcomeBacteriologyForStudyCohort": {
-    "name": "UNITAID-Interim Outcome Culture Results - Study Cohort (Custom Excel)",
+    "name": "Lesotho UNITAID-Interim Outcome Culture Results - Study Cohort (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/interim_bacteriology_results_study_cohort.sql",
@@ -81,7 +81,7 @@
     }
   },
   "FinalOutcomeReportForStudyCohort": {
-    "name": "UNITAID-New drug final outcome - Study Cohort (Custom Excel)",
+    "name": "Lesotho UNITAID-New drug final outcome - Study Cohort (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/finalOutcome_study_cohort.sql",
@@ -89,23 +89,23 @@
     }
   },
   "patientInformationReport": {
-    "name": "Patient Information Report (Excel)",
+    "name": "Lesotho Patient Information Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/PersonReport.sql",
       "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/Empty.xls"
     }
-  },  
+  },
   "BasicRegisterTreatmentCohort": {
-    "name": "Basic Register (T) Report (Excel)",
+    "name": "Lesotho Basic Register (T) Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/basicRegisterTreatmentCohort.sql",
       "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/Empty.xls"
     }
   },
-   "BasicRegisterNewDrugsCohort": {
-    "name": "Basic Register (D) Report (Excel)",
+  "BasicRegisterNewDrugsCohort": {
+    "name": "Lesotho Basic Register (D) Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/basicRegisterNewDrugsCohort.sql",
@@ -113,21 +113,21 @@
     }
   },
   "AdverseEventsReport": {
-    "name": "Adverse Events Report (Excel)",
+    "name": "Lesotho Adverse Events Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/adverseEvents.sql"
     }
   },
   "SeriousAdverseEventsReport": {
-    "name": "Serious Adverse Events Report (Excel)",
+    "name": "Lesotho Serious Adverse Events Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/seriousAdverseEvents.sql"
     }
   },
   "adherenceCohort": {
-    "name": "Adherence Reasons Summary Report(Excel)",
+    "name": "Lesotho Adherence Reasons Summary Report(Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/adherenceReasonsSummary.sql",
@@ -135,7 +135,7 @@
     }
   },
   "AdherenceMonthlyReviewCohort": {
-    "name": "Adherence Monthly Overview Report(Excel)",
+    "name": "Lesotho Adherence Monthly Overview Report(Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/adherenceMonthlyReview.sql",
@@ -143,7 +143,7 @@
     }
   },
   "DailyWeeklyVisitReportCohort": {
-    "name": "Daily Weekly Visit Report(Excel)",
+    "name": "Lesotho Daily Weekly Visit Report(Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/dailyWeeklyVisitReport.sql",
@@ -151,14 +151,14 @@
     }
   },
   "LateVisitReport": {
-    "name": "Late Visit Report Based on Cohort Start Date (Excel)",
+    "name": "Lesotho Late Visit Report Based on Cohort Start Date (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/lateVisitReport.sql"
     }
   },
   "DRregister_aggregated": {
-    "name": "Cohort report: Enrollment (T) Report (DRTB) (Custom Excel)",
+    "name": "Lesotho Cohort report: Enrollment (T) Report (DRTB) (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DRregister_aggregated.sql",
@@ -166,7 +166,7 @@
     }
   },
   "DRregister_newdrug_aggregated": {
-    "name": "Cohort report: Enrolment (D) Report (DRTB) (Custom Excel)",
+    "name": "Lesotho Cohort report: Enrolment (D) Report (DRTB) (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DRregister_NewDrug_aggregated.sql",
@@ -174,7 +174,7 @@
     }
   },
   "Outcome_aggregated": {
-    "name": "Cohort report: Outcome (T) Report (DRTB) (Custom Excel)",
+    "name": "Lesotho Cohort report: Outcome (T) Report (DRTB) (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DRregister_aggregated.sql",
@@ -182,7 +182,7 @@
     }
   },
   "Outcome_newdrug_aggregated": {
-    "name": "Cohort report: Outcome (D) Report (DRTB) (Custom Excel)",
+    "name": "Lesotho Cohort report: Outcome (D) Report (DRTB) (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DRregister_NewDrug_aggregated.sql",
@@ -190,21 +190,21 @@
     }
   },
   "ClinicalVisitAttendanceReportByDrugStartDate": {
-    "name": "Clinical Visit Attendance (D) Report (Excel)",
+    "name": "Lesotho Clinical Visit Attendance (D) Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/clinicalVisitAttendanceByTBDrugStartDate.sql"
     }
   },
   "ClinicalVisitAttendanceReportByTreatmentStartDate": {
-    "name": "Clinical Visit Attendance (T) Report (Excel)",
+    "name": "Lesotho Clinical Visit Attendance (T) Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/clinicalVisitAttendanceByTreatmentStartDate.sql"
     }
   },
   "BaselineDataVerificationList": {
-    "name": "Baseline Data Verification List (Excel)",
+    "name": "Lesotho Baseline Data Verification List (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/baselineDataVerificationList.sql"
@@ -212,29 +212,65 @@
   },
 
   "StudyViewReport": {
-      "name": "Study View Report (Custom Excel)",
-      "type": "MRSGeneric",
-      "config": {
-        "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/studyReports.sql",
-        "macroTemplatePath": "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/StudyViewReport.xls"
-      }
-  },
-
-  "AdheranceIndicatorsAggregatereport": {
-    "name": "Adherance Indicators Aggregate - Based on year of start date only (Custom Excel)",
+    "name": "Lesotho Study View Report (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
-      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/aggregatedMonthlyAdherenceReport.sql",
-      "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/template_agregate_adherencce.xls"
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/studyReports.sql",
+      "macroTemplatePath": "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/StudyViewReport.xls"
     }
   },
+
   "CultureConversion": {
-    "name": "Culture Conversion(Custom Excel)",
+    "name": "Lesotho Culture Conversion(Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/cultureConversion.sql",
       "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/CultureConversion.xls"
     }
-  }
+  },
+  "PastTBTreatments": {
+    "name": "Lesotho - Past TB Treatment (Excel)",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/pastTTreatments.sql"
+    }
+  },
+  "TreatmentIndications": {
+    "name": "Lesotho - Treatment indications (Excel)",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/treatmentIndications.sql"
+    }
+  },
+  "LabBioChemistryAbnormal": {
+    "name": "Lesotho - Abnormal Biochemistry results (Excel)",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/labBiochemistryAbnormal.sql"
+    }
+  },
+  "AbnormalHematologyResults": {
+    "name": "Lesotho - Abnormal Hematology results (Excel)",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/labHematologyAbnormal.sql"
+    }
+  },
 
+  "CultureResults": {
+    "name": "Lesotho - Positive Culture DST Results and Freezing Consent (Excel)",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/cultureResults.sql",
+      "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/Empty.xls"
+    }
+  },
+  "ConsentReport": {
+    "name": "Lesotho - Consent report (Excel)",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/ConsentReport.sql",
+      "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/Empty.xls"
+    }
+  }
 }
