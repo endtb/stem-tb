@@ -1148,7 +1148,7 @@ if (SAETerm && (SAETerm == "Other" || SAETerm.value == "Other")) {
         var lastCD = "StemTB Baseline, Last CD4 Count";
         var cdDate = "CD4 date";
         var rna = "StemTB Baseline, Last RNA Viral Load";
-	var undetectable = "Undetectable, If viral load results are undetectable, write the result here (for example, '< 20')";
+	var undetectable = "If viral load results are undetectable, write the result here (for example, '< 20')";
         var vload = "Baseline, Viral Load Date";
         var arvTreatment = "StemTB Baseline, Currently on ARV treatment?";
         var arvInitiation = "StemTB Baseline, Date of ARV initiation";
