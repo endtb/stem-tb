@@ -982,7 +982,7 @@ if (SAETerm && (SAETerm == "Other" || SAETerm.value == "Other")) {
     'Bacteriology, HAIN MTBDRsl test result': function (formName, formFieldValues) {
         var fluoroquinoloneconceptToEnable = "Bacteriology, Fluoroquinolone";
         var aminoglycosideconceptToEnable = "Bacteriology, MTBDRsl injectable";
-        var ethambutolcosideconceptToEnable = "Bacteriology, MTBDRsl ethambutol";
+        var ethambutolcosideconceptToEnable = "Bacteriology, MTBDRsl Ethambutol";
         var conditions = {enable: [], disable: []};
         var conditionConcept = formFieldValues['Bacteriology, HAIN MTBDRsl test result'];
         if (conditionConcept == "Detected") {
