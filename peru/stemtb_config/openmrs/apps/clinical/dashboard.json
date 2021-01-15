@@ -32,7 +32,7 @@
 					"Lab Results Biochemistry Template",
 					"Lab Results Serology Template",
 					"Lab Results Pregnancy Template",
-					"Lab Results Other Tests Template", 
+					"Lab Results Other Tests Template",
 					"StemTB, Lab Results Log",
 					"Xray Template",
 					"Audiometry Template",
@@ -244,26 +244,26 @@
 					"showGroupDateTime": false,
 					"persistOrderOfConcepts": true,
 					"conceptNames": [
-					"StemTB Baseline, Confirmed HIV serostatus",
-					"Date of HIV diagnosis",
-					"StemTB Baseline, Last CD4 Count",
-					"CD4 date",
-					"StemTB Baseline, Last RNA Viral Load",
-					"Undetectable, If viral load results are undetectable, write the result here (for example, '< 20')",
-					"Baseline, Viral Load Date",
-					"StemTB Baseline, Currently on ARV treatment?",
-					"StemTB Baseline, Date of ARV initiation",
-					"Baseline, Drugs used in ARV treatment",
-					"StemTB Baseline, Started on CPT?",
-					"StemTB Baseline, CPT Date",
-					"StemTB Baseline, Diabetes (type 1 or 2)",
-					"StemTB Baseline, If yes last HbA1c",
-					"StemTB Baseline, Confirmed Hepatitis B",
-					"StemTB Baseline, Hep B Antigen Date",
-					"StemTB Baseline, Confirmed Hepatitis C",
-					"StemTB Baseline, Hep C Antibody Date",
-					"Baseline, Pre-existing neuropathy",
-					"Baseline, Neuropathy grade"
+						"StemTB Baseline, Confirmed HIV serostatus",
+						"Date of HIV diagnosis",
+						"StemTB Baseline, Last CD4 Count",
+						"CD4 date",
+						"StemTB Baseline, Last RNA Viral Load",
+						"If viral load results are undetectable, write the result here (for example, '< 20')",
+						"Baseline, Viral Load Date",
+						"StemTB Baseline, Currently on ARV treatment?",
+						"StemTB Baseline, Date of ARV initiation",
+						"Baseline, Drugs used in ARV treatment",
+						"StemTB Baseline, Started on CPT?",
+						"StemTB Baseline, CPT Date",
+						"StemTB Baseline, Diabetes (type 1 or 2)",
+						"StemTB Baseline, If yes last HbA1c",
+						"StemTB Baseline, Confirmed Hepatitis B",
+						"StemTB Baseline, Hep B Antigen Date",
+						"StemTB Baseline, Confirmed Hepatitis C",
+						"StemTB Baseline, Hep C Antibody Date",
+						"Baseline, Pre-existing neuropathy",
+						"Baseline, Neuropathy grade"
 					]
 				},
 				"displayOrder": 3,
@@ -291,31 +291,32 @@
 				"displayOrder": 4,
 				"translationKey": "STEM_SUMMARY_TITLE_BASELINE_CASEDEFINITION"
 			},
+
 			"stemtbpreviousTBTreatmentRegimen": {
 				"translationKey": "SUMMARY_TITLE_PREVIOUS_TB_TREATMENT_TABLE",
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
 				"displayType": "Half-Page",
-				"displayOrder": 5,
+				"displayOrder": 7,
 				"dashboardConfig": {
 					"groupByConcept": "Baseline, Start date of past TB treatment",
-					"templateName": "StemTB Baseline, Past TB treatment table",
+					"templateName": "StemTB Baseline, Baseline, Past TB treatment table",
 					"conceptNames": [
-						"Baseline, Start date of past TB treatment",
 						"Baseline, Past TB treatment drug regimen",
 						"StemTB Baseline, Past TB treatment outcome"
 					],
 					"type": "PreviousTBTreatmentRegimen"
 				}
 			},
+
 			"weightBMI": {
 				"displayType": "Half-Page",
 				"translationKey": "SUMMARY_TITLE_WEIGHT_VS_BMI",
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
-				"displayOrder": 6,
+				"displayOrder": 5,
 				"dashboardConfig": {
 					"pivotOn": "row",
 					"templateName": "StemTB, Monthly Clinical Examination Log",
@@ -326,13 +327,34 @@
 					]
 				}
 			},
+
+			"SAEweightBMI": {
+				"displayType": "Half-Page",
+				"translationKey": "SUMMARY_TITLE_SAE_WEIGHT_VS_BMI",
+				"type": "obsToObsFlowSheet",
+				"headingConceptSource": "Abbreviation",
+				"dataConceptSource": "Abbreviation",
+				"displayOrder": 6,
+				"dashboardConfig": {
+					"pivotOn": "row",
+					"templateName": "Serious Adverse Events Template",
+					"groupByConcept": "SAE Form, Date of SAE report",
+					"type": "BMIExtension",
+					"conceptNames": [
+						"Weight (kg)",
+						"Height (cm)"
+					]
+				}
+			},
+
+
 			"BaselineBPNSDisplayleft": {
 				"translationKey": "SUMMARY_TITLE_BASELINE_BPNS_LEFT",
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
 				"displayType": "Full-Page",
-				"displayOrder": 7,
+				"displayOrder": 8,
 				"dashboardConfig": {
 					"groupByConcept": "Baseline, Date of baseline physical examination",
 					"templateName": "Baseline, Clinical Examination",
@@ -352,7 +374,7 @@
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
 				"displayType": "Full-Page",
-				"displayOrder": 8,
+				"displayOrder": 9,
 				"dashboardConfig": {
 					"groupByConcept": "Baseline, Date of baseline physical examination",
 					"templateName": "Baseline, Clinical Examination",
@@ -371,11 +393,11 @@
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
-				"displayType": "Full-Page",
+				"displayType": "Half-Page",
 				"displayOrder": 9,
 				"dashboardConfig": {
 					"groupByConcept": "Followup, Visit Date",
-					"templateName": "All Oral STR, Monthly Clinical Examination Log",
+					"templateName": "StemTB, Monthly Clinical Examination Log",
 					"obsDelimiter": "\n",
 					"conceptNames": [
 						"Followup, Pain Aching or Buring in Left Feet and Leg",
@@ -391,11 +413,11 @@
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
-				"displayType": "Full-Page",
+				"displayType": "Half-Page",
 				"displayOrder": 10,
 				"dashboardConfig": {
 					"groupByConcept": "Followup, Visit Date",
-					"templateName": "All Oral STR, Monthly Clinical Examination Log",
+					"templateName": "StemTB, Monthly Clinical Examination Log",
 					"obsDelimiter": "\n",
 					"conceptNames": [
 						"Followup, Pain Aching or Buring in Right Feet and Leg",
@@ -411,15 +433,15 @@
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
-				"displayType": "Full-Page",
+				"displayType": "Half-Page",
 				"displayOrder": 11,
 				"dashboardConfig": {
 					"groupByConcept": "Followup, Visit Date",
-					"templateName": "All Oral STR, Monthly Clinical Examination Log",
+					"templateName": "StemTB, Monthly Clinical Examination Log",
 					"obsDelimiter": "\n",
 					"conceptNames": [
-						"Visual acuity, left eye",
-						"Visual acuity, right eye"
+						"StemTB, Left Eye Visual Acuity",
+						"StemTB, Right Eye Visual Acuity"
 					]
 				}
 			},
@@ -428,15 +450,15 @@
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
-				"displayType": "Full-Page",
+				"displayType": "Half-Page",
 				"displayOrder": 12,
 				"dashboardConfig": {
 					"groupByConcept": "Followup, Visit Date",
-					"templateName": "All Oral STR, Monthly Clinical Examination Log",
+					"templateName": "StemTB, Monthly Clinical Examination Log",
 					"obsDelimiter": "\n",
 					"conceptNames": [
-						"Followup, Left Eye Correct Plates",
-						"Followup, Right Eye Correct Plates"
+						"StemTB, Left Eye Correct Plates",
+						"StemTB, Left Eye Correct Plates"
 					]
 				}
 			},
@@ -636,7 +658,7 @@
 				"displayOrder": 22,
 				"dashboardConfig": {
 					"pivotOn": "row",
-					"templateName": "All Oral STR, Lab Results Log",
+					"templateName": "StemTB, Lab Results Log",
 					"groupByConcept": "Specimen Collection Date",
 					"type": "DstExtension",
 					"conceptNames": [
@@ -666,7 +688,7 @@
 				"displayOrder": 23,
 				"dashboardConfig": {
 					"pivotOn": "row",
-					"templateName": "All Oral STR, Lab Results Log",
+					"templateName": "StemTB, Lab Results Log",
 					"groupByConcept": "Specimen Collection Date",
 					"type": "DstExtension",
 					"conceptNames": [
@@ -683,12 +705,13 @@
 				"displayOrder": 24,
 				"dashboardConfig": {
 					"pivotOn": "row",
-					"templateName": "All Oral STR, Lab Results Log",
+					"templateName": "StemTB, Lab Results Log",
 					"groupByConcept": "Specimen Collection Date",
 					"type": "DstExtension",
 					"conceptNames": [
 						"Lab, Other test name",
-						"Lab, Other test result"
+						"Lab, Other test result",
+						"Lab, Other test unit"
 					]
 				}
 			},
@@ -700,14 +723,14 @@
 				"displayType": "Full-Page",
 				"displayOrder": 25,
 				"dashboardConfig": {
-					"groupByConcept": "Xray, Chest Xray Date",
+					"groupByConcept": "StemTB, Chest Xray Date",
 					"type": "ChestXRayExtension",
-					"templateName": "All Oral STR, Monthly Clinical Examination Log - Chest X-ray",
+					"templateName": "StemTB, Chest X-ray Template",
 					"obsDelimiter": "\n",
 					"conceptNames": [
 						"Xray, Extent of disease",
-						"Xray, Maximum cavity size",
-						"Xray, Fibrosis",
+						"StemTB, Cavity size (aggregate)",
+						"StemTB, Presence of Fibrosis",
 						"Xray, Comparison with last Xray"
 					]
 				}
