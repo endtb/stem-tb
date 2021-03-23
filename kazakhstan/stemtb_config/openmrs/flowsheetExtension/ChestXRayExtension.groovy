@@ -74,4 +74,5 @@ public class ChestXRayExtension extends BaseTableExtension<PivotTable> {
             return null;
         }
     }
+
 }

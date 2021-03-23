@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="ENDTB-201807091648" author="Sudhamsh">
+        <sql>
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Date alcohol abuse or PHQ-9 screening performed","Date  alcohol abuse or PHQ-9 screening performed", 'Date','Misc', FALSE);
+        set @concept1_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Alcohol Abuse screening","Alcohol Abuse screening", 'N/A','Misc', TRUE);
+        set @concept2_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, How often do you have a drink containing alcohol?","How often do you have a drink containing alcohol?", 'Coded','Misc', FALSE);
+        set @concept4_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, How many standard drinks containing alcohol do you have on a typical day when drinking?","Standard drinks  on a typical day when drinking?", 'Coded','Misc', FALSE);
+        set @concept5_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, How often do you have six or more drinks on one occasion?","How often do you have six or more drinks on one occasion?", 'Coded','Misc', FALSE);
+        set @concept6_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, During the past year, how often have you found that you were not able to stop drinking once you had started?","In last year, how often were you not able to stop drinking once  started?", 'Coded','Misc', FALSE);
+        set @concept7_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, During the past year, how often have you failed to do what was normally expected of you because of drinking?","In last year year, how often have you not done what was expected because of drinking?", 'Coded','Misc', FALSE);
+        set @concept8_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, During the past year, how often have you needed a drink in the morning to get yourself going after a heavy drinking session?","In last year, how often have you needed a drink in the morning  after a heavy drinking session?", 'Coded','Misc', FALSE);
+        set @concept9_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, During the past year, how often have you had a feeling of guilt or remorse after drinking?","In last year, how often have you had a feeling of guilt after drinking?", 'Coded','Misc', FALSE);
+        set @concept10_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, During the past year, have you been unable to remember what happened the night before because you had been drinking?","In last year, have you been unable to remember  the night before because of drinking?", 'Coded','Misc', FALSE);
+        set @concept11_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Have you or someone else been injured as a result of your drinking?","Have you or someone else been injured as a result of your drinking?", 'Coded','Misc', FALSE);
+        set @concept12_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Has a relative or friend, doctor or other health worker been concerned about your drinking or suggested you cut down?","Has a friend, relative, doctor been concerned about your drinking ?", 'Coded','Misc', FALSE);
+        set @concept13_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Total score","Total score", 'Numeric','Misc', FALSE);
+        set @concept14_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, The Patient Health Questionnaire (PHQ-9)","The Patient Health Questionnaire (PHQ-9)", 'N/A','Misc', TRUE);
+        set @concept15_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Over the past 2 weeks, how often have you been bothered by little interest or pleasure in doing things", "Little interest or pleasure in doing things", 'Coded','Misc', FALSE);
+        set @concept16_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Over the past 2 weeks, how often have you been bothered by feeling down, depressed or hopeless", "Feeling down, depressed or hopeless", 'Coded','Misc', FALSE);
+        set @concept17_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Over the past 2 weeks, how often have you been bothered by having trouble falling asleep, staying asleep, or sleeping too much", "Trouble falling sleeping or sleeping too much", 'Coded','Misc', FALSE);
+        set @concept18_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Over the past 2 weeks, how often have you been bothered by feeling tired or having little energy", "Feeling tired or having little energy", 'Coded','Misc', FALSE);
+        set @concept19_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Over the past 2 weeks, how often have you been bothered by poor appetite or overeating", "Poor appetite or overeating", 'Coded','Misc', FALSE);
+        set @concept20_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Over the past 2 weeks, how often have you been bothered by Feeling bad about yourself - or that you are a failure or gave let yourself or your family down", "Feeling bad about yourself or that you let down yourself or your family", 'Coded','Misc', FALSE);
+        set @concept21_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Over the past 2 weeks, how often have you been bothered by trouble concentrating on things, such as reading the newspaper or watching television", "Trouble concentrating on things", 'Coded','Misc', FALSE);
+        set @concept22_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Over the past 2 weeks, bothered by Moving or speaking so slowly that other people could have noticed? Or the opposite  - being so fidgety or restless that you have been moving around than usual", "Moving or speaking so slowly or being so fidgety or restless", 'Coded','Misc', FALSE);
+        set @concept23_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, Over the past 2 weeks, how often have you been bothered by thoughts that you would be better off dead or of hurting yourself in some way", "Thoughts that you would be better off dead or of hurting yourself", 'Coded','Misc', FALSE);
+        set @concept24_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?", "How difficult have these problems made it for you in your daily life", 'Coded','Misc', FALSE);
+        set @concept25_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "DAS, PHQ, Total score","Total score", 'Numeric','Misc', FALSE);
+        set @concept26_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Depression Alcohol Score Template", "Depression Alcohol Score", 'N/A','Misc', TRUE);
+
+
+        call add_concept_set_members (@concept_id,@concept1_id,1);
+        call add_concept_set_members (@concept_id,@concept2_id,2);
+        call add_concept_set_members (@concept_id,@concept15_id,3);
+
+        call add_concept_set_members (@concept2_id,@concept4_id,4);
+        call add_concept_set_members (@concept2_id,@concept5_id,5);
+        call add_concept_set_members (@concept2_id,@concept6_id,6);
+        call add_concept_set_members (@concept2_id,@concept7_id,7);
+        call add_concept_set_members (@concept2_id,@concept8_id,8);
+        call add_concept_set_members (@concept2_id,@concept9_id,9);
+        call add_concept_set_members (@concept2_id,@concept10_id,10);
+        call add_concept_set_members (@concept2_id,@concept11_id,11);
+        call add_concept_set_members (@concept2_id,@concept12_id,12);
+        call add_concept_set_members (@concept2_id,@concept13_id,13);
+        call add_concept_set_members (@concept2_id,@concept14_id,14);
+
+        call add_concept_set_members (@concept15_id,@concept16_id,1);
+        call add_concept_set_members (@concept15_id,@concept17_id,2);
+        call add_concept_set_members (@concept15_id,@concept18_id,3);
+        call add_concept_set_members (@concept15_id,@concept19_id,4);
+        call add_concept_set_members (@concept15_id,@concept20_id,5);
+        call add_concept_set_members (@concept15_id,@concept21_id,6);
+        call add_concept_set_members (@concept15_id,@concept22_id,7);
+        call add_concept_set_members (@concept15_id,@concept23_id,8);
+        call add_concept_set_members (@concept15_id,@concept24_id,9);
+        call add_concept_set_members (@concept15_id,@concept26_id,10);
+        call add_concept_set_members (@concept15_id,@concept25_id,11);
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"0 = Not at all","0 = Not at all", 'N/A','Misc', FALSE);
+        set @answerconcept1_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"1 = Several days","1 = Several days", 'N/A','Misc', FALSE);
+        set @answerconcept2_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"2 = More than half the days","2 = More than half the days", 'N/A','Misc', FALSE);
+        set @answerconcept3_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"3 = Nearly every day","3 = Nearly every day", 'N/A','Misc', FALSE);
+        set @answerconcept4_id = @concept_id;
+
+        call add_concept_answer (@concept16_id,@answerconcept1_id,1);
+        call add_concept_answer (@concept16_id,@answerconcept2_id,2);
+        call add_concept_answer (@concept16_id,@answerconcept3_id,3);
+        call add_concept_answer (@concept16_id,@answerconcept4_id,4);
+
+        call add_concept_answer (@concept17_id,@answerconcept1_id,1);
+        call add_concept_answer (@concept17_id,@answerconcept2_id,2);
+        call add_concept_answer (@concept17_id,@answerconcept3_id,3);
+        call add_concept_answer (@concept17_id,@answerconcept4_id,4);
+
+        call add_concept_answer (@concept18_id,@answerconcept1_id,1);
+        call add_concept_answer (@concept18_id,@answerconcept2_id,2);
+        call add_concept_answer (@concept18_id,@answerconcept3_id,3);
+        call add_concept_answer (@concept18_id,@answerconcept4_id,4);
+
+        call add_concept_answer (@concept19_id,@answerconcept1_id,1);
+        call add_concept_answer (@concept19_id,@answerconcept2_id,2);
+        call add_concept_answer (@concept19_id,@answerconcept3_id,3);
+        call add_concept_answer (@concept19_id,@answerconcept4_id,4);
+
+        call add_concept_answer (@concept20_id,@answerconcept1_id,1);
+        call add_concept_answer (@concept20_id,@answerconcept2_id,2);
+        call add_concept_answer (@concept20_id,@answerconcept3_id,3);
+        call add_concept_answer (@concept20_id,@answerconcept4_id,4);
+
+        call add_concept_answer (@concept21_id,@answerconcept1_id,1);
+        call add_concept_answer (@concept21_id,@answerconcept2_id,2);
+        call add_concept_answer (@concept21_id,@answerconcept3_id,3);
+        call add_concept_answer (@concept21_id,@answerconcept4_id,4);
+
+        call add_concept_answer (@concept22_id,@answerconcept1_id,1);
+        call add_concept_answer (@concept22_id,@answerconcept2_id,2);
+        call add_concept_answer (@concept22_id,@answerconcept3_id,3);
+        call add_concept_answer (@concept22_id,@answerconcept4_id,4);
+
+        call add_concept_answer (@concept23_id,@answerconcept1_id,1);
+        call add_concept_answer (@concept23_id,@answerconcept2_id,2);
+        call add_concept_answer (@concept23_id,@answerconcept3_id,3);
+        call add_concept_answer (@concept23_id,@answerconcept4_id,4);
+
+        call add_concept_answer (@concept24_id,@answerconcept1_id,1);
+        call add_concept_answer (@concept24_id,@answerconcept2_id,2);
+        call add_concept_answer (@concept24_id,@answerconcept3_id,3);
+        call add_concept_answer (@concept24_id,@answerconcept4_id,4);
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"0 = Never","0 = Never",'N/A','Misc', FALSE);
+        set @answer1concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"1 = Less than monthly","1 = Less than monthly",'N/A','Misc', FALSE);
+        set @answer2concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"2 = Monthly","2 = Monthly",'N/A','Misc', FALSE);
+        set @answer3concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"3 = Weekly","3 = Weekly",'N/A','Misc', FALSE);
+        set @answer4concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"4 = Daily or almost daily","4 = Daily or almost daily",'N/A','Misc', FALSE);
+        set @answer5concept_id = @concept_id;
+
+
+        call add_concept_answer (@concept4_id,@answer1concept_id,1);
+        call add_concept_answer (@concept4_id,@answer2concept_id,2);
+        call add_concept_answer (@concept4_id,@answer3concept_id,3);
+        call add_concept_answer (@concept4_id,@answer4concept_id,4);
+        call add_concept_answer (@concept4_id,@answer5concept_id,5);
+
+        call add_concept_answer (@concept6_id,@answer1concept_id,1);
+        call add_concept_answer (@concept6_id,@answer2concept_id,2);
+        call add_concept_answer (@concept6_id,@answer3concept_id,3);
+        call add_concept_answer (@concept6_id,@answer4concept_id,4);
+        call add_concept_answer (@concept6_id,@answer5concept_id,5);
+
+        call add_concept_answer (@concept7_id,@answer1concept_id,1);
+        call add_concept_answer (@concept7_id,@answer2concept_id,2);
+        call add_concept_answer (@concept7_id,@answer3concept_id,3);
+        call add_concept_answer (@concept7_id,@answer4concept_id,4);
+        call add_concept_answer (@concept7_id,@answer5concept_id,5);
+
+        call add_concept_answer (@concept8_id,@answer1concept_id,1);
+        call add_concept_answer (@concept8_id,@answer2concept_id,2);
+        call add_concept_answer (@concept8_id,@answer3concept_id,3);
+        call add_concept_answer (@concept8_id,@answer4concept_id,4);
+        call add_concept_answer (@concept8_id,@answer5concept_id,5);
+
+        call add_concept_answer (@concept9_id,@answer1concept_id,1);
+        call add_concept_answer (@concept9_id,@answer2concept_id,2);
+        call add_concept_answer (@concept9_id,@answer3concept_id,3);
+        call add_concept_answer (@concept9_id,@answer4concept_id,4);
+        call add_concept_answer (@concept9_id,@answer5concept_id,5);
+
+        call add_concept_answer (@concept10_id,@answer1concept_id,1);
+        call add_concept_answer (@concept10_id,@answer2concept_id,2);
+        call add_concept_answer (@concept10_id,@answer3concept_id,3);
+        call add_concept_answer (@concept10_id,@answer4concept_id,4);
+        call add_concept_answer (@concept10_id,@answer5concept_id,5);
+
+        call add_concept_answer (@concept11_id,@answer1concept_id,1);
+        call add_concept_answer (@concept11_id,@answer2concept_id,2);
+        call add_concept_answer (@concept11_id,@answer3concept_id,3);
+        call add_concept_answer (@concept11_id,@answer4concept_id,4);
+        call add_concept_answer (@concept11_id,@answer5concept_id,5);
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"0 = Not difficult at all","0 = Not difficult at all", 'N/A','Misc', FALSE);
+        set @answerconcept_id1 = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"1 = Somewhat difficult","1 = Somewhat difficult", 'N/A','Misc', FALSE);
+        set @answerconcept_id2 = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"2 = Very difficult","2 = Very difficult", 'N/A','Misc', FALSE);
+        set @answerconcept_id3 = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"3 = Extremely difficult","3 = Extremely difficult", 'N/A','Misc', FALSE);
+        set @answerconcept_id4 = @concept_id;
+
+        call add_concept_answer (@concept25_id,@answerconcept_id1,1);
+        call add_concept_answer (@concept25_id,@answerconcept_id2,2);
+        call add_concept_answer (@concept25_id,@answerconcept_id3,3);
+        call add_concept_answer (@concept25_id,@answerconcept_id4,4);
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"0 = 1 or 2","0 = 1 or 2",'N/A','Misc', FALSE);
+            set @answerconcept_id21 = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"1 = 3 or 4","1 = 3 or 4",'N/A','Misc', FALSE);
+            set @answerconcept_id22 = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"2 = 5 or 6","2 = 5 or 6",'N/A','Misc', FALSE);
+            set @answerconcept_id23 = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"3 = 7 to 9","3 = 7 to 9",'N/A','Misc', FALSE);
+            set @answerconcept_id24 = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"4 = 10 or more","4 = 10 or more",'N/A','Misc', FALSE);
+            set @answerconcept_id25 = @concept_id;
+
+            call add_concept_answer (@concept5_id,@answerconcept_id21,1);
+            call add_concept_answer (@concept5_id,@answerconcept_id22,2);
+            call add_concept_answer (@concept5_id,@answerconcept_id23,3);
+            call add_concept_answer (@concept5_id,@answerconcept_id24,4);
+            call add_concept_answer (@concept5_id,@answerconcept_id25,5);
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"0 = No", "0 = No", 'N/A','Misc', FALSE);
+            set @answerconcept_id121 = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"1 = Yes, but not in the past year", "1 = Yes, but not in the past year", 'N/A','Misc', FALSE);
+            set @answerconcept_id122 = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,"2 = Yes, during the past year", "2 = Yes, during the past year", 'N/A','Misc', FALSE);
+            set @answerconcept_id123 = @concept_id;
+
+            call add_concept_answer (@concept12_id,@answerconcept_id121,1);
+            call add_concept_answer (@concept12_id,@answerconcept_id122,2);
+            call add_concept_answer (@concept12_id,@answerconcept_id123,3);
+
+            call add_concept_answer (@concept13_id,@answerconcept_id121,1);
+            call add_concept_answer (@concept13_id,@answerconcept_id122,2);
+            call add_concept_answer (@concept13_id,@answerconcept_id123,3);
+
+        INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@concept14_id, 0, 40);
+        INSERT INTO concept_numeric (concept_id, low_absolute, hi_absolute) values (@concept26_id, 0, 27);
+
+        select max(sort_weight) into @weight from concept_set where concept_set = (select concept_id from concept_view where concept_full_name = 'All Observation Templates');
+
+        select concept_id into @member1_concept_id from concept_view where concept_full_name = 'Depression Alcohol Score Template';
+        select concept_id into @concept_id from concept_view where concept_full_name = 'All Observation Templates';
+        select concept_id into @member1_concept_id from concept_view where concept_full_name = 'Depression Alcohol Score Template';
+
+        call add_concept_set_members (@concept_id, @member1_concept_id, @weight+1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="ENDTB-201807111108" author="Sudhamsh">
+    <comment>Adding descriptions to the concepts of the above form </comment>
+    <sql>
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, How many standard drinks containing alcohol do you have on a typical day when drinking?';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"How many standard drinks containing alcohol do you have on a typical day when drinking?", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, During the past year, how often have you found that you were not able to stop drinking once you had started?';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"During the past year, how often have you found that you were not able to stop drinking once you had started?", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, During the past year, how often have you failed to do what was normally expected of you because of drinking?';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"During the past year, how often have you failed to do what was normally expected of you because of drinking?", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, During the past year, how often have you needed a drink in the morning to get yourself going after a heavy drinking session?';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"During the past year, how often have you needed a drink in the morning to get yourself going after a heavy drinking session?", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, During the past year, how often have you had a feeling of guilt or remorse after drinking?';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"During the past year, how often have you had a feeling of guilt or remorse after drinking?", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, During the past year, have you been unable to remember what happened the night before because you had been drinking?';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"During the past year, have you been unable to remember what happened the night before because you had been drinking?", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Has a relative or friend, doctor or other health worker been concerned about your drinking or suggested you cut down?';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Has a relative or friend, doctor or other health worker been concerned about your drinking or suggested you cut down?", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Total score';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Add up the points associated with each of the answers (ie: 0 - 4) . A total score of 8 or more indicates harmful drinking behavior.", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Over the past 2 weeks, how often have you been bothered by little interest or pleasure in doing things';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Over the past 2 weeks, how often have you been bothered by little interest or pleasure in doing things", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Over the past 2 weeks, how often have you been bothered by feeling down, depressed or hopeless';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Over the past 2 weeks, how often have you been bothered by feeling down, depressed or hopeless", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Over the past 2 weeks, how often have you been bothered by having trouble falling asleep, staying asleep, or sleeping too much';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Over the past 2 weeks, how often have you been bothered by having trouble falling asleep, staying asleep, or sleeping too much", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Over the past 2 weeks, how often have you been bothered by feeling tired or having little energy';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Over the past 2 weeks, how often have you been bothered by feeling tired or having little energy", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Over the past 2 weeks, how often have you been bothered by poor appetite or overeating';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Over the past 2 weeks, how often have you been bothered by poor appetite or overeating", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Over the past 2 weeks, how often have you been bothered by Feeling bad about yourself - or that you are a failure or gave let yourself or your family down';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Over the past 2 weeks, how often have you been bothered by Feeling bad about yourself - or that you are a failure or gave let yourself or your family down", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Over the past 2 weeks, how often have you been bothered by trouble concentrating on things, such as reading the newspaper or watching television';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Over the past 2 weeks, how often have you been bothered by trouble concentrating on things, such as reading the newspaper or watching television", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Over the past 2 weeks, bothered by Moving or speaking so slowly that other people could have noticed? Or the opposite  - being so fidgety or restless that you have been moving around than usual';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Over the past 2 weeks, how often have you been bothered by Moving or speaking so slowly that other people could have noticed? Or the opposite  - being so fidgety or restless that you have been moving around a lot more than usual", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, Over the past 2 weeks, how often have you been bothered by thoughts that you would be better off dead or of hurting yourself in some way';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Over the past 2 weeks, how often have you been bothered by thoughts that you would be better off dead or of hurting yourself in some way", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, PHQ, Total score';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"Add the score from questions one to nine", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,"If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?", 'en','1', curdate(),null,null,uuid());]]>
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'DAS, The Patient Health Questionnaire (PHQ-9)';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,'<b>Over the past 2 weeks, how often have you been bothered by any of the following problems?<b>', 'en','1', curdate(),null,null,uuid());]]>
+
+    </sql>
+    </changeSet>
+
+    <changeSet id="ENDTB-201807181248" author="Sudhamsh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term  where code IN ("d_alc_scrn_phq","Q01_alc_screen","Q02_alc_screen","Q03_alc_screen","Q04_alc_screen","Q05_alc_screen","Q06_alc_screen","Q07_alc_screen","Q08_alc_screen","Q09_alc_screen","Q10_alc_screen","total_alc_screen","Q01_PHQ_9","Q02_PHQ_9","Q03_PHQ_9","Q04_PHQ_9","Q05_PHQ_9","Q06_PHQ_9","Q07_PHQ_9","Q08_PHQ_9","Q09_PHQ_9","total_PHQ_9","Q10_PHQ_9");
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding EndTB-Export code for Depression Alcohol Score Template</comment>
+    <sql>
+        select concept_source_id into @source_id from concept_reference_source where name = 'EndTB-Export';
+        insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created) values
+        (4,"d_alc_scrn_phq",@source_id,uuid(),now()),
+        (4,"Q01_alc_screen",@source_id,uuid(),now()),
+        (4,"Q02_alc_screen",@source_id,uuid(),now()),
+        (4,"Q03_alc_screen",@source_id,uuid(),now()),
+        (4,"Q04_alc_screen",@source_id,uuid(),now()),
+        (4,"Q05_alc_screen",@source_id,uuid(),now()),
+        (4,"Q06_alc_screen",@source_id,uuid(),now()),
+        (4,"Q07_alc_screen",@source_id,uuid(),now()),
+        (4,"Q08_alc_screen",@source_id,uuid(),now()),
+        (4,"Q09_alc_screen",@source_id,uuid(),now()),
+        (4,"Q10_alc_screen",@source_id,uuid(),now()),
+        (4,"total_alc_screen",@source_id,uuid(),now()),
+        (4,"Q01_PHQ_9",@source_id,uuid(),now()),
+        (4,"Q02_PHQ_9",@source_id,uuid(),now()),
+        (4,"Q03_PHQ_9",@source_id,uuid(),now()),
+        (4,"Q04_PHQ_9",@source_id,uuid(),now()),
+        (4,"Q05_PHQ_9",@source_id,uuid(),now()),
+        (4,"Q06_PHQ_9",@source_id,uuid(),now()),
+        (4,"Q07_PHQ_9",@source_id,uuid(),now()),
+        (4,"Q08_PHQ_9",@source_id,uuid(),now()),
+        (4,"Q09_PHQ_9",@source_id,uuid(),now()),
+        (4,"total_PHQ_9",@source_id,uuid(),now()),
+        (4,"Q10_PHQ_9",@source_id,uuid(),now());
+
+        call create_reference_mapping("DAS, Date alcohol abuse or PHQ-9 screening performed", "d_alc_scrn_phq");
+        call create_reference_mapping("DAS, How often do you have a drink containing alcohol?", "Q01_alc_screen");
+        call create_reference_mapping("DAS, How many standard drinks containing alcohol do you have on a typical day when drinking?", "Q02_alc_screen");
+        call create_reference_mapping("DAS, How often do you have six or more drinks on one occasion?", "Q03_alc_screen");
+        call create_reference_mapping("DAS, During the past year, how often have you found that you were not able to stop drinking once you had started?", "Q04_alc_screen");
+        call create_reference_mapping("DAS, During the past year, how often have you failed to do what was normally expected of you because of drinking?", "Q05_alc_screen");
+        call create_reference_mapping("DAS, During the past year, how often have you needed a drink in the morning to get yourself going after a heavy drinking session?", "Q06_alc_screen");
+        call create_reference_mapping("DAS, During the past year, how often have you had a feeling of guilt or remorse after drinking?", "Q07_alc_screen");
+        call create_reference_mapping("DAS, During the past year, have you been unable to remember what happened the night before because you had been drinking?", "Q08_alc_screen");
+        call create_reference_mapping("DAS, Have you or someone else been injured as a result of your drinking?", "Q09_alc_screen");
+        call create_reference_mapping("DAS, Has a relative or friend, doctor or other health worker been concerned about your drinking or suggested you cut down?", "Q10_alc_screen");
+        call create_reference_mapping("DAS, Total score", "total_alc_screen");
+        call create_reference_mapping("DAS, Over the past 2 weeks, how often have you been bothered by little interest or pleasure in doing things", "Q01_PHQ_9");
+        call create_reference_mapping("DAS, Over the past 2 weeks, how often have you been bothered by feeling down, depressed or hopeless", "Q02_PHQ_9");
+        call create_reference_mapping("DAS, Over the past 2 weeks, how often have you been bothered by having trouble falling asleep, staying asleep, or sleeping too much", "Q03_PHQ_9");
+        call create_reference_mapping("DAS, Over the past 2 weeks, how often have you been bothered by feeling tired or having little energy", "Q04_PHQ_9");
+        call create_reference_mapping("DAS, Over the past 2 weeks, how often have you been bothered by poor appetite or overeating", "Q05_PHQ_9");
+        call create_reference_mapping("DAS, Over the past 2 weeks, how often have you been bothered by Feeling bad about yourself - or that you are a failure or gave let yourself or your family down", "Q06_PHQ_9");
+        call create_reference_mapping("DAS, Over the past 2 weeks, how often have you been bothered by trouble concentrating on things, such as reading the newspaper or watching television", "Q07_PHQ_9");
+        call create_reference_mapping("DAS, Over the past 2 weeks, how often have you been bothered by thoughts that you would be better off dead or of hurting yourself in some way", "Q09_PHQ_9");
+        call create_reference_mapping("DAS, If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?", "Q10_PHQ_9");
+        call create_reference_mapping("DAS, PHQ, Total score", "total_PHQ_9");
+        call create_reference_mapping("DAS, Over the past 2 weeks, bothered by Moving or speaking so slowly that other people could have noticed? Or the opposite  - being so fidgety or restless that you have been moving around than usual", "Q08_PHQ_9");
+
+        call create_reference_mapping("0 = 1 or 2", 0);
+        call create_reference_mapping("1 = 3 or 4", 1);
+        call create_reference_mapping("2 = 5 or 6", 2);
+        call create_reference_mapping("3 = 7 to 9", 3);
+        call create_reference_mapping("4 = 10 or more", 4);
+
+        call create_reference_mapping("0 = No", 0);
+        call create_reference_mapping("1 = Yes, but not in the past year", 1);
+        call create_reference_mapping("2 = Yes, during the past year", 2);
+
+        call create_reference_mapping("0 = Not difficult at all", 0);
+        call create_reference_mapping("1 = Somewhat difficult", 1);
+        call create_reference_mapping("2 = Very difficult", 2);
+        call create_reference_mapping("3 = Extremely difficult", 3);
+
+        call create_reference_mapping("0 = Not at all", 0);
+        call create_reference_mapping("1 = Several days", 1);
+        call create_reference_mapping("2 = More than half the days", 2);
+        call create_reference_mapping("3 = Nearly every day", 3);
+
+        call create_reference_mapping("0 = Never", 0);
+        call create_reference_mapping("1 = Less than monthly", 1);
+        call create_reference_mapping("2 = Monthly", 2);
+        call create_reference_mapping("3 = Weekly", 3);
+        call create_reference_mapping("4 = Daily or almost daily", 4);
+    </sql>
+    </changeSet>
+
+</databaseChangeLog>

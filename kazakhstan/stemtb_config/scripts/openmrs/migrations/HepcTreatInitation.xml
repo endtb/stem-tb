@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+<changeSet id="ENDTB-201807021248" author="Sudhamsh">
+    <sql>
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'HTI, Has the patient started DAA treatment?', 'Has the patient started DAA treatment?', 'Coded','Misc', FALSE);
+        set @concept1_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'HTI, Has the patient signed a consent form for the Hepatitis C Study?', 'Consent for Hepatitis C Study signed?' , 'Coded','Misc', FALSE);
+        set @concept2_id = @concept_id;
+        select concept_id into @child3_concept_id from concept_view where concept_full_name = 'HTI, Hepatitis C study number';
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'HTI, DAA treatment start date:', 'DAA treatment start date:', 'Date','Misc', FALSE);
+        set @concept4_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'HTI, Reason to start DAA at this time (chose all those that apply)', 'Reason to start DAA at this time (chose all those that apply)', 'Coded','Misc', FALSE);
+        set @concept5_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'HTI, Other reasons to start DAA', 'Other reasons to start DAA', 'Text','Misc', FALSE);
+        set @concept6_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'HTI, Reason that DAA was not given during the study period', 'Reason that DAA was not given during the study period', 'Coded','Misc', FALSE);
+        set @concept7_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'HTI, Other reason not to start DAA during study period', 'Other reason not to start DAA during study period', 'Text','Misc', FALSE);
+        set @concept8_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Hep C Treatment Initiation Template", "Hep C Treatment Initiation", 'N/A', "Misc", TRUE);
+
+        call add_concept_set_members (@concept_id,@concept1_id,1);
+        call add_concept_set_members (@concept_id,@concept2_id,2);
+        call add_concept_set_members (@concept_id,@concept3_id,3);
+        call add_concept_set_members (@concept_id,@concept4_id,4);
+        call add_concept_set_members (@concept_id,@concept5_id,5);
+        call add_concept_set_members (@concept_id,@concept6_id,6);
+        call add_concept_set_members (@concept_id,@concept7_id,7);
+        call add_concept_set_members (@concept_id,@concept8_id,8);
+
+        select concept_id into @value1_concept_id from concept_view where concept_full_name = 'False';
+        select concept_id into @value2_concept_id from concept_view where concept_full_name = 'True';
+
+        call add_concept_answer (@concept1_id, @value1_concept_id, 2);
+        call add_concept_answer (@concept1_id, @value2_concept_id, 1);
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "HTI, Pending","Pending" , 'N/A','Misc', FALSE);
+        set @child4_concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "HTI, Not Applicable","Not Applicable" , 'N/A','Misc', FALSE);
+        set @child5_concept_id = @concept_id;
+
+        call add_concept_answer (@concept2_id, @value1_concept_id, 2);
+        call add_concept_answer (@concept2_id, @value2_concept_id, 1);
+        call add_concept_answer (@concept2_id, @child4_concept_id, 3);
+        call add_concept_answer (@concept2_id, @child5_concept_id, 4);
+
+        select max(sort_weight) into @weight from concept_set where concept_set = (select concept_id from concept_view where concept_full_name = 'All Observation Templates');
+
+        select concept_id into @member1_concept_id from concept_view where concept_full_name = 'Hep C Treatment Initiation Template';
+        select concept_id into @concept_id from concept_view where concept_full_name = 'All Observation Templates';
+
+        call add_concept_set_members (@concept_id, @member1_concept_id, @weight+1);
+
+        <![CDATA[select concept_id into @concept_id from concept_view where concept_full_name = 'HTI, Has the patient signed a consent form for the Hepatitis C Study?';
+        insert into concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)values(@concept_id,'Not applicable: Patients included retrospectively and who are not reachable to ask for informed consent (died, LTFU, transfer out, already concluded  treatment).', 'en','1', curdate(),null,null,uuid());]]>
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'End stage liver disease', 'End stage liver disease', 'N/A','Misc', FALSE);
+        set @child1_concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'Suspicion of hepatocellular cancer', 'Suspicion of hepatocellular cancer', 'N/A','Misc', FALSE);
+        set @child2_concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'Patient refusal', 'Patient refusal', 'N/A','Misc', FALSE);
+        set @child3_concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'HIV patient  with detectable viral load', 'HIV patient  with detectable viral load', 'N/A','Misc', FALSE);
+        set @child4_concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'HTI, Lost to follow up', 'Lost to follow up', 'N/A','Misc', FALSE);
+        set @child5_concept_id = @concept_id;
+        select concept_id into @child6_concept_id from concept_view where concept_full_name = 'Other';
+
+        call add_concept_answer (@concept7_id, @child1_concept_id, 1);
+        call add_concept_answer (@concept7_id, @child2_concept_id, 2);
+        call add_concept_answer (@concept7_id, @child3_concept_id, 3);
+        call add_concept_answer (@concept7_id, @child4_concept_id, 4);
+        call add_concept_answer (@concept7_id, @child5_concept_id, 5);
+        call add_concept_answer (@concept7_id, @child6_concept_id, 6);
+
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'Advanced fibrosis (F3/F4)', 'Advanced fibrosis (F3/F4)', 'N/A','Misc', FALSE);
+        set @child1_concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'Genotype 3', 'Genotype 3', 'N/A','Misc', FALSE);
+        set @child2_concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'Hepatotoxicity during MDRTB treatment', 'Hepatotoxicity during MDRTB treatment', 'N/A','Misc', FALSE);
+        set @child3_concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'HIV patient with undetectable viral load', 'HIV patient with undetectable viral load', 'N/A','Misc', FALSE);
+        set @child4_concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'MDR-TB treatment complete', 'MDR-TB treatment complete', 'N/A','Misc', FALSE);
+        set @child5_concept_id = @concept_id;
+        call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id,'Stable on MDR-TB treatment', 'Stable on MDR-TB treatment', 'N/A','Misc', FALSE);
+        set @child6_concept_id = @concept_id;
+        select concept_id into @child7_concept_id from concept_view where concept_full_name = 'Other';
+
+        call add_concept_answer (@concept5_id, @child1_concept_id, 1);
+        call add_concept_answer (@concept5_id, @child2_concept_id, 2);
+        call add_concept_answer (@concept5_id, @child3_concept_id, 3);
+        call add_concept_answer (@concept5_id, @child4_concept_id, 4);
+        call add_concept_answer (@concept5_id, @child5_concept_id, 5);
+        call add_concept_answer (@concept5_id, @child6_concept_id, 6);
+        call add_concept_answer (@concept5_id, @child7_concept_id, 7);
+    </sql>
+</changeSet>
+<changeSet id="ENDTB-201807181316" author="Sudhamsh">
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="0">
+            select count(*) from concept_reference_term  where code IN ('startDAA','consent_DAA','d_startDAA','reas_startDAA','reas_startDAA_oth','reas_nostartDAA_oth','reas_nostartDAA');
+        </sqlCheck>
+    </preConditions>
+    <comment> Adding EndTB-Export code for Hep C Treatment Outcome Template</comment>
+    <sql>
+        select concept_source_id into @source_id from concept_reference_source where name = 'EndTB-Export';
+        insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created) values
+        (4,'startDAA',@source_id,uuid(),now()),
+        (4,'consent_DAA',@source_id,uuid(),now()),
+        (4,'d_startDAA',@source_id,uuid(),now()),
+        (4,'reas_startDAA',@source_id,uuid(),now()),
+        (4,'reas_startDAA_oth',@source_id,uuid(),now()),
+        (4,'reas_nostartDAA_oth',@source_id,uuid(),now()),
+        (4,'reas_nostartDAA',@source_id,uuid(),now());
+
+        call create_reference_mapping('HTI, Has the patient started DAA treatment?','startDAA');
+        call create_reference_mapping('HTI, Has the patient signed a consent form for the Hepatitis C Study?','consent_DAA');
+        call create_reference_mapping('HTI, DAA treatment start date:','d_startDAA');
+        call create_reference_mapping('HTI, Reason to start DAA at this time (chose all those that apply)','reas_startDAA');
+        call create_reference_mapping('HTI, Other reasons to start DAA','reas_startDAA_oth');
+        call create_reference_mapping('HTI, Reason that DAA was not given during the study period','reas_nostartDAA_oth');
+        call create_reference_mapping('HTI, Other reason not to start DAA during study period','reas_nostartDAA');
+
+        call create_reference_mapping('Advanced fibrosis (F3/F4)', 1);
+        call create_reference_mapping('Genotype 3', 2);
+        call create_reference_mapping('Hepatotoxicity during MDRTB treatment', 3);
+        call create_reference_mapping('HIV patient with undetectable viral load', 4);
+        call create_reference_mapping('MDR-TB treatment complete', 5);
+        call create_reference_mapping('Stable on MDR-TB treatment', 6);
+
+        call create_reference_mapping('End stage liver disease', 1);
+        call create_reference_mapping('Suspicion of hepatocellular cancer', 2);
+        call create_reference_mapping('Patient refusal', 3);
+        call create_reference_mapping('HIV patient  with detectable viral load', 4);
+        call create_reference_mapping('HTI, Lost to follow up', 5);
+
+        call create_reference_mapping('HTI, Pending', 2);
+        call create_reference_mapping('HTI, Not Applicable', 3);
+
+    </sql>
+</changeSet>
+
+</databaseChangeLog>

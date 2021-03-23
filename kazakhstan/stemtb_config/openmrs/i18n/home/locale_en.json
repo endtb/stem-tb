@@ -4,5 +4,7 @@
     "MODULE_LABEL_ADMIN_KEY": "Admin",
     "MODULE_LABEL_REPORTS_KEY": "Reports",
     "MODULE_LABEL_EXPORTS_KEY": "Exports",
-    "MODULE_LABEL_DATA_INTEGRITY_KEY": "Data Quality"
+    "MODULE_LABEL_DATA_INTEGRITY_KEY": "Data Quality",
+    "LOGIN_PAGE_HEADER_TEXT": "Welcome",
+ "WARNING_SERVER_TIME_ZONE_MISMATCH": "Timezone is incorrect. Contact administrator"
 }

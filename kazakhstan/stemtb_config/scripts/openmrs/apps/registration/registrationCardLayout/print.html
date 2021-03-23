@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="/bahmni_config/openmrs/apps/registration/registrationCardLayout/css/print.css"/>
+<div>
+    <div>
+        <table class="patient_id_card">
+            <tbody>
+            <tr>
+                <td class="registrationCard-details-name">
+                    Patient ID
+                </td>
+                <td class="registrationCard-details-seperator"> :</td>
+                <td colspan="2">{{patient.primaryIdentifier.identifier}}</td>
+            </tr>
+            <tr>
+                <td class="registrationCard-details-name">
+                    Name(English)
+                </td>
+
+                <td class="registrationCard-details-seperator"> :</td>
+                <td  colspan="2" class="full_name" style="line-height: 10px;">
+                    <div>{{(patient.givenName.split(" ")[0]).substring(0,34)}}</div><div>{{(patient.familyName.split(" ")[0]).substring(0,34)}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="registrationCard-details-name">
+                    Name(Arabic)
+                </td>
+
+                <td class="registrationCard-details-seperator"> :</td>
+                <td  colspan="2" style="width: 40px">
+                    {{(patient.givenNameLocal.split(" "))[0].substring(0,17)}}&nbsp;{{(patient.familyNameLocal.split(" ")[0]).substring(0,16)}}
+                </td>
+            </tr>
+            <tr>
+                <td class="registrationCard-details-name">
+                    Age
+                </td>
+                <td class="registrationCard-details-seperator"> :</td>
+                <td>{{patient.age | age}}</td>
+                <td rowspan="4">
+                    <img class="patient-image" ng-src="{{patient.image}}" style="width: 20mm; height: 20mm; "
+                         onerror="this.onerror=null;this.src='../images/blank.jpeg';"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="registrationCard-details-name">
+                    Country
+                </td>
+                <td class="registrationCard-details-seperator"> :</td>
+                <td>{{patient.address.address3}}</td>
+            </tr>
+            <tr>
+                <td class="registrationCard-details-name">
+                    Is caretaker required
+                </td>
+                <td class="registrationCard-details-seperator"> :</td>
+                <td ng-if="patient.isCareTakerRequired">Yes</td>
+                <td ng-if="!patient.isCareTakerRequired">No</td>
+            </tr>
+            <tr>
+                <td class="registrationCard-details-name">
+                    Date of arrival
+                </td>
+                <td class="registrationCard-details-seperator"> :</td>
+                <td>{{patient.dateofArrival | date:'dd MMM yyyy'}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

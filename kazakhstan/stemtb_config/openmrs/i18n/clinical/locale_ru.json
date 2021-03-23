@@ -6,9 +6,8 @@
     "NO_DOCUMENTS_MESSAGE": "Документы на этого пациента отсутствуют.",
     "NO_DISPOSTIONS_AVAILABLE_MESSAGE_KEY": "В настоящее время диспозиция отсутствует .",
     "NO_LAB_ORDERS_FOR_PATIENT_MESSAGE_KEY": "Направления на Лабораторные Исследования для этого пациента отсутствуют.",
-    "DISPLAY_CONTROL_ERROR_MESSAGE_KEY": "displayControl для этого пациента отсутствует",
+    "DISPLAY_CONTROL_ERROR_MESSAGE_KEY": "{{ displayControl }} для этого пациента отсутствует",
     "NO_DIAGNOSIS_MESSAGE": "Диагноз для этого пациента отсутствует",
-    
     "PROGRAM_MANAGEMENT_SELECT_PROGRAM_KEY": "Включение на Новое Лечение",
     "PROGRAM_MANAGEMENT_ACTIVE_PROGRAM_KEY": "Активные методы лечения",
     "PROGRAM_MANAGEMENT_INACTIVE_PROGRAM_KEY": "Неактивные Методы Лечения ",
@@ -184,7 +183,7 @@
   "SUMMARY_TITLE_Followup_BPNS_LEFT":"BPNS в левой ноге при следующем посещении",
   "SUMMARY_TITLE_Followup_BPNS_RIGHT":"BPNS в правой ноге при следующем посещении",
 
-  "DQ_PRINT_TITLE_DATA_QUALITY_REPORT":"Отчет о качестве данных",
+"DQ_PRINT_TITLE_DATA_QUALITY_REPORT":"Отчет о качестве данных",
   "DQ_DASHBOARD":"Таблица качества данных",
   "DQ_COLUMN_TITLE_TREATMENT_REG_NO":"Номер Курса Лечения",
   "DQ_COLUMN_TITLE_NAME":"ФИО",
@@ -214,6 +213,30 @@
   "DASHBOARD_TAB_PATIENT_DOCUMENTS_KEY":"Документы",
   "DASHBOARD_TAB_PATIENT_MONITORING_TREATMENT_START_DATE_KEY":"Мониторинг (Л)",
   "DASHBOARD_TAB_PATIENT_MONITORING_DRUGS_START_DATE_KEY":"Мониторинг (П)",
-  "PATIENT_MONITORING_HIV_STATUS":"Серостатус на ВИЧ"
+  "PATIENT_MONITORING_HIV_STATUS":"Серостатус на ВИЧ",
+  "SUMMARY_TITLE_DST_OTHER_RESULTS": "Другие результаты ТЛЧ",
+  "MODULE_LABEL_HOSPITALISED_KEY": "Госпитализированные пациенты",
+
+  "DASHBOARD_TITLE_LAB_HEMATOLOGY_FORMS" : "Гематология",
+  "DASHBOARD_TITLE_LAB_BIOCHEMISTRY_FORMS" : "Биохимия",
+  "DASHBOARD_TITLE_LAB_SEROLOGY_FORMS" : "Серология",
+  "DASHBOARD_TITLE_LAB_PREGNANCY_FORMS" : "Беременность",
+  "DASHBOARD_TITLE_LAB_OTHER_FORMS" : "Другие лаб результаты",
+  "DASHBOARD_TITLE_LAB_AUDIOMETRY_FORMS" : "Аудиометрия",
+  "DASHBOARD_TITLE_LAB_ELECTROCARDIOGRAM_FORMS" : "Электрокардиограмма",
+  "DASHBOARD_TITLE_LAB_XRAY_FORMS" : "Рентген",
+  "DASHBOARD_TITLE_LAB_PERFORMANCE_STATUS_FORMS" : "Общее состояние",
+  "DASHBOARD_TITLE_MTC_FORMS": "Ежемесячный показатель приема препаратов",
+  "SUMMARY_TITLE_CURRENT_HOSPITALISATION" : "Текущая госпитализация",
+  "SUMMARY_TITLE_PAST_HOSPITALISATION": "Детали прошлых госпитализаций",
+  
+  "STEMTB_DASHBOARD_TAB_PATIENT_SUMMARY_KEY": "stemTB",
+  "STEM_SUMMARY_TITLE_TREATMENT_INFORMATION": "Treatment Information",
+  "STEMTB_SUMMARY_TITLE_BASELINE_INFORMATION": "Baseline Information",
+  "STEM_SUMMARY_TITLE_BASELINE_CASEDEFINITION": "Case definition",
+  "STEM_SUMMARY_TITLE_BASELINE_CONSENT": "Consent",
+  "SUMMARY_TITLE_LAB_LOG": "Lab results log",
+  "DASHBOARD_TITLE_HEP_FORMS": "HEP C Forms",
+  "SUMMARY_TITLE_STEMTB_FOLLOWUP_ISHIHARA": "Ishihara"
 
 }

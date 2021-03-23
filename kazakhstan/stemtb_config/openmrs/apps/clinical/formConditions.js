@@ -1055,7 +1055,7 @@ if (SAETerm && (SAETerm == "Other" || SAETerm.value == "Other")) {
         return conditions;
     },
     'Baseline, Start date of past TB treatment': function (formName, formFieldValues) {
-        var conceptToEnable = ["Baseline, Past TB treatment drug regimen", "StemTB Baseline, Past TB treatment outcome"];
+        var conceptToEnable = ["Baseline, Past TB treatment drug regimen"];
         var conditions = {enable: [], disable: []};
         var conditionConcept = formFieldValues['Baseline, Start date of past TB treatment'];
         if (conditionConcept) {
@@ -1148,7 +1148,7 @@ if (SAETerm && (SAETerm == "Other" || SAETerm.value == "Other")) {
         var lastCD = "StemTB Baseline, Last CD4 Count";
         var cdDate = "CD4 date";
         var rna = "StemTB Baseline, Last RNA Viral Load";
-	var undetectable = "Undetectable, If viral load results are undetectable, write the result here (for example, '< 20')";
+	var undetectable = "Hep C, If undetactable is yes, Viral load result";
         var vload = "Baseline, Viral Load Date";
         var arvTreatment = "StemTB Baseline, Currently on ARV treatment?";
         var arvInitiation = "StemTB Baseline, Date of ARV initiation";
