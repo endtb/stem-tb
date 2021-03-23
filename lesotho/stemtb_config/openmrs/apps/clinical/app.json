@@ -1151,6 +1151,10 @@
         "StemTB PTO, Reasons for no post treatment followup":{
         "multiSelect": true
         },
+
+        "StemTB Baseline, Past TB treatment table": {
+                "allowAddMore": true
+        },
 	"StemTB Baseline, Group1 Drugs": {
         "disableAddNotes": true,
         "multiSelect": true

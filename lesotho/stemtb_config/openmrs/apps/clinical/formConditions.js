@@ -223,31 +223,15 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var enStartDate = "TUBERCULOSIS DRUG TREATMENT START DATE";
         var enReason = "TI, Reason for not starting treatment";
         var txFacility = "TI, Treatment facility at start";
-        var txRegimen = "TI, Type of treatment regimen";
-        var firstLine = "TI, First line drug regimen type";
-        var secondLine = "TI, Second line regimen drug type";
         var dateOfDeath = "TI, Date of death before treatment start";
         var conditionConcept = formFieldValues['TI, Did the patient start treatment'];
         if (conditionConcept == false) {
-            return {enable: [enReason], disable: [enStartDate, txFacility, txRegimen, firstLine, secondLine]}
+            return {enable: [enReason], disable: [enStartDate, txFacility]}
         } else if (conditionConcept == true) {
-            return {enable: [enStartDate, txFacility, txRegimen], disable: [enReason, dateOfDeath]}
+            return {enable: [enStartDate, txFacility], disable: [enReason, dateOfDeath]}
         }
         else {
-            return {disable: [enStartDate, txFacility, txRegimen, firstLine, secondLine, enReason, dateOfDeath]}
-        }
-    },
-    'TI, Type of treatment regimen': function (formName, formFieldValues) {
-        var txRegimen = "TI, Type of treatment regimen";
-        var firstLine = "TI, First line drug regimen type";
-        var secondLine = "TI, Second line regimen drug type";
-        var conditionConcept = formFieldValues['TI, Type of treatment regimen'];
-        if (conditionConcept == 'Only 1st line drugs') {
-            return {enable: [firstLine], disable: [secondLine]}
-        } else if (conditionConcept == 'Regimen including 2nd line drugs') {
-            return {enable: [secondLine], disable: [firstLine]}
-        } else {
-            return {disable: [firstLine, secondLine]}
+            return {disable: [enStartDate, txFacility, enReason, dateOfDeath]}
         }
     },
     'TI, Currently pregnant': function (formName, formFieldValues) {
@@ -374,7 +358,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var enNonTB = "EOT, Non TB cause of death";
         var enReason = "EOT, Reasons for failure definition";
         var enOther = "EOT, Other reasons for failure definition";
-        var withdrawal = "All Oral STR, Withdrawal";
         if (outcome == "Died") {
             conditions.enable.push(enDOD, enCOD);
         } else {
@@ -401,11 +384,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         } else {
             conditions.disable.push(enTransferOut, enTransferred, enOtherReason);
         }
-        if (outcome == "All Oral STR, Withdrawn") {
-                    conditions.enable.push(withdrawal);
-                } else {
-                    conditions.disable.push(withdrawal);
-                }
         return conditions;
     },
     'EOT, Suspected primary cause of death': function (formName, formFieldValues) {
@@ -1055,7 +1033,7 @@ if (SAETerm && (SAETerm == "Other" || SAETerm.value == "Other")) {
         return conditions;
     },
     'Baseline, Start date of past TB treatment': function (formName, formFieldValues) {
-        var conceptToEnable = ["Baseline, Past TB treatment drug regimen", "StemTB Baseline, Past TB treatment outcome"];
+        var conceptToEnable = ["Baseline, Past TB treatment drug regimen"];
         var conditions = {enable: [], disable: []};
         var conditionConcept = formFieldValues['Baseline, Start date of past TB treatment'];
         if (conditionConcept) {
@@ -1302,18 +1280,6 @@ if (SAETerm && (SAETerm == "Other" || SAETerm.value == "Other")) {
                    }
                 return conditions;
              },
-
-	'TUBERCULOSIS DRUG TREATMENT START DATE': function (formName, formFieldValues) {
-        var conceptToEnable = ["StemTB Baseline, Treatment facility at start" ,"StemTB Baseline, Other treatment facility", "Facility patient ID"];
-        var conditions = {enable: [], disable: []};
-        var conditionConcept = formFieldValues['TUBERCULOSIS DRUG TREATMENT START DATE'];
-        if (conditionConcept) {
-            conditions.enable = conceptToEnable
-        } else {
-            conditions.disable = conceptToEnable
-        }
-        return conditions;
-    },
 
 	"StemTB Baseline, Treatment facility at start" : function (formName, formFieldValues) {
 	var conditions = {enable: [], disable: []};
@@ -1732,18 +1698,6 @@ if(conditionConcept == "StemTB Quarterly PTO, Patient family member" || conditio
         return conditions;
     },
 
-	"Xray, Extent of disease": function (formName, formFieldValues) {
-        var conceptEnCavity = "StemTB, Cavity size (aggregate)";
-        var conceptEnFibrosis = "StemTB, Presence of Fibrosis";
-        var conditions = {enable: [], disable: []};
-        var conditionConcept = formFieldValues["Xray, Extent of disease"];
-        if (conditionConcept == "Normal" || !conditionConcept) {
-            conditions.disable.push(conceptEnCavity, conceptEnFibrosis)
-        } else {
-            conditions.enable.push(conceptEnCavity, conceptEnFibrosis)
-        }
-        return conditions;
-	},
 
 	"StemTB Baseline, Confirmed Hepatitis B": function (formName, formFieldValues) {
         var conditions = {enable: [], disable: []};
