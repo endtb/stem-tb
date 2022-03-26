@@ -32,7 +32,7 @@
 					"Lab Results Biochemistry Template",
 					"Lab Results Serology Template",
 					"Lab Results Pregnancy Template",
-					"Lab Results Other Tests Template", 
+					"Lab Results Other Tests Template",
 					"StemTB, Lab Results Log",
 					"Xray Template",
 					"Audiometry Template",
@@ -244,26 +244,26 @@
 					"showGroupDateTime": false,
 					"persistOrderOfConcepts": true,
 					"conceptNames": [
-					"StemTB Baseline, Confirmed HIV serostatus",
-					"Date of HIV diagnosis",
-					"StemTB Baseline, Last CD4 Count",
-					"CD4 date",
-					"StemTB Baseline, Last RNA Viral Load",
-					"If viral load results are undetectable, write the result here (for example, '< 20')",
-					"Baseline, Viral Load Date",
-					"StemTB Baseline, Currently on ARV treatment?",
-					"StemTB Baseline, Date of ARV initiation",
-					"Baseline, Drugs used in ARV treatment",
-					"StemTB Baseline, Started on CPT?",
-					"StemTB Baseline, CPT Date",
-					"StemTB Baseline, Diabetes (type 1 or 2)",
-					"StemTB Baseline, If yes last HbA1c",
-					"StemTB Baseline, Confirmed Hepatitis B",
-					"StemTB Baseline, Hep B Antigen Date",
-					"StemTB Baseline, Confirmed Hepatitis C",
-					"StemTB Baseline, Hep C Antibody Date",
-					"Baseline, Pre-existing neuropathy",
-					"Baseline, Neuropathy grade"
+						"StemTB Baseline, Confirmed HIV serostatus",
+						"Date of HIV diagnosis",
+						"StemTB Baseline, Last CD4 Count",
+						"CD4 date",
+						"StemTB Baseline, Last RNA Viral Load",
+						"If viral load results are undetectable, write the result here (for example, '< 20')",
+						"Baseline, Viral Load Date",
+						"StemTB Baseline, Currently on ARV treatment?",
+						"StemTB Baseline, Date of ARV initiation",
+						"Baseline, Drugs used in ARV treatment",
+						"StemTB Baseline, Started on CPT?",
+						"StemTB Baseline, CPT Date",
+						"StemTB Baseline, Diabetes (type 1 or 2)",
+						"StemTB Baseline, If yes last HbA1c",
+						"StemTB Baseline, Confirmed Hepatitis B",
+						"StemTB Baseline, Hep B Antigen Date",
+						"StemTB Baseline, Confirmed Hepatitis C",
+						"StemTB Baseline, Hep C Antibody Date",
+						"Baseline, Pre-existing neuropathy",
+						"Baseline, Neuropathy grade"
 					]
 				},
 				"displayOrder": 3,
@@ -291,24 +291,24 @@
 				"displayOrder": 4,
 				"translationKey": "STEM_SUMMARY_TITLE_BASELINE_CASEDEFINITION"
 			},
-			
+
 			"stemtbpreviousTBTreatmentRegimen": {
-                                "translationKey": "SUMMARY_TITLE_PREVIOUS_TB_TREATMENT_TABLE",
-                                "type": "obsToObsFlowSheet",
-                                "headingConceptSource": "Abbreviation",
-                                "dataConceptSource": "Abbreviation",
-                                "displayType": "Half-Page",
-                                "displayOrder": 7,
-                                "dashboardConfig": {
-                                        "groupByConcept": "Baseline, Start date of past TB treatment",
-                                        "templateName": "StemTB Baseline, Past TB treatment table",
-                                        "conceptNames": [
-                                                "Baseline, Past TB treatment drug regimen",
-                                                "StemTB Baseline, Past TB treatment outcome"
-                                        ],
-                                        "type": "PreviousTBTreatmentRegimen"
-                                }
-                        },
+				"translationKey": "SUMMARY_TITLE_PREVIOUS_TB_TREATMENT_TABLE",
+				"type": "obsToObsFlowSheet",
+				"headingConceptSource": "Abbreviation",
+				"dataConceptSource": "Abbreviation",
+				"displayType": "Half-Page",
+				"displayOrder": 7,
+				"dashboardConfig": {
+					"groupByConcept": "Baseline, Start date of past TB treatment",
+					"templateName": "StemTB Baseline, Past TB treatment table",
+					"conceptNames": [
+						"Baseline, Past TB treatment drug regimen",
+						"StemTB Baseline, Past TB treatment outcome"
+					],
+					"type": "PreviousTBTreatmentRegimen"
+				}
+			},
 
 			"weightBMI": {
 				"displayType": "Half-Page",
@@ -329,23 +329,23 @@
 			},
 
 			"SAEweightBMI": {
-                                "displayType": "Half-Page",
-                                "translationKey": "SUMMARY_TITLE_SAE_WEIGHT_VS_BMI",
-                                "type": "obsToObsFlowSheet",
-                                "headingConceptSource": "Abbreviation",
-                                "dataConceptSource": "Abbreviation",
-                                "displayOrder": 6,
-                                "dashboardConfig": {
-                                        "pivotOn": "row",
-                                        "templateName": "Serious Adverse Events Template",
-                                        "groupByConcept": "SAE Form, Date of SAE report",
-                                        "type": "BMIExtension",
-                                        "conceptNames": [
-                                                "Weight (kg)",
+				"displayType": "Half-Page",
+				"translationKey": "SUMMARY_TITLE_SAE_WEIGHT_VS_BMI",
+				"type": "obsToObsFlowSheet",
+				"headingConceptSource": "Abbreviation",
+				"dataConceptSource": "Abbreviation",
+				"displayOrder": 6,
+				"dashboardConfig": {
+					"pivotOn": "row",
+					"templateName": "Serious Adverse Events Template",
+					"groupByConcept": "SAE Form, Date of SAE report",
+					"type": "BMIExtension",
+					"conceptNames": [
+						"Weight (kg)",
 						"Height (cm)"
-                                        ]
-                                }
-                        },
+					]
+				}
+			},
 
 
 			"BaselineBPNSDisplayleft": {
@@ -743,19 +743,18 @@
 				"dataConceptSource": "Abbreviation",
 				"displayOrder": 26,
 				"dashboardConfig": {
-					"groupByConcept": "AE Form, AE term comprehensive list",
-					"templateName": "Adverse Events Template",
+					"groupByConcept": "StemTB, AE term comprehensive list",
+					"templateName": "StemTB, Adverse Events Template",
 					"obsDelimiter": "\n",
 					"conceptNames": [
 						"AE Form, AE ID number",
-						"AE Form, SAE Case Number",
-						"AE Form, Date of AE onset",
-						"AE Form, AE Grade",
-						"AE Form, AE review date",
-						"AE Form, AE severity at review",
-						"AE Form, Maximum severity of AE",
+						"AE Form, Date of AE onset ",
+						"StemTB, Date of AE report",
+						"StemTB, AE Grade",
+						"StemTB, Were all anti-TB drugs suspended due to this AE",
+						"AE Form, Other AE term",
 						"AE Form, Date of AE Outcome",
-						"AE Form, AE outcome"
+						"StemTB, AE outcome"
 					]
 				}
 			},
@@ -1584,4 +1583,3 @@
 		"translationKey": "DASHBOARD_TAB_PATIENT_MONITORING_DRUGS_START_DATE_KEY"
 	}
 }
-
