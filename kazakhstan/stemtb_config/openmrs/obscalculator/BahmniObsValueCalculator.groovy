@@ -85,6 +85,11 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     	formNames.put("StemTB, Outcome End of Treatment Template", ["StemTB, Tuberculosis treatment end date"]);
     	formNames.put("StemTB Quarterly PTO, Quarterly Post Treatment Template", ["StemTB Quarterly PTO, Date of End of Treatment"]);
     	formNames.put("StemTB, Final Post-Treatment Outcome Template", ["StemTB PTO, Date of post-treatment outcome decision"]);
+        formNames.put("MH, Baseline Template", ["MH, Baseline Visit Date"]);
+        formNames.put("MH, Visit Template", ["MH, Followup Visit Date"]);
+        formNames.put("MH, Common Elements Treatment Approach Baseline Visit Template", ["MH, Commons Element Visit Date"]);
+        formNames.put("MH, Common Elements Treatment Approach Follow-up Visit Template", ["MH, Commons Element Treatment Visit Date"]);
+        formNames.put("MH, Outcome of Patient Template", ["MH, Date of outcome"]);
     }
 
     public void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
