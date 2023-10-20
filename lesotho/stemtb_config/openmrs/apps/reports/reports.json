@@ -120,7 +120,7 @@
     }
   },
   "stemTBAdverseEventsReport": {
-    "name": "stemTB Adverse Events Report (Excel)",
+    "name": "Lesotho stemTB Adverse Events Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/stemTBAdverseEvents.sql"

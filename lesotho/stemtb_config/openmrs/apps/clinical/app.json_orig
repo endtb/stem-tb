@@ -264,11 +264,15 @@
       "6m PTO, Other reasons for no post treatment outcome": {
         "conciseText": true
       },
+      "AE Form, Date of AE report": {
+        "required": true
+      },
       "Adverse Events Template": {
         "allowAddMore": true
       },
       "AE Form, AE term comprehensive list": {
-        "dropdown": true
+        "dropdown": true,
+        "required":true
       },
       "AE Form, Other AE term": {
         "conciseText": true
