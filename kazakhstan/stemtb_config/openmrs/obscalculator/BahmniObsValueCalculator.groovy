@@ -50,41 +50,41 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     }
 
     static {
-        formNames = new HashMap<String, String>();
-        formNames.put("Baseline Template", "Baseline, Date of baseline");
-        formNames.put("Treatment Initiation Template", "TUBERCULOSIS DRUG TREATMENT START DATE");
-        formNames.put("Followup Template", "Followup, Visit Date");
-        formNames.put("Outcome End of Treatment Template", "Tuberculosis treatment end date");
-        formNames.put("6 month Post Treatment Outcome Template", "6m PTO, 6 month post treatment outcome date");
-        formNames.put("Adverse Events Template", "AE Form, Date of AE report");
-        formNames.put("Serious Adverse Events Template", "SAE Form, Date of SAE report");
-        formNames.put("Pregnancy Report Form Template", "PRF, Date reporter made aware of pregnancy");
-        formNames.put("Hospital Admission Notification Template", "HAN, Hospital admission date");
-        formNames.put("Hospital Discharge Summary Template", "HDS, Hospital discharge date");
-        formNames.put("Lab Results Hemotology Template", "Specimen Collection Date");
-        formNames.put("Lab Results Biochemistry Template", "Specimen Collection Date");
-        formNames.put("Lab Results Serology Template", "Specimen Collection Date");
-        formNames.put("Lab Results Pregnancy Template", "Specimen Collection Date");
-        formNames.put("Lab Results Other Tests Template", "Specimen Collection Date");
-        formNames.put("Xray Template", "Xray, Chest Xray Date");
-        formNames.put("Audiometry Template", "Audiometry, Audiometry date");
-        formNames.put("Electrocardiogram Template", "EKG, Date of EKG");
-        formNames.put("Monthly Treatment Completeness Template", "MTC, Month and year of treatment period");
-        formNames.put("Performance Status Template", "Performance Status, Assessment date");
-        formNames.put("Documents Template", "Documents, Date");
-        formNames.put("Hep C Treatment Outcome Template", "HTO, The last day the patient received hepatitis C treatment");
-        formNames.put("Hep C Treatment Initiation Template", "HTI, DAA treatment start date:");
-        formNames.put("Depression Alcohol Score Template", "DAS, Date alcohol abuse or PHQ-9 screening performed");
-	formNames.put("StemTB, Baseline Template", "Baseline, Date of baseline");
-    	formNames.put("StemTB, Monthly Clinical Examination Log", "Followup, Visit Date");
-    	formNames.put("StemTB, Chest X-ray Template", "StemTB, Chest Xray Date");
-    	formNames.put("StemTB, Hospitalization Template", "StemTB, Hospitalization Dates");
-   	formNames.put("StemTB, Lab Results Log", "Specimen Collection Date");
-    	formNames.put("StemTB, Adverse Events Template", "StemTB, Date of AE report");
-    	formNames.put("StemTB, Monthly Treatment Completeness", "MTC, Month and year of treatment period");
-    	formNames.put("StemTB, Outcome End of Treatment Template", "StemTB, Tuberculosis treatment end date");
-    	formNames.put("StemTB Quarterly PTO, Quarterly Post Treatment Template", "StemTB Quarterly PTO, Date of End of Treatment");
-    	formNames.put("StemTB, Final Post-Treatment Outcome Template", "StemTB PTO, Date of post-treatment outcome decision");
+        formNames = new HashMap<String, List<String>>();
+        formNames.put("Baseline Template", ["Baseline, Date of baseline"]);
+        formNames.put("Treatment Initiation Template", ["TUBERCULOSIS DRUG TREATMENT START DATE"]);
+        formNames.put("Followup Template", ["Followup, Visit Date"]);
+        formNames.put("Outcome End of Treatment Template", ["Tuberculosis treatment end date"]);
+        formNames.put("6 month Post Treatment Outcome Template", ["6m PTO, 6 month post treatment outcome date"]);
+        formNames.put("Adverse Events Template", ["AE Form, Date of AE report"]);
+        formNames.put("Serious Adverse Events Template", ["SAE Form, Date of SAE report"]);
+        formNames.put("Pregnancy Report Form Template", ["PRF, Date reporter made aware of pregnancy"]);
+        formNames.put("Hospital Admission Notification Template", ["HAN, Hospital admission date"]);
+        formNames.put("Hospital Discharge Summary Template", ["HDS, Hospital discharge date"]);
+        formNames.put("Lab Results Hemotology Template", ["Specimen Collection Date"]);
+        formNames.put("Lab Results Biochemistry Template", ["Specimen Collection Date"]);
+        formNames.put("Lab Results Serology Template", ["Specimen Collection Date"]);
+        formNames.put("Lab Results Pregnancy Template", ["Specimen Collection Date"]);
+        formNames.put("Lab Results Other Tests Template", ["Specimen Collection Date"]);
+        formNames.put("Xray Template", ["Xray, Chest Xray Date"]);
+        formNames.put("Audiometry Template", ["Audiometry, Audiometry date"]);
+        formNames.put("Electrocardiogram Template", ["EKG, Date of EKG"]);
+        formNames.put("Monthly Treatment Completeness Template", ["MTC, Month and year of treatment period"]);
+        formNames.put("Performance Status Template", ["Performance Status, Assessment date"]);
+        formNames.put("Documents Template", ["Documents, Date"]);
+        formNames.put("Hep C Treatment Outcome Template", ["HTO, The last day the patient received hepatitis C treatment"]);
+        formNames.put("Hep C Treatment Initiation Template", ["HTI, DAA treatment start date:"]);
+        formNames.put("Depression Alcohol Score Template", ["DAS, Date alcohol abuse or PHQ-9 screening performed"]);
+	    formNames.put("StemTB, Baseline Template", ["Baseline, Date of baseline"]);
+    	formNames.put("StemTB, Monthly Clinical Examination Log", ["Followup, Visit Date"]);
+    	formNames.put("StemTB, Chest X-ray Template", ["StemTB, Chest Xray Date"]);
+    	formNames.put("StemTB, Hospitalization Dates", ["StemTB, If hospitalized, start date", "StemTB, If hospitalized, end date"]);
+   	    formNames.put("StemTB, Lab Results Log", ["Specimen Collection Date"]);
+    	formNames.put("StemTB, Adverse Events Template", ["StemTB, Date of AE report"]);
+    	formNames.put("StemTB, Monthly Treatment Completeness", ["MTC, Month and year of treatment period"]);
+    	formNames.put("StemTB, Outcome End of Treatment Template", ["StemTB, Tuberculosis treatment end date"]);
+    	formNames.put("StemTB Quarterly PTO, Quarterly Post Treatment Template", ["StemTB Quarterly PTO, Date of End of Treatment"]);
+    	formNames.put("StemTB, Final Post-Treatment Outcome Template", ["StemTB PTO, Date of post-treatment outcome decision"]);
     }
 
     public void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
@@ -140,19 +140,22 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 changeObservationDateTime(groupMember);
             }
         }
-        if (formNames.get(observation.getConcept().getName())) {
-            Collection<BahmniObservation> observations = new TreeSet<BahmniObservation>();
-            observations.add(observation);
-            BahmniObservation dateObs = find(formNames.get(observation.getConcept().getName()), observations, null);
+        List<String> formNameConcepts = formNames.get(observation.getConcept().getName());
+        if (formNameConcepts != null && !formNameConcepts.isEmpty()) {
+            for (String conceptName : formNameConcepts) {
+                Collection<BahmniObservation> observations = new TreeSet<BahmniObservation>();
+                observations.add(observation);
+                BahmniObservation dateObs = find(conceptName, observations, null);
 
-            if (dateObs && dateObs.getValueAsString()!= "") {
-                String target = dateObs.getValueAsString();
-                String timezoneInfo = new Date().format("Z");
-                String dateWithTimeZoneInfo = target + "T12:00:00.000" + timezoneInfo;
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-                Date result = df.parse(dateWithTimeZoneInfo);
+                if (dateObs && dateObs.getValueAsString() != "") {
+                    String target = dateObs.getValueAsString();
+                    String timezoneInfo = new Date().format("Z");
+                    String dateWithTimeZoneInfo = target + "T12:00:00.000" + timezoneInfo;
+                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+                    Date result = df.parse(dateWithTimeZoneInfo);
 
-                changeDateTime(observation, result);
+                    changeDateTime(observation, result);
+                }
             }
         }
     }
