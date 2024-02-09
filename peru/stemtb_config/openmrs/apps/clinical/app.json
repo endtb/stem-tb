@@ -623,6 +623,15 @@
       "ECOG Performance Status": {
         "dropdown": true
       },
+      "Modified Dyspnea Scale Template": {
+        "allowAddMore": true
+      },
+      "Modified Dyspnea Scale, Assessment Date": {
+        "required": true
+      },
+      "Modified Dyspnea Scale, Assessment": {
+        "dropdown": true
+      },
       "BACTERIOLOGY_SAMPLE_ID": {
         "conciseText": true
       },

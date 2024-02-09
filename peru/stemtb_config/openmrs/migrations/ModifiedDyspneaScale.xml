@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="STEMTB-Peru-20240209" author="PIH">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_view where concept_full_name = 'Modified Dyspnea Scale Template';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Modified Dyspnea Scale</comment>
+        <sql>
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+
+            set @date_concept_id = 0;
+            call add_concept(@date_concept_id, @concept_name_short_id, @concept_name_full_id, 'Modified Dyspnea Scale, Assessment Date', 'Assessment Date', 'Date', 'Misc', false);
+
+            set @scale_concept_id = 0;
+            call add_concept(@scale_concept_id, @concept_name_short_id, @concept_name_full_id, 'Modified Dyspnea Scale, Assessment', 'Assessment', 'Coded', 'Misc', false);
+
+            set @answer_concept_id = 0;
+            call add_concept(@answer_concept_id, @concept_name_short_id, @concept_name_full_id, 'I only get out of breath when I exercise very intensely', '0=I only get out of breath when I exercise very intensely', 'N/A', 'Misc', false);
+            call add_concept_answer (@scale_concept_id, @answer_concept_id, 1);
+            call add_concept(@answer_concept_id, @concept_name_short_id, @concept_name_full_id, 'I have trouble breathing when I walk quickly on a flat surface or walk up a slight slope', '1=I have trouble breathing when I walk quickly on a flat surface or walk up a slight slope', 'N/A', 'Misc', false);
+            call add_concept_answer (@scale_concept_id, @answer_concept_id, 2);
+            call add_concept(@answer_concept_id, @concept_name_short_id, @concept_name_full_id, 'I walk slower than other people my age on a flat surface because I get out of breath or have to stop to breathe when I walk at my own pace on a flat surface', '2=I walk slower than other people my age on a flat surface because I get out of breath or have to stop to breathe when I walk at my own pace on a flat surface', 'N/A', 'Misc', false);
+            call add_concept_answer (@scale_concept_id, @answer_concept_id, 3);
+            call add_concept(@answer_concept_id, @concept_name_short_id, @concept_name_full_id, 'I stop to breathe after walking about 100 yards or after walking a few minutes on a flat surface', '3=I stop to breathe after walking about 100 yards or after walking a few minutes on a flat surface', 'N/A', 'Misc', false);
+            call add_concept_answer (@scale_concept_id, @answer_concept_id, 4);
+            call add_concept(@answer_concept_id, @concept_name_short_id, @concept_name_full_id, 'I''m too short of breath to leave the house” or “I''m out of breath when I get dressed', '4=I''m too short of breath to leave the house” or “I''m out of breath when I get dressed', 'N/A', 'Misc', false);
+            call add_concept_answer (@scale_concept_id, @answer_concept_id, 5);
+
+            set @template_concept_id = 0;
+            call add_concept(@template_concept_id, @concept_name_short_id, @concept_name_full_id, 'Modified Dyspnea Scale Template', 'Modified Dyspnea Scale', 'N/A', 'Misc', true);
+            call add_concept_set_members (@template_concept_id, @date_concept_id, 1);
+            call add_concept_set_members (@template_concept_id, @scale_concept_id, 2);
+
+            set @all_template_concept_id = 0;
+            select concept_id into @all_template_concept_id from concept_view where concept_full_name = 'All Observation Templates';
+            select max(sort_weight)+1 into @weight from concept_set where concept_set = @all_template_concept_id;
+            call add_concept_set_members (@all_template_concept_id, @template_concept_id, @weight);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

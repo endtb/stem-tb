@@ -38,7 +38,8 @@
 					"Audiometry Template",
 					"Electrocardiogram Template",
 					"Performance Status Template",
-					"StemTB, Chest X-ray Template"
+					"StemTB, Chest X-ray Template",
+					"Modified Dyspnea Scale Template"
 				],
 				"translationKey": "DASHBOARD_TITLE_LAB_TESTS_FORMS"
 			},

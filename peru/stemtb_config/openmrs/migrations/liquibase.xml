@@ -2543,6 +2543,7 @@
     <include file ="Pastinformation.xml"/>
     <include file ="NewLabResults.xml"/>
     <include file ="ExternalCohort.xml"/>
+    <include file ="ModifiedDyspneaScale.xml"/>
     <changeSet id="ENDTB-201807171208" author="Sudhamsh">
     <preConditions onFail="MARK_RAN">
         <sqlCheck expectedResult="1">
