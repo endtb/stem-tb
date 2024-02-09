@@ -630,7 +630,8 @@
         "required": true
       },
       "Modified Dyspnea Scale, Assessment": {
-        "dropdown": true
+        "dropdown": true,
+        "required": true
       },
       "BACTERIOLOGY_SAMPLE_ID": {
         "conciseText": true
