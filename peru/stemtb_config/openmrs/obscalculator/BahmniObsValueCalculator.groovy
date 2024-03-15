@@ -75,9 +75,6 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         formNames.put("Hep C Treatment Outcome Template", "HTO, The last day the patient received hepatitis C treatment");
         formNames.put("Hep C Treatment Initiation Template", "HTI, DAA treatment start date:");
         formNames.put("Depression Alcohol Score Template", "DAS, Date alcohol abuse or PHQ-9 screening performed");
-<<<<<<< Updated upstream
-    }
-=======
 	    formNames.put("StemTB, Baseline Template", "Baseline, Date of baseline");
    	    formNames.put("StemTB, Monthly Clinical Examination Log", "Followup, Visit Date");
     	formNames.put("StemTB, Chest X-ray Template", "StemTB, Chest Xray Date");
@@ -88,10 +85,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     	formNames.put("StemTB, Outcome End of Treatment Template", "StemTB, Tuberculosis treatment end date");
     	formNames.put("StemTB Quarterly PTO, Quarterly Post Treatment Template", "StemTB Quarterly PTO, Date of End of Treatment");
     	formNames.put("StemTB, Final Post-Treatment Outcome Template", "StemTB PTO, Date of post-treatment outcome decision");
-        formNames.put("STEM-TB - dyspnea scale Template", "STEM-TB - dyspnea scale, Fecha de Intervención");
-        formNames.put("STEM-TB - quality of life scale Template", "STEM-TB - quality of life scale, Fecha de Intervención");   
-}
->>>>>>> Stashed changes
+    }
 
     public void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
         List<String> conceptNames = Arrays.asList("Baseline, Clinical Examination", "Followup, Clinical Examination", "Monthly Treatment Completeness Template");
