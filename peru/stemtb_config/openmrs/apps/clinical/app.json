@@ -623,14 +623,43 @@
       "ECOG Performance Status": {
         "dropdown": true
       },
-      "Modified Dyspnea Scale Template": {
+      "STEM-TB - dyspnea scale Template": {
         "allowAddMore": true
       },
-      "Modified Dyspnea Scale, Assessment Date": {
+      "STEM-TB - dyspnea scale, Fecha de Intervención": {
         "required": true
       },
-      "Modified Dyspnea Scale, Assessment": {
+      "STEM-TB - dyspnea scale, Evaluación": {
         "dropdown": true,
+        "required": true
+      },
+      "STEM-TB - quality of life scale Template": {
+        "allowAddMore": true
+      },
+      "STEM-TB - quality of life scale, Fecha de Intervención": {
+        "required": true
+      },
+      "STEM-TB - quality of life scale, Movilidad": {
+        "dropdown": true,
+        "required": true
+      },
+      "STEM-TB - quality of life scale, Auto-cuidado": {
+        "dropdown": true,
+        "required": true
+      },
+      "STEM-TB - quality of life scale, Actividades cotidianas": {
+        "dropdown": true,
+        "required": true
+      },
+      "STEM-TB - quality of life scale, Dolor / malestar": {
+        "dropdown": true,
+        "required": true
+      },
+      "STEM-TB - quality of life scale, Ansiedad /depresión": {
+        "dropdown": true,
+        "required": true
+      },
+      "STEM-TB - quality of life scale, Su salud HOY": {
         "required": true
       },
       "BACTERIOLOGY_SAMPLE_ID": {

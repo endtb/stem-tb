@@ -75,7 +75,8 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         formNames.put("Hep C Treatment Outcome Template", "HTO, The last day the patient received hepatitis C treatment");
         formNames.put("Hep C Treatment Initiation Template", "HTI, DAA treatment start date:");
         formNames.put("Depression Alcohol Score Template", "DAS, Date alcohol abuse or PHQ-9 screening performed");
-        formNames.put("Modified Dyspnea Scale Template", "Modified Dyspnea Scale, Assessment Date");
+        formNames.put("STEM-TB - dyspnea scale Template", "STEM-TB - dyspnea scale, Fecha de Intervención");
+        formNames.put("STEM-TB - quality of life scale Template", "STEM-TB - quality of life scale, Fecha de Intervención");
     }
 
     public void run(BahmniEncounterTransaction bahmniEncounterTransaction) {

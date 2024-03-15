@@ -38,8 +38,7 @@
 					"Audiometry Template",
 					"Electrocardiogram Template",
 					"Performance Status Template",
-					"StemTB, Chest X-ray Template",
-					"Modified Dyspnea Scale Template"
+					"StemTB, Chest X-ray Template"
 				],
 				"translationKey": "DASHBOARD_TITLE_LAB_TESTS_FORMS"
 			},
@@ -784,6 +783,30 @@
 						"SAE Form, SAE outcome"
 					]
 				}
+			},
+			"stemTbDyspneaScale": {
+				"type": "forms",
+				"displayOrder": 28,
+				"dashboardConfig": {
+					"title": null,
+					"maximumNoOfVisits": 1000
+				},
+				"formGroup": [
+					"STEM-TB - dyspnea scale Template"
+				],
+				"translationKey": "STEM-TB - dyspnea scale"
+			},
+			"stemTbQualityOfLife": {
+				"type": "forms",
+				"displayOrder": 29,
+				"dashboardConfig": {
+					"title": null,
+					"maximumNoOfVisits": 1000
+				},
+				"formGroup": [
+					"STEM-TB - quality of life scale Template"
+				],
+				"translationKey": "STEM-TB - quality of life scale"
 			}
 		},
 		"translationKey": "STEMTB_DASHBOARD_TAB_PATIENT_SUMMARY_KEY"
