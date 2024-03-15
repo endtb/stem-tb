@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="STEMTB-Peru-add-modified-dyspnea-scale" author="PIH">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_view where concept_full_name = 'STEM-TB - dyspnea scale Template';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding STEM-TB - dyspnea scale</comment>
+        <sql>
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+
+            set @date_concept_id = 0;
+            call add_concept(@date_concept_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - dyspnea scale, Fecha de Intervención', 'Fecha de Intervención', 'Date', 'Misc', false);
+
+            set @scale_concept_id = 0;
+            call add_concept(@scale_concept_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - dyspnea scale, Evaluación', 'Evaluación', 'Coded', 'Misc', false);
+
+            set @answer_concept_id = 0;
+            call add_concept(@answer_concept_id, @concept_name_short_id, @concept_name_full_id, 'Solo me quedo sin aire cuando hago ejercicio muy intenso', '0=Solo me quedo sin aire cuando hago ejercicio muy intenso', 'N/A', 'Misc', false);
+            call add_concept_answer (@scale_concept_id, @answer_concept_id, 1);
+            call add_concept(@answer_concept_id, @concept_name_short_id, @concept_name_full_id, 'Me cuesta respirar cuando camino rápido en una superficie plana o subo caminando una pendiente leve', '1=Me cuesta respirar cuando camino rápido en una superficie plana o subo caminando una pendiente leve', 'N/A', 'Misc', false);
+            call add_concept_answer (@scale_concept_id, @answer_concept_id, 2);
+            call add_concept(@answer_concept_id, @concept_name_short_id, @concept_name_full_id, 'Camino más lentamente que otras personas de mi edad en una superficie plana porque me quedo sin aire o tengo que detenerme para respirar cuando camino a mi propio ritmo sobre una superficie plana', '2=Camino más lentamente que otras personas de mi edad en una superficie plana porque me quedo sin aire o tengo que detenerme para respirar cuando camino a mi propio ritmo sobre una superficie plana', 'N/A', 'Misc', false);
+            call add_concept_answer (@scale_concept_id, @answer_concept_id, 3);
+            call add_concept(@answer_concept_id, @concept_name_short_id, @concept_name_full_id, 'Me detengo para respirar después de caminar unas 100 yardas o después de caminar algunos minutos sobre una superficie plana', '3=Me detengo para respirar después de caminar unas 100 yardas o después de caminar algunos minutos sobre una superficie plana', 'N/A', 'Misc', false);
+            call add_concept_answer (@scale_concept_id, @answer_concept_id, 4);
+            call add_concept(@answer_concept_id, @concept_name_short_id, @concept_name_full_id, 'Me falta mucho el aire para salir de casa o Me quedo sin aire cuando me visto', '4=Me falta mucho el aire para salir de casa o Me quedo sin aire cuando me visto', 'N/A', 'Misc', false);
+            call add_concept_answer (@scale_concept_id, @answer_concept_id, 5);
+
+            set @template_concept_id = 0;
+            call add_concept(@template_concept_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - dyspnea scale Template', 'STEM-TB - dyspnea scale', 'N/A', 'Misc', true);
+            call add_concept_set_members (@template_concept_id, @date_concept_id, 1);
+            call add_concept_set_members (@template_concept_id, @scale_concept_id, 2);
+
+            set @all_template_concept_id = 0;
+            select concept_id into @all_template_concept_id from concept_view where concept_full_name = 'All Observation Templates';
+            select max(sort_weight)+1 into @weight from concept_set where concept_set = @all_template_concept_id;
+            call add_concept_set_members (@all_template_concept_id, @template_concept_id, @weight);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

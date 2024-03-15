@@ -760,6 +760,30 @@
 						"SAE Form, SAE outcome"
 					]
 				}
+			},
+			"stemTbDyspneaScale": {
+				"type": "forms",
+				"displayOrder": 28,
+				"dashboardConfig": {
+					"title": null,
+					"maximumNoOfVisits": 1000
+				},
+				"formGroup": [
+					"STEM-TB - dyspnea scale Template"
+				],
+				"translationKey": "STEM-TB - dyspnea scale"
+			},
+			"stemTbQualityOfLife": {
+				"type": "forms",
+				"displayOrder": 29,
+				"dashboardConfig": {
+					"title": null,
+					"maximumNoOfVisits": 1000
+				},
+				"formGroup": [
+					"STEM-TB - quality of life scale Template"
+				],
+				"translationKey": "STEM-TB - quality of life scale"
 			}
 		},
 		"translationKey": "STEMTB_DASHBOARD_TAB_PATIENT_SUMMARY_KEY"

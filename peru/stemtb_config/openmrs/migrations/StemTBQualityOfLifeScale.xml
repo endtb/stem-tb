@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="STEMTB-Peru-add-quality-of-life-scale" author="PIH">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_view where concept_full_name = 'STEM-TB - quality of life scale Template';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding STEM-TB - quality of life scale</comment>
+        <sql>
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+
+            set @date_concept_id = 0;
+            call add_concept(@date_concept_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - quality of life scale, Fecha de Intervención', 'Fecha de Intervención', 'Date', 'Misc', false);
+
+            set @q1_id = 0;
+            call add_concept(@q1_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - quality of life scale, Movilidad', 'Movilidad', 'Coded', 'Misc', false);
+
+            set @answer_id = 0;
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'No tengo problemas para caminar', 'No tengo problemas para caminar', 'N/A', 'Misc', false);
+            call add_concept_answer (@q1_id, @answer_id, 1);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo problemas leves para caminar', 'Tengo problemas leves para caminar', 'N/A', 'Misc', false);
+            call add_concept_answer (@q1_id, @answer_id, 2);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo problemas moderados para caminar', 'Tengo problemas moderados para caminar', 'N/A', 'Misc', false);
+            call add_concept_answer (@q1_id, @answer_id, 3);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo problemas graves para caminar', 'Tengo problemas graves para caminar', 'N/A', 'Misc', false);
+            call add_concept_answer (@q1_id, @answer_id, 4);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'No puedo caminar', 'No puedo caminar', 'N/A', 'Misc', false);
+            call add_concept_answer (@q1_id, @answer_id, 5);
+
+            set @q2_id = 0;
+            call add_concept(@q2_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - quality of life scale, Auto-cuidado', 'Auto-cuidado', 'Coded', 'Misc', false);
+
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'No tengo problemas para lavarme o vestirme', 'No tengo problemas para lavarme o vestirme', 'N/A', 'Misc', false);
+            call add_concept_answer (@q2_id, @answer_id, 1);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo problemas leves para lavarme o vestirme', 'Tengo problemas leves para lavarme o vestirme', 'N/A', 'Misc', false);
+            call add_concept_answer (@q2_id, @answer_id, 2);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo problemas moderados para lavarme o vestirme', 'Tengo problemas moderados para lavarme o vestirme', 'N/A', 'Misc', false);
+            call add_concept_answer (@q2_id, @answer_id, 3);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo problemas graves para lavarme o vestirme', 'Tengo problemas graves para lavarme o vestirme', 'N/A', 'Misc', false);
+            call add_concept_answer (@q2_id, @answer_id, 4);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'No puedo lavarme o vestirme', 'No puedo lavarme o vestirme', 'N/A', 'Misc', false);
+            call add_concept_answer (@q2_id, @answer_id, 5);
+
+            set @q3_id = 0;
+            call add_concept(@q3_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - quality of life scale, Actividades cotidianas', 'Actividades cotidianas', 'Coded', 'Misc', false);
+
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'No tengo problemas para realizar mis actividades cotidianas', 'No tengo problemas para realizar mis actividades cotidianas', 'N/A', 'Misc', false);
+            call add_concept_answer (@q3_id, @answer_id, 1);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo problemas leves para realizar mis actividades cotidianas', 'Tengo problemas leves para realizar mis actividades cotidianas', 'N/A', 'Misc', false);
+            call add_concept_answer (@q3_id, @answer_id, 2);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo problemas moderados para realizar mis actividades cotidianas', 'Tengo problemas moderados para realizar mis actividades cotidianas', 'N/A', 'Misc', false);
+            call add_concept_answer (@q3_id, @answer_id, 3);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo problemas graves para realizar mis actividades cotidianas', 'Tengo problemas graves para realizar mis actividades cotidianas', 'N/A', 'Misc', false);
+            call add_concept_answer (@q3_id, @answer_id, 4);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'No puedo realizar mis actividades cotidianas', 'No puedo realizar mis actividades cotidianas', 'N/A', 'Misc', false);
+            call add_concept_answer (@q3_id, @answer_id, 5);
+
+            set @q4_id = 0;
+            call add_concept(@q4_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - quality of life scale, Dolor / malestar', 'Dolor / malestar', 'Coded', 'Misc', false);
+
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'No tengo dolor ni malestar', 'No tengo dolor ni malestar', 'N/A', 'Misc', false);
+            call add_concept_answer (@q4_id, @answer_id, 1);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo dolor o malestar leve', 'Tengo dolor o malestar leve', 'N/A', 'Misc', false);
+            call add_concept_answer (@q4_id, @answer_id, 2);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo dolor o malestar moderado', 'Tengo dolor o malestar moderado', 'N/A', 'Misc', false);
+            call add_concept_answer (@q4_id, @answer_id, 3);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo dolor o malestar fuerte', 'Tengo dolor o malestar fuerte', 'N/A', 'Misc', false);
+            call add_concept_answer (@q4_id, @answer_id, 4);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Tengo dolor o malestar extremo', 'Tengo dolor o malestar extremo', 'N/A', 'Misc', false);
+            call add_concept_answer (@q4_id, @answer_id, 5);
+
+            set @q5_id = 0;
+            call add_concept(@q5_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - quality of life scale, Ansiedad /depresión', 'Ansiedad /depresión', 'Coded', 'Misc', false);
+
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'No estoy ansioso ni deprimido', 'No estoy ansioso ni deprimido', 'N/A', 'Misc', false);
+            call add_concept_answer (@q5_id, @answer_id, 1);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Estoy levemente ansioso o deprimido', 'Estoy levemente ansioso o deprimido', 'N/A', 'Misc', false);
+            call add_concept_answer (@q5_id, @answer_id, 2);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Estoy moderadamente ansioso o deprimido', 'Estoy moderadamente ansioso o deprimido', 'N/A', 'Misc', false);
+            call add_concept_answer (@q5_id, @answer_id, 3);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Estoy muy ansioso o deprimido', 'Estoy muy ansioso o deprimido', 'N/A', 'Misc', false);
+            call add_concept_answer (@q5_id, @answer_id, 4);
+            call add_concept(@answer_id, @concept_name_short_id, @concept_name_full_id, 'Estoy extremadamente ansioso o deprimido', 'Estoy extremadamente ansioso o deprimido', 'N/A', 'Misc', false);
+            call add_concept_answer (@q5_id, @answer_id, 5);
+
+            set @q6_id = 0;
+            call add_concept(@q6_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - quality of life scale, Su salud HOY', 'Su salud HOY', 'Numeric', 'Misc', false);
+            INSERT INTO concept_numeric (concept_id, precise, low_absolute, hi_absolute) values (@q6_id, 0, 0, 100);
+
+            set @template_concept_id = 0;
+            call add_concept(@template_concept_id, @concept_name_short_id, @concept_name_full_id, 'STEM-TB - quality of life scale Template', 'STEM-TB - quality of life scale', 'N/A', 'Misc', true);
+            call add_concept_set_members (@template_concept_id, @date_concept_id, 1);
+            call add_concept_set_members (@template_concept_id, @q1_id, 2);
+            call add_concept_set_members (@template_concept_id, @q2_id, 3);
+            call add_concept_set_members (@template_concept_id, @q3_id, 4);
+            call add_concept_set_members (@template_concept_id, @q4_id, 5);
+            call add_concept_set_members (@template_concept_id, @q5_id, 6);
+            call add_concept_set_members (@template_concept_id, @q6_id, 7);
+
+            set @all_template_concept_id = 0;
+            select concept_id into @all_template_concept_id from concept_view where concept_full_name = 'All Observation Templates';
+            select max(sort_weight)+1 into @weight from concept_set where concept_set = @all_template_concept_id;
+            call add_concept_set_members (@all_template_concept_id, @template_concept_id, @weight);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
