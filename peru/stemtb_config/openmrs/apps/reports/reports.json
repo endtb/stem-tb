@@ -1,6 +1,6 @@
 {
   "DrugOrderReport": {
-    "name": "UNITAID-New drug enrollment (Custom Excel)",
+    "name": "Peru UNITAID-New drug enrollment (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DrugOrder.sql",
@@ -8,7 +8,7 @@
     }
   },
   "AEIReport": {
-    "name": "UNITAID-New drug AEI in first 6 months (Custom Excel)",
+    "name": "Peru UNITAID-New drug AEI in first 6 months (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/AEI.sql",
@@ -16,7 +16,7 @@
     }
   },
   "SAEReport": {
-    "name": "UNITAID-New drug SAE in first 6 months (Custom Excel)",
+    "name": "Peru UNITAID-New drug SAE in first 6 months (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/SAE.sql",
@@ -24,7 +24,7 @@
     }
   },
   "InterimOutcomeByOutcomeStatus": {
-    "name": "UNITAID-New drug interim outcome at month 6 (Custom Excel)",
+    "name": "Peru UNITAID-New drug interim outcome at month 6 (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/interim_outcome_1.sql",
@@ -32,7 +32,7 @@
     }
   },
   "InterimOutcomeBacteriology": {
-    "name": "UNITAID-Interim Outcome Culture Results (Custom Excel)",
+    "name": "Peru UNITAID-Interim Outcome Culture Results (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/interim_bacteriology_results.sql",
@@ -40,7 +40,7 @@
     }
   },
   "FinalOutcomeReport": {
-    "name": "UNITAID-New drug final outcome (Custom Excel)",
+    "name": "Peru UNITAID-New drug final outcome (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/finalOutcome.sql",
@@ -48,7 +48,7 @@
     }
   },
   "DrugOrderReportForStudyCohort": {
-    "name": "UNITAID-New drug enrollment - Study Cohort (Custom Excel)",
+    "name": "Peru UNITAID-New drug enrollment - Study Cohort (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DrugOrder_study_cohort.sql",
@@ -57,7 +57,7 @@
   },
 
   "SAEReportForStudyCohort": {
-    "name": "UNITAID-New drug SAE in first 6 months - Study Cohort (Custom Excel)",
+    "name": "Peru UNITAID-New drug SAE in first 6 months - Study Cohort (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/SAE_study_cohort.sql",
@@ -65,7 +65,7 @@
     }
   },
   "InterimOutcomeByOutcomeStatusForStudyCohort": {
-    "name": "UNITAID-New drug interim outcome at month 6 - Study Cohort(Custom Excel)",
+    "name": "Peru UNITAID-New drug interim outcome at month 6 - Study Cohort(Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/interim_outcome_1_study_cohort.sql",
@@ -73,7 +73,7 @@
     }
   },
   "InterimOutcomeBacteriologyForStudyCohort": {
-    "name": "UNITAID-Interim Outcome Culture Results - Study Cohort (Custom Excel)",
+    "name": "Peru UNITAID-Interim Outcome Culture Results - Study Cohort (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/interim_bacteriology_results_study_cohort.sql",
@@ -81,7 +81,7 @@
     }
   },
   "FinalOutcomeReportForStudyCohort": {
-    "name": "UNITAID-New drug final outcome - Study Cohort (Custom Excel)",
+    "name": "Peru UNITAID-New drug final outcome - Study Cohort (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/finalOutcome_study_cohort.sql",
@@ -89,7 +89,7 @@
     }
   },
   "patientInformationReport": {
-    "name": "Patient Information Report (Excel)",
+    "name": "Peru Patient Information Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/PersonReport.sql",
@@ -97,7 +97,7 @@
     }
   },  
   "BasicRegisterTreatmentCohort": {
-    "name": "Basic Register (T) Report (Excel)",
+    "name": "Peru Basic Register (T) Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/basicRegisterTreatmentCohort.sql",
@@ -105,7 +105,7 @@
     }
   },
    "BasicRegisterNewDrugsCohort": {
-    "name": "Basic Register (D) Report (Excel)",
+    "name": "Peru Basic Register (D) Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/basicRegisterNewDrugsCohort.sql",
@@ -113,28 +113,28 @@
     }
   },
   "AdverseEventsReport": {
-    "name": "Adverse Events Report (Excel)",
+    "name": "Peru Adverse Events Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/adverseEvents.sql"
     }
   },
   "stemTBAdverseEventsReport": {
-    "name": "stemTB Adverse Events Report (Excel)",
+    "name": "Peru stemTB Adverse Events Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/stemTBAdverseEvents.sql"
     }
   },
   "SeriousAdverseEventsReport": {
-    "name": "Serious Adverse Events Report (Excel)",
+    "name": "Peru Serious Adverse Events Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/seriousAdverseEvents.sql"
     }
   },
   "adherenceCohort": {
-    "name": "Adherence Reasons Summary Report(Excel)",
+    "name": "Peru Adherence Reasons Summary Report(Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/adherenceReasonsSummary.sql",
@@ -142,7 +142,7 @@
     }
   },
   "AdherenceMonthlyReviewCohort": {
-    "name": "Adherence Monthly Overview Report(Excel)",
+    "name": "Peru Adherence Monthly Overview Report(Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/adherenceMonthlyReview.sql",
@@ -150,7 +150,7 @@
     }
   },
   "DailyWeeklyVisitReportCohort": {
-    "name": "Daily Weekly Visit Report(Excel)",
+    "name": "Peru Daily Weekly Visit Report(Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/dailyWeeklyVisitReport.sql",
@@ -158,14 +158,14 @@
     }
   },
   "LateVisitReport": {
-    "name": "Late Visit Report Based on Cohort Start Date (Excel)",
+    "name": "Peru Late Visit Report Based on Cohort Start Date (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/lateVisitReport.sql"
     }
   },
   "DRregister_aggregated": {
-    "name": "Cohort report: Enrollment (T) Report (DRTB) (Custom Excel)",
+    "name": "Peru Cohort report: Enrollment (T) Report (DRTB) (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DRregister_aggregated.sql",
@@ -173,7 +173,7 @@
     }
   },
   "DRregister_newdrug_aggregated": {
-    "name": "Cohort report: Enrolment (D) Report (DRTB) (Custom Excel)",
+    "name": "Peru Cohort report: Enrolment (D) Report (DRTB) (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DRregister_NewDrug_aggregated.sql",
@@ -181,7 +181,7 @@
     }
   },
   "Outcome_aggregated": {
-    "name": "Cohort report: Outcome (T) Report (DRTB) (Custom Excel)",
+    "name": "Peru Cohort report: Outcome (T) Report (DRTB) (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DRregister_aggregated.sql",
@@ -189,7 +189,7 @@
     }
   },
   "Outcome_newdrug_aggregated": {
-    "name": "Cohort report: Outcome (D) Report (DRTB) (Custom Excel)",
+    "name": "Peru Cohort report: Outcome (D) Report (DRTB) (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/DRregister_NewDrug_aggregated.sql",
@@ -197,21 +197,21 @@
     }
   },
   "ClinicalVisitAttendanceReportByDrugStartDate": {
-    "name": "Clinical Visit Attendance (D) Report (Excel)",
+    "name": "Peru Clinical Visit Attendance (D) Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/clinicalVisitAttendanceByTBDrugStartDate.sql"
     }
   },
   "ClinicalVisitAttendanceReportByTreatmentStartDate": {
-    "name": "Clinical Visit Attendance (T) Report (Excel)",
+    "name": "Peru Clinical Visit Attendance (T) Report (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/clinicalVisitAttendanceByTreatmentStartDate.sql"
     }
   },
   "BaselineDataVerificationList": {
-    "name": "Baseline Data Verification List (Excel)",
+    "name": "Peru Baseline Data Verification List (Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/baselineDataVerificationList.sql"
@@ -219,7 +219,7 @@
   },
 
   "StudyViewReport": {
-      "name": "Study View Report (Custom Excel)",
+      "name": "Peru Study View Report (Custom Excel)",
       "type": "MRSGeneric",
       "config": {
         "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/studyReports.sql",
@@ -228,7 +228,7 @@
   },
 
   "AdheranceIndicatorsAggregatereport": {
-    "name": "Adherance Indicators Aggregate - Based on year of start date only (Custom Excel)",
+    "name": "Peru Adherance Indicators Aggregate - Based on year of start date only (Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/aggregatedMonthlyAdherenceReport.sql",
@@ -236,7 +236,7 @@
     }
   },
   "CultureConversion": {
-    "name": "Culture Conversion(Custom Excel)",
+    "name": "Peru Culture Conversion(Custom Excel)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/cultureConversion.sql",

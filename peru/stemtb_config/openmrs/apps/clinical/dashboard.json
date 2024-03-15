@@ -249,7 +249,7 @@
 						"StemTB Baseline, Last CD4 Count",
 						"CD4 date",
 						"StemTB Baseline, Last RNA Viral Load",
-						"If viral load results are undetectable, write the result here (for example, '< 20')",
+						"Undetectable, If viral load results are undetectable, write the result here (for example, '< 20')",
 						"Baseline, Viral Load Date",
 						"StemTB Baseline, Currently on ARV treatment?",
 						"StemTB Baseline, Date of ARV initiation",
@@ -291,32 +291,31 @@
 				"displayOrder": 4,
 				"translationKey": "STEM_SUMMARY_TITLE_BASELINE_CASEDEFINITION"
 			},
-
 			"stemtbpreviousTBTreatmentRegimen": {
 				"translationKey": "SUMMARY_TITLE_PREVIOUS_TB_TREATMENT_TABLE",
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
 				"displayType": "Half-Page",
-				"displayOrder": 7,
+				"displayOrder": 5,
 				"dashboardConfig": {
 					"groupByConcept": "Baseline, Start date of past TB treatment",
 					"templateName": "StemTB Baseline, Baseline, Past TB treatment table",
 					"conceptNames": [
+						"Baseline, Start date of past TB treatment",
 						"Baseline, Past TB treatment drug regimen",
 						"StemTB Baseline, Past TB treatment outcome"
 					],
 					"type": "PreviousTBTreatmentRegimen"
 				}
 			},
-
 			"weightBMI": {
 				"displayType": "Half-Page",
 				"translationKey": "SUMMARY_TITLE_WEIGHT_VS_BMI",
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
-				"displayOrder": 5,
+				"displayOrder": 6,
 				"dashboardConfig": {
 					"pivotOn": "row",
 					"templateName": "StemTB, Monthly Clinical Examination Log",
@@ -327,34 +326,13 @@
 					]
 				}
 			},
-
-			"SAEweightBMI": {
-				"displayType": "Half-Page",
-				"translationKey": "SUMMARY_TITLE_SAE_WEIGHT_VS_BMI",
-				"type": "obsToObsFlowSheet",
-				"headingConceptSource": "Abbreviation",
-				"dataConceptSource": "Abbreviation",
-				"displayOrder": 6,
-				"dashboardConfig": {
-					"pivotOn": "row",
-					"templateName": "Serious Adverse Events Template",
-					"groupByConcept": "SAE Form, Date of SAE report",
-					"type": "BMIExtension",
-					"conceptNames": [
-						"Weight (kg)",
-						"Height (cm)"
-					]
-				}
-			},
-
-
 			"BaselineBPNSDisplayleft": {
 				"translationKey": "SUMMARY_TITLE_BASELINE_BPNS_LEFT",
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
 				"displayType": "Full-Page",
-				"displayOrder": 8,
+				"displayOrder": 7,
 				"dashboardConfig": {
 					"groupByConcept": "Baseline, Date of baseline physical examination",
 					"templateName": "Baseline, Clinical Examination",
@@ -374,7 +352,7 @@
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
 				"displayType": "Full-Page",
-				"displayOrder": 9,
+				"displayOrder": 8,
 				"dashboardConfig": {
 					"groupByConcept": "Baseline, Date of baseline physical examination",
 					"templateName": "Baseline, Clinical Examination",
@@ -393,7 +371,7 @@
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
-				"displayType": "Half-Page",
+				"displayType": "Full-Page",
 				"displayOrder": 9,
 				"dashboardConfig": {
 					"groupByConcept": "Followup, Visit Date",
@@ -413,7 +391,7 @@
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
-				"displayType": "Half-Page",
+				"displayType": "Full-Page",
 				"displayOrder": 10,
 				"dashboardConfig": {
 					"groupByConcept": "Followup, Visit Date",
@@ -433,15 +411,15 @@
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
-				"displayType": "Half-Page",
+				"displayType": "Full-Page",
 				"displayOrder": 11,
 				"dashboardConfig": {
 					"groupByConcept": "Followup, Visit Date",
 					"templateName": "StemTB, Monthly Clinical Examination Log",
 					"obsDelimiter": "\n",
 					"conceptNames": [
-						"StemTB, Left Eye Visual Acuity",
-						"StemTB, Right Eye Visual Acuity"
+						"Visual acuity, left eye",
+						"Visual acuity, right eye"
 					]
 				}
 			},
@@ -450,7 +428,7 @@
 				"type": "obsToObsFlowSheet",
 				"headingConceptSource": "Abbreviation",
 				"dataConceptSource": "Abbreviation",
-				"displayType": "Half-Page",
+				"displayType": "Full-Page",
 				"displayOrder": 12,
 				"dashboardConfig": {
 					"groupByConcept": "Followup, Visit Date",
@@ -458,7 +436,7 @@
 					"obsDelimiter": "\n",
 					"conceptNames": [
 						"StemTB, Left Eye Correct Plates",
-						"StemTB, Left Eye Correct Plates"
+						"StemTB, Right Eye Correct Plates"
 					]
 				}
 			},
@@ -710,8 +688,7 @@
 					"type": "DstExtension",
 					"conceptNames": [
 						"Lab, Other test name",
-						"Lab, Other test result",
-						"Lab, Other test unit"
+						"Lab, Other test result"
 					]
 				}
 			},
