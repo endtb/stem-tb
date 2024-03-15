@@ -1,0 +1,15 @@
+{
+    "REPORTS_NAME_HEADER_KEY": "Nombre",
+    "REPORTS_START_DATE_HEADER_KEY": "Fecha de inicio",
+    "REPORTS_END_DATE_HEADER_KEY": "Fecha final",
+    "RUN_REPORT_BUTTON_KEY": "Correr Reporte",
+    "REPORT_FORMAT_KEY": "Formato",
+    "REPORTS_TITLE_KEY": "Reportes",
+    "RUN_NOW_BUTTON_KEY": "Correr", 
+    "QUEUE_BUTTON_KEY":"Cola",
+    "REPORTS_HEADER_REPORTS": "Informes",
+    "REPORTS_HEADER_MY_REPORTS": "Mis Informes",
+    "REPORTS_TITLE_WITHOUT_DATE_RANGE_KEY": "Reportes sin intervalo de fecha",
+    "REPORTS_MISSING_WARNING_MESSAGE_KEY": "Los reportes nuevos pueden ser configurados en un archivo json openmrs/apps/reports/reports.json. \nPor favor consulte la documentacion para mas informacion sobre como configurar canned exports"
+
+}

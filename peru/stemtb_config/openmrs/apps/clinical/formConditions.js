@@ -1148,7 +1148,7 @@ if (SAETerm && (SAETerm == "Other" || SAETerm.value == "Other")) {
         var lastCD = "StemTB Baseline, Last CD4 Count";
         var cdDate = "CD4 date";
         var rna = "StemTB Baseline, Last RNA Viral Load";
-	var undetectable = "Undetectable, If viral load results are undetectable, write the result here (for example, '< 20')";
+	var undetectable = "RNA If undetactable is yes, Viral load result";
         var vload = "Baseline, Viral Load Date";
         var arvTreatment = "StemTB Baseline, Currently on ARV treatment?";
         var arvInitiation = "StemTB Baseline, Date of ARV initiation";
@@ -1732,11 +1732,11 @@ if(conditionConcept == "StemTB Quarterly PTO, Patient family member" || conditio
         return conditions;
     },
 
-	"Xray, Extent of disease": function (formName, formFieldValues) {
+	"StemTB Xray, Extent of disease": function (formName, formFieldValues) {
         var conceptEnCavity = "StemTB, Cavity size (aggregate)";
         var conceptEnFibrosis = "StemTB, Presence of Fibrosis";
         var conditions = {enable: [], disable: []};
-        var conditionConcept = formFieldValues["Xray, Extent of disease"];
+        var conditionConcept = formFieldValues["StemTB Xray, Extent of disease"];
         if (conditionConcept == "Normal" || !conditionConcept) {
             conditions.disable.push(conceptEnCavity, conceptEnFibrosis)
         } else {

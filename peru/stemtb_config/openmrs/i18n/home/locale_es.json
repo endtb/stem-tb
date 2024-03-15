@@ -1,0 +1,8 @@
+{
+    "MODULE_LABEL_REGISTRATION_KEY": "Registracion",
+    "MODULE_LABEL_CLINICAL_KEY": "Registros de pacientes",
+    "MODULE_LABEL_ADMIN_KEY": "Administración",
+    "MODULE_LABEL_REPORTS_KEY": "Reportes",
+    "MODULE_LABEL_EXPORTS_KEY": "Exportaciones",
+   "MODULE_LABEL_DATA_INTEGRITY_KEY": "Calidad de los datos"
+}
