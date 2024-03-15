@@ -75,6 +75,16 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         formNames.put("Hep C Treatment Outcome Template", "HTO, The last day the patient received hepatitis C treatment");
         formNames.put("Hep C Treatment Initiation Template", "HTI, DAA treatment start date:");
         formNames.put("Depression Alcohol Score Template", "DAS, Date alcohol abuse or PHQ-9 screening performed");
+	    formNames.put("StemTB, Baseline Template", "Baseline, Date of baseline");
+   	    formNames.put("StemTB, Monthly Clinical Examination Log", "Followup, Visit Date");
+    	formNames.put("StemTB, Chest X-ray Template", "StemTB, Chest Xray Date");
+    	formNames.put("StemTB, Hospitalization Template", "StemTB, Hospitalization Dates");
+    	formNames.put("StemTB, Lab Results Log", "Specimen Collection Date");
+   	    formNames.put("StemTB, Adverse Events Template", "StemTB, Date of AE report");
+    	formNames.put("StemTB, Monthly Treatment Completeness", "MTC, Month and year of treatment period");
+    	formNames.put("StemTB, Outcome End of Treatment Template", "StemTB, Tuberculosis treatment end date");
+    	formNames.put("StemTB Quarterly PTO, Quarterly Post Treatment Template", "StemTB Quarterly PTO, Date of End of Treatment");
+    	formNames.put("StemTB, Final Post-Treatment Outcome Template", "StemTB PTO, Date of post-treatment outcome decision");
     }
 
     public void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
