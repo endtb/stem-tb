@@ -623,43 +623,43 @@
       "ECOG Performance Status": {
         "dropdown": true
       },
-      "STEM-TB - dyspnea scale Template": {
+      "StemTB, Dyspnea Scale Template": {
         "allowAddMore": true
       },
-      "STEM-TB - dyspnea scale, Fecha de Intervención": {
+      "StemTB, Dyspnea Scale, Fecha de Intervención": {
         "required": true
       },
-      "STEM-TB - dyspnea scale, Evaluación": {
+      "StemTB, Dyspnea Scale, Evaluación": {
         "dropdown": true,
         "required": true
       },
-      "STEM-TB - quality of life scale Template": {
+      "StemTB, Quality of Life Scale Template": {
         "allowAddMore": true
       },
-      "STEM-TB - quality of life scale, Fecha de Intervención": {
+      "StemTB, Quality of Life Scale, Fecha de Intervención": {
         "required": true
       },
-      "STEM-TB - quality of life scale, Movilidad": {
+      "StemTB, Quality of Life Scale, Movilidad": {
         "dropdown": true,
         "required": true
       },
-      "STEM-TB - quality of life scale, Auto-cuidado": {
+      "StemTB, Quality of Life Scale, Auto-cuidado": {
         "dropdown": true,
         "required": true
       },
-      "STEM-TB - quality of life scale, Actividades cotidianas": {
+      "StemTB, Quality of Life Scale, Actividades cotidianas": {
         "dropdown": true,
         "required": true
       },
-      "STEM-TB - quality of life scale, Dolor / malestar": {
+      "StemTB, Quality of Life Scale, Dolor / malestar": {
         "dropdown": true,
         "required": true
       },
-      "STEM-TB - quality of life scale, Ansiedad /depresión": {
+      "StemTB, Quality of Life Scale, Ansiedad /depresión": {
         "dropdown": true,
         "required": true
       },
-      "STEM-TB - quality of life scale, Su salud HOY": {
+      "StemTB, Quality of Life Scale, Su salud HOY": {
         "required": true
       },
       "BACTERIOLOGY_SAMPLE_ID": {

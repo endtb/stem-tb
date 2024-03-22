@@ -769,9 +769,9 @@
 					"maximumNoOfVisits": 1000
 				},
 				"formGroup": [
-					"STEM-TB - dyspnea scale Template"
+					"StemTB, Dyspnea Scale Template"
 				],
-				"translationKey": "STEM-TB - dyspnea scale"
+				"translationKey": "StemTB, Dyspnea Scale"
 			},
 			"stemTbQualityOfLife": {
 				"type": "forms",
@@ -781,9 +781,9 @@
 					"maximumNoOfVisits": 1000
 				},
 				"formGroup": [
-					"STEM-TB - quality of life scale Template"
+					"StemTB, Quality of Life Scale Template"
 				],
-				"translationKey": "STEM-TB - quality of life scale"
+				"translationKey": "StemTB, Quality of Life Scale"
 			}
 		},
 		"translationKey": "STEMTB_DASHBOARD_TAB_PATIENT_SUMMARY_KEY"
