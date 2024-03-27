@@ -20,11 +20,11 @@
 
             set @date_concept_id = 0;
             call add_concept(@date_concept_id, @concept_name_short_id, @concept_name_full_id, 'StemTB, Dyspnea Scale, Fecha de Intervención', 'Fecha de Intervención', 'Date', 'Misc', false);
-            call add_concept_same_as_mapping(@date_concept_id, 'EndTB-Export', 'dysp_eval_date');
+            call add_concept_same_as_mapping(@date_concept_id, 'EndTB-Export', 'fecha_intervention');
 
             set @scale_concept_id = 0;
             call add_concept(@scale_concept_id, @concept_name_short_id, @concept_name_full_id, 'StemTB, Dyspnea Scale, Evaluación', 'Evaluación', 'Coded', 'Misc', false);
-            call add_concept_same_as_mapping(@scale_concept_id, 'EndTB-Export', 'dysp_eval');
+            call add_concept_same_as_mapping(@scale_concept_id, 'EndTB-Export', 'dyspnea_scale');
 
             set @answer_concept_id = 0;
 
