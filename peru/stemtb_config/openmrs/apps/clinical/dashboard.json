@@ -191,6 +191,30 @@
 					"Depression Alcohol Score Template"
 				],
 				"translationKey": "DASHBOARD_TITLE_HEP_FORMS"
+			},
+			"stemTbDyspneaScale": {
+				"type": "forms",
+				"displayOrder": 13,
+				"dashboardConfig": {
+					"title": null,
+					"maximumNoOfVisits": 1000
+				},
+				"formGroup": [
+					"StemTB, Dyspnea Scale Template"
+				],
+				"translationKey": "StemTB, Dyspnea Scale"
+			},
+			"stemTbQualityOfLife": {
+				"type": "forms",
+				"displayOrder": 14,
+				"dashboardConfig": {
+					"title": null,
+					"maximumNoOfVisits": 1000
+				},
+				"formGroup": [
+					"StemTB, Quality of Life Scale Template"
+				],
+				"translationKey": "StemTB, Quality of Life Scale"
 			}
 		},
 		"translationKey": "DASHBOARD_TAB_GENERAL_KEY"
@@ -760,30 +784,6 @@
 						"SAE Form, SAE outcome"
 					]
 				}
-			},
-			"stemTbDyspneaScale": {
-				"type": "forms",
-				"displayOrder": 28,
-				"dashboardConfig": {
-					"title": null,
-					"maximumNoOfVisits": 1000
-				},
-				"formGroup": [
-					"StemTB, Dyspnea Scale Template"
-				],
-				"translationKey": "StemTB, Dyspnea Scale"
-			},
-			"stemTbQualityOfLife": {
-				"type": "forms",
-				"displayOrder": 29,
-				"dashboardConfig": {
-					"title": null,
-					"maximumNoOfVisits": 1000
-				},
-				"formGroup": [
-					"StemTB, Quality of Life Scale Template"
-				],
-				"translationKey": "StemTB, Quality of Life Scale"
 			}
 		},
 		"translationKey": "STEMTB_DASHBOARD_TAB_PATIENT_SUMMARY_KEY"
