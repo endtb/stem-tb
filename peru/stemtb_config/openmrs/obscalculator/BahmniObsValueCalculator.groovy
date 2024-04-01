@@ -85,6 +85,8 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     	formNames.put("StemTB, Outcome End of Treatment Template", "StemTB, Tuberculosis treatment end date");
     	formNames.put("StemTB Quarterly PTO, Quarterly Post Treatment Template", "StemTB Quarterly PTO, Date of End of Treatment");
     	formNames.put("StemTB, Final Post-Treatment Outcome Template", "StemTB PTO, Date of post-treatment outcome decision");
+        formNames.put("StemTB, Dyspnea Scale Template", "StemTB, Dyspnea Scale, Fecha de Intervención");
+        formNames.put("StemTB, Quality of Life Scale Template", "StemTB, Quality of Life Scale, Fecha de Intervención");
     }
 
     public void run(BahmniEncounterTransaction bahmniEncounterTransaction) {

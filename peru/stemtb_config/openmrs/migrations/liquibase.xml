@@ -2556,4 +2556,15 @@
     </sql>
     </changeSet>
 
+    <!-- See: https://pihemr.atlassian.net/browse/UHM-7710 -->
+    <changeSet id="StemTB-add_concept_same_as_mapping-procedure" author="mseaton" runAlways="false">
+        <comment>Create add_concept_same_as_mapping procedure</comment>
+        <sql>
+            drop procedure if exists add_concept_same_as_mapping;
+        </sql>
+        <sqlFile splitStatements="false" path="add_concept_same_as_mapping.sql"/>
+    </changeSet>
+    <include file="StemTBDyspneaScale.xml"/>
+    <include file="StemTBQualityOfLifeScale.xml"/>
+
 </databaseChangeLog>
